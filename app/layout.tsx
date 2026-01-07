@@ -1,17 +1,15 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import '@/app/ui/global.css';
+import '@/app/components/header.css'
+import {righteous, inter, lusitana } from './ui/fonts'
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
+    <html lang="en" className={inter.className}>
+       <body>{children}</body>
     </html>
   );
 }

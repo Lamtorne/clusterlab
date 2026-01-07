@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+.PageBackground {
+  background-color: #E8DCC4;
+  background-size:contain;        
+  background-position: center;     
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+.Block_1 {
+  display:flex;
+  grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
+  gap: 6rem;
+  align-items: center;
+
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+
+.NASA_Picture {
+  width: 80%;
+  height: auto;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.TextBlock_1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.Header_1 {
+  font-family: 'Jura';
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.3;
+  color: #2b241c;
+}
+
+.Text_1 {
+  font-family: 'Jura';
+  font-size:2rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #3a3228;
+  max-width: 80rem;
+}
+
+.Buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.PrimaryButton {
+  background: #ff8654;
+  color: white;
+  font-family: 'Jura';
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.SecondaryButton {
+  font-family: 'Jura';
+  background: transparent;
+  border: 2px solid #6b9b7a;
+  color: #2b241c;
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.Block_2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.TableBlock_2{
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 4rem 0rem 4rem;
+}
+.Block_2 h1{
+  text-align: center;
+  font-family: 'Jura';
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.3;
+  color: #2b241c;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+.Block_2 ul li{
+  display:inline-table;
+  max-width: 33%;
+  width: 33%;
+}
+.Block_2 li{
+  background: #6B9B7A;
+  opacity: 0.7;
+  border-radius: 25px;
+  max-width: 160px;
+  height: 24rem;
+  padding: 1rem 1.9rem;
+  margin: 2rem 0.5rem 0.5rem 0rem;
+}
+.Icon-circle {
+  z-index: 1;
+  width: 180px;
+  height: 180px;
+
+  background: #E8DCC4;
+  border: 0.27rem solid #6b9b7a;
+  border-radius: 50%;
+  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  margin-top: -4rem;
+}
+
+
+.Block_2 h2{
+  color: #E8DCC4;
+  text-align: center;
+  font-family: 'Jura';
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.3;
+}
+.Block_2 p{
+  color: #E8DCC4;
+  text-align: center;
+  font-family: 'Jura';
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 2.5rem;
+}

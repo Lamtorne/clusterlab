@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+.Header {
+  background-color: #3c3126;
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Logo {
+  display: flex;
+  align-items: center; 
+  gap: 0.5rem; 
+}
+
+.LogoText{
+display: flex;
+font-family: 'Righteous';
+font-style: normal;
+font-weight: 400;
+font-size: 3.5rem;
+line-height: 2.3rem;
+color: #E8DCC4;
+}
+
+.Header nav {
+  flex-grow: 1; 
+}
+
+.Header ul {
+  display: flex;
+  gap: 1.5rem; 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 7.5rem;
+  margin: 0;
+  padding: 0;
+  margin-left: 3.7rem;
+  
+}
+
+.HeaderSpaceText {
+
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  white-space: normal;
+  color: #E8DCC4;
+  text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.StartWorkText{
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  white-space: normal;
+  color: #6B9B7A;
+
+  background: #E8DCC4;
+  border-radius: 25px;
+  max-width: 200px;
+  height: auto;
+  padding: 1rem 1.5rem;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.Header.right-align {
+  margin-left: auto; 
+  margin-right: 0;
+  float: right;
+}
