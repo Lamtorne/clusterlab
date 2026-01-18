@@ -1,150 +1,87 @@
 @import "tailwindcss";
 
-.PageBackground {
-  background-color: #E8DCC4;
-  background-size:contain;        
-  background-position: center;     
-  min-height: 100vh;
-  width: 100%;
+:root {
+  --fs-h1: clamp(2rem, 5vw + 1rem, 4.2rem);
+  --fs-h2: clamp(1.45rem, 3vw + 1rem, 2.75rem);
+  --fs-body: clamp(1.25rem, 0.5vw + 0.8rem, 1.35rem);
+
+  --container-max: 1200px;
+  --section-padding: clamp(3rem, 10vh, 8rem);
+  --base-font-size: 100%;
 }
 
-
-.Block_1 {
-  display:flex;
-  grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
-  gap: 6rem;
-  align-items: center;
-
-  max-width: 2000px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
+@media(min-width: 1920px) {
+  :root {
+    --base-font-size: 115%;
+    --container-max: 1600px;
+  }
 }
 
-
-.NASA_Picture {
-  width: 80%;
-  height: auto;
-  border-radius: 24px;
-  object-fit: cover;
+@media (min-width: 2560px) {
+  :root {
+    --base-font-size: 120%;
+    /* Bumps root to ~19.2px */
+    --container-max: 2000px;
+  }
 }
 
-.TextBlock_1 {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+@media(min-width: 3840px) {
+  :root {
+    --base-font-size: 140%;
+    --container-max: 2800px;
+  }
 }
 
-.Header_1 {
-  font-family: 'Jura';
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 1.3;
-  color: #2b241c;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.Text_1 {
-  font-family: 'Jura';
-  font-size:2rem;
+html {
+  font-size: var(--base-font-size);
+  -webkit-text-size-abjust: 100%;
+  scroll-behavior: smooth;
+}
+
+main {
+  font-size: var(--fs-body);
+  font-family: "Jura", "Righteous", "Inter";
   line-height: 1.6;
-  font-weight: 600;
-  color: #3a3228;
-  max-width: 80rem;
+  -webkit-font-smoothing: antialiased;
 }
 
-.Buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.PrimaryButton {
-  background: #ff8654;
-  color: white;
-  font-family: 'Jura';
-  padding: 0.75rem 1.5rem;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.SecondaryButton {
-  font-family: 'Jura';
-  background: transparent;
-  border: 2px solid #6b9b7a;
-  color: #2b241c;
-  padding: 0.75rem 1.5rem;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.Block_2{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
-}
-.TableBlock_2{
-  display: flex;
-  gap: 1rem;
-  margin: 0.5rem 4rem 0rem 4rem;
-}
-.Block_2 h1{
-  text-align: center;
-  font-family: 'Jura';
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 1.3;
-  color: #2b241c;
-  margin-left: 10rem;
-  margin-right: 10rem;
-}
-.Block_2 ul li{
-  display:inline-table;
-  max-width: 33%;
-  width: 33%;
-}
-.Block_2 li{
-  background: #6B9B7A;
-  opacity: 0.7;
-  border-radius: 25px;
-  max-width: 160px;
-  height: 24rem;
-  padding: 1rem 1.9rem;
-  margin: 2rem 0.5rem 0.5rem 0rem;
-}
-.Icon-circle {
-  z-index: 1;
-  width: 180px;
-  height: 180px;
-
-  background: #E8DCC4;
-  border: 0.27rem solid #6b9b7a;
-  border-radius: 50%;
-  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.35);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  margin-top: -4rem;
+.container {
+  width: 90%;
+  max-width: var(--container-max);
+  margin-inline: auto;
 }
 
 
-.Block_2 h2{
-  color: #E8DCC4;
-  text-align: center;
-  font-family: 'Jura';
-  font-weight: 700;
-  font-size: 2.5rem;
-  line-height: 1.3;
+h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
-.Block_2 p{
-  color: #E8DCC4;
-  text-align: center;
-  font-family: 'Jura';
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 1.3;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  margin-top: 2.5rem;
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  max-width: 70ch;
+  margin-bottom: 1.5rem;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+section {
+  padding-block: var(--section-padding);
 }

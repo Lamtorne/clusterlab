@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+.PageBackground {
+    background-color: #E8DCC4;
+    background-size: contain;
+    background-position: center;
+    min-height: 200vh;
+    width: 100%;
+}
+
+.Block-1 {
+    display: grid;
+    grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
+    gap: 6rem;
+    max-width: 1800px;
+    padding: 3rem 2rem;
+
+    align-items: center;
+    margin: 0 auto;
+}
+
+.NASA-Picture {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    object-fit: cover;
+}
+
+.Block-1-Text {
+    background-image: url("/Logo-Light.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 2rem;
+}
+
+.Block-1-Text-Blur {
+    backdrop-filter: blur(10px);
+}
+
+p {
+    font-weight: bold;
+}
+
+.Block-1-Button-1 {
+    background-color: #ff7043;
+    color: #E8DCC4;
+    border: solid;
+    border-color: #ff7043;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-right: 0.4rem;
+}
+
+.Block-1-Button-1:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+.Block-1-Button-2 {
+    color: #000000;
+    border: solid;
+    border-color: #6B9B7A;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-left: 0.4rem;
+}
+
+.Block-1-Button-2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+
+.Block-2 {
+    margin-top: 10rem;
+}
+
+.Block-2-Header {
+    text-align: center;
+}
+
+
+.Block-2-Cards-Container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    align-items: stretch;
+}
+
+
+.Block-2-SubBlock {
+    background-color: #6B9B7A;
+    border-radius: 15px;
+    padding: 40px 20px 50px 20px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Block-2-Icon-Wrapper {
+    position: absolute;
+    top: -37px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 4px solid #6B9B7A;
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Block-2-SubHeader {
+    font-weight: 1000;
+    font-style: bold;
+    font-size: 2rem;
+}
+
+.Block-2-SubText {
+    font-size: 1.6rem;
+}
+
+.Block-3 {
+    margin-top: 10rem;
+}
+
+.Block-3-Header {
+    text-align: center;
+}
+
+.Block-3-Cards-Container {
+    display: grid;
+    grid-template-columns: repeat(3, 1.5fr);
+    gap: 0.2rem;
+    margin-top: 2.5rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    align-items: stretch;
+}
+
+.Image-Before {
+    width: auto;
+    height: auto;
+    border-radius: 24px;
+    object-fit: cover;
+    display: flex;
+    justify-self: center;
+}
+
+.Image-After {
+    width: auto;
+    height: auto;
+    border-radius: 24px;
+    object-fit: cover;
+    display: flex;
+    justify-self: center;
+}
+
+.Block-3-SubBlock {
+    font-size: 2rem;
+    text-align: justify;
+}

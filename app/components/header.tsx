@@ -1,13 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 
-const Header = () =>{
+const Header = () => {
   return (
     <header className="Header">
       <div className="Logo">
         <Image
           className="LogoImg"
-          src="/Logo.svg"
+          src="/Logo-Transparent.svg"
           alt="Next.js logo"
           width={50}
           height={100}
@@ -16,13 +16,11 @@ const Header = () =>{
         <a className="LogoText">ClusterLab</a>
       </div>
       <nav>
-        <ul>
-          <li><a className='HeaderSpaceText'>О технологии</a></li>
-          <li><a className='HeaderSpaceText'>Результаты</a></li>
-          <li><a className='HeaderSpaceText'>Тарифы</a></li>
-        </ul>
+        <a href="#">О технологии</a>
+        <a href="#">Результаты</a>
+        <a href="#">Тарифы</a>
+        <button className="ButtonStart">Начать работу</button>
       </nav>
-      <div className="right-align"><a className="StartWorkText">Начать работу</a></div>
     </header>
   );
 };
