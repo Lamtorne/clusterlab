@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+
+
 .PageBackground {
     background-color: #E8DCC4;
     background-size: contain;
     background-position: center;
-    min-height: 400vh;
+    min-height: 430vh;
     width: 100%;
 }
 
@@ -32,10 +34,12 @@
     background-position: center;
     background-size: contain;
     padding: 2rem;
+    color: #3C3126
 }
 
 .Block-1-Text-Blur {
     backdrop-filter: blur(10px);
+    background-color: rgba(232, 220, 196, 0.4);
 }
 
 p {
@@ -62,7 +66,7 @@ p {
 }
 
 .Block-1-Button-2 {
-    color: #000000;
+    color: #3C3126;
     border: solid;
     border-color: #8EAB90;
     padding: 10px 25px;
@@ -88,6 +92,8 @@ p {
     text-align: center;
     font-weight: bold;
     margin-bottom: 7rem;
+    color: #3C3126;
+    text-shadow: 0px 4px 4px rgba(60, 49, 38, 0.5);
 }
 
 
@@ -118,7 +124,7 @@ p {
     top: -90px;
     left: 50%;
     transform: translateX(-50%);
-    background: white;
+    background: #E8DCC4;
     border: 4px solid #8EAB90;
     border-radius: 100%;
     width: 150px;
@@ -132,10 +138,13 @@ p {
     font-weight: 1000;
     font-style: bold;
     font-size: 2rem;
+    color: #E8DCC4;
+    margin-top: 2rem;
 }
 
 .Block-2-SubText {
     font-size: 1.6rem;
+    color: #E8DCC4;
 }
 
 .Block-3 {
@@ -144,6 +153,9 @@ p {
 
 .Block-3-Header {
     text-align: center;
+    font-weight: bold;
+    color: #3C3126;
+    text-shadow: 0px 4px 4px rgba(60, 49, 38, 0.5);
 }
 
 .Block-3-Cards-Container {
@@ -179,6 +191,7 @@ p {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     text-align: justify;
+    color: #3C3126;
 }
 
 .Block-4 {
@@ -187,11 +200,13 @@ p {
 
 .Block-4-Header {
     margin-left: 6rem;
+    color: #3C3126;
+    text-shadow: 0px 4px 4px rgba(60, 49, 38, 0.5);
 }
 
 .Block-4-List {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     font-size: 80px;
 
     display: flex;
@@ -204,13 +219,14 @@ p {
     border-radius: 50%;
 
     position: relative;
-    left: -32px;
+    left: -52px;
 
     flex-shrink: 0;
 }
 
 .Block-4-List p {
     margin: 0;
+    font-size: 6rem;
 }
 
 .Block-4-Header {
@@ -231,9 +247,12 @@ p {
     background: #8EAB90;
     padding: 0.5rem 1rem 0.5rem 1rem;
     position: relative;
-    min-height: 5rxem;
-    border-radius: 25%;
-
+    max-height: 10rem;
+    border-radius: 0%;
+    border-color: #E8DCC4;
+    border-width: 1.5rem;
+    border-right-color: #8EAB90;
+    border-right-width: 0rem;
 }
 
 .Block-4-SubText h2 {
@@ -249,6 +268,7 @@ p {
     font-size: 1.4rem;
     margin: 0;
     line-height: 1.4;
+    margin-left: 4rem;
 }
 
 .Block-5 {
@@ -259,6 +279,8 @@ p {
     text-align: center;
     margin-bottom: 7rem;
     font-weight: bold;
+    color: #3C3126;
+    text-shadow: 0px 4px 4px rgba(60, 49, 38, 0.5);
 }
 
 .Block-5-Cards-Container {
@@ -270,15 +292,10 @@ p {
     justify-self: center;
 }
 
-.Block-5-SubBlock-1 {
-    background-color: #8EAB90;
-    border: #8EAB90;
-    border-radius: 10% 10% 0% 10%;
-    padding: 2rem;
-
-}
-
-.Block-5-SubBlock-1 h2, .Block-5-SubBlock-2 h2, .Block-5-SubBlock-3 h2, .Block-5-SubBlock-4 h2  {
+.Block-5-SubBlock-1 h2,
+.Block-5-SubBlock-2 h2,
+.Block-5-SubBlock-3 h2,
+.Block-5-SubBlock-4 h2 {
     color: #E8DCC4;
     font-size: 1.8rem;
     margin: 0;
@@ -286,19 +303,32 @@ p {
     margin-bottom: 1rem;
 }
 
-.Block-5-SubBlock-1 p, .Block-5-SubBlock-2 p, .Block-5-SubBlock-3 p, .Block-5-SubBlock-4 p  {
+.Block-5-SubBlock-1 p,
+.Block-5-SubBlock-2 p,
+.Block-5-SubBlock-3 p,
+.Block-5-SubBlock-4 p {
     color: #3C3126;
     font-size: 1.4rem;
     margin: 0;
     line-height: 1.4;
 }
 
+.Block-5-SubBlock-1 {
+    background-color: #8EAB90;
+    border: #8EAB90;
+    border-radius: 10% 10% 0% 10%;
+    padding: 2rem;
+    box-shadow: inset 0px 0px 10px 10px #E8DCC4;
+
+}
+
+
 .Block-5-SubBlock-2 {
     background-color: #8EAB90;
     border: #8EAB90;
     border-radius: 10% 10% 10% 0%;
     padding: 2rem;
-
+    box-shadow: inset 0px 0px 10px 10px #E8DCC4;
 
 }
 
@@ -307,7 +337,7 @@ p {
     border: #8EAB90;
     border-radius: 10% 0% 10% 10%;
     padding: 2rem;
-
+    box-shadow: inset 0px 0px 10px 10px #E8DCC4;
 }
 
 .Block-5-SubBlock-4 {
@@ -315,6 +345,7 @@ p {
     border: #ff7043;
     border-radius: 0% 10% 10% 10%;
     padding: 2rem;
+    box-shadow: inset 0px 0px 10px 10px #E8DCC4;
 
 }
 
@@ -326,6 +357,8 @@ p {
     text-align: center;
     font-weight: bold;
     margin-bottom: 7rem;
+    color: #3C3126;
+    text-shadow: 0px 4px 4px rgba(60, 49, 38, 0.5);
 }
 
 
@@ -356,7 +389,7 @@ p {
     top: -90px;
     left: 50%;
     transform: translateX(-50%);
-    background: white;
+    background: #E8DCC4;
     border: 4px solid #8EAB90;
     border-radius: 100%;
     width: 150px;
@@ -370,8 +403,11 @@ p {
     font-weight: 1000;
     font-style: bold;
     font-size: 2rem;
+    color: #E8DCC4;
+    margin-top: 2rem;
 }
 
 .Block-6-SubText {
     font-size: 1.6rem;
+    color: #E8DCC4;
 }

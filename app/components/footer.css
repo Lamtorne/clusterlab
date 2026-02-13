@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+footer {
+  display: flex;
+  justify-content:start;
+  gap: 5rem;
+  align-items: center;
+  padding: 20px 5%;
+  background-color: #3c3126;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.LogoText {
+  font-family: "Righteous", sans-serif;
+  font-size: 38px;
+  color: #E8DCC4;
+  line-height: 1;
+}
+
+.Mail {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+.MailText{
+    font-family: "Jura", sans-serif;
+    font-size: 20px;
+    color: #E8DCC4;
+    line-height: 1;
+}
