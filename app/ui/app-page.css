@@ -82,7 +82,7 @@ p {
 }
 
 .Block-2 {
-  margin-top: 7rem;
+  margin-top: 5rem;
 }
 
 .Block-2-Header {
@@ -146,7 +146,7 @@ p {
 }
 
 .Block-3 {
-  margin-top: 7rem;
+  margin-top: 6rem;
 }
 
 .Block-3-Header {
@@ -191,7 +191,7 @@ p {
 }
 
 .Block-4 {
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 
 .Block-4-Header {
@@ -225,7 +225,7 @@ p {
 
 .Block-4-Header {
   text-align: center;
-  margin-bottom: 7rem;
+  margin-bottom: 4rem;
   font-weight: bold;
 }
 
@@ -261,13 +261,13 @@ p {
 }
 
 .Block-5 {
-  margin-top: 10rem;
+  margin-top: 7rem;
   color: #3c3126;
 }
 
 .Block-5-Header {
   text-align: center;
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
   font-weight: bold;
 }
 
@@ -321,6 +321,7 @@ p {
   border: #8eab90;
   border-radius: 10% 10% 10% 0%;
   padding: 2rem;
+  box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
 .Block-5-SubBlock-3 {
@@ -328,6 +329,7 @@ p {
   border: #8eab90;
   border-radius: 10% 0% 10% 10%;
   padding: 2rem;
+  box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
 .Block-5-SubBlock-4 {
@@ -335,10 +337,11 @@ p {
   border: #ff7043;
   border-radius: 0% 10% 10% 10%;
   padding: 2rem;
+  box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
 .Block-6 {
-  margin-top: 10rem;
+  margin-top: 7rem;
   color: #3c3126;
 }
 
@@ -376,7 +379,7 @@ p {
   top: -90px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
+  background: #e8dcc4;
   border: 4px solid #8eab90;
   border-radius: 100%;
   width: 150px;
@@ -385,6 +388,7 @@ p {
   align-items: center;
   justify-content: center;
   color: #3c3126;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
 }
 
 .Block-6-SubHeader {
@@ -392,6 +396,8 @@ p {
   font-style: bold;
   font-size: 2rem;
   color: #3c3126;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .Block-6-SubText {
