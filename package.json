@@ -18,7 +18,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+<<<<<<< HEAD
     "baseline-browser-mapping": "^2.9.19",
+=======
+    "baseline-browser-mapping": "^2.9.11",
+>>>>>>> c0eb41c2c6b9021bff225652a1641255db8635b8
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "tailwindcss": "^4",
