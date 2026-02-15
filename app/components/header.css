@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background-color: #3c3126;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.LogoText {
+  font-family: "Righteous", sans-serif;
+  font-size: 38px;
+  color: #E8DCC4;
+  line-height: 1;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
+  font-family: "Jura", sans-serif;
+  text-decoration: none;
+  color: #E8DCC4;
+  font-weight: 700;
+  font-size: 18px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff7043;
+  text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
+}
+
+.ButtonStart {
+  font-family: "Jura", sans-serif;
+  background-color: #ff7043;
+  color: #E8DCC4;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: 0.3s ease;
+}
+
+.ButtonStart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1);
+}
