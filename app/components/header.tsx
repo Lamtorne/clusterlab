@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -17,7 +17,7 @@ const Header = () => {
       </div>
       <nav>
         <a href="#">О технологии</a>
-        <a href="#">Результаты</a>
+        <a href="#">Этапы</a>
         <a href="#">Тарифы</a>
         <button className="ButtonStart">Начать работу</button>
       </nav>
