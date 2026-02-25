@@ -26,6 +26,16 @@ export default function Footer() {
           />
           <a className="MailText">clusterlab.ru@gmail.com</a>
       </div>
+      <div>
+        <Image
+          className="Logo-Fund-Img"
+          src="/logo_fund.png"
+          alt="Logo Fund Icon"
+          width={250}
+          height={50}
+          priority
+          />
+      </div>
     </footer>
   );
 }

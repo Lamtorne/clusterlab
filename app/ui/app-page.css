@@ -129,7 +129,7 @@ p {
   align-items: center;
   justify-content: center;
   color: #3c3126;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
 
 .Block-2-SubHeader {
@@ -159,7 +159,7 @@ p {
 
 .Block-3-Cards-Container {
   display: grid;
-  grid-template-columns: repeat(3, 1.5fr);
+  grid-template-columns: repeat(2, 1.5fr);
   gap: 4.5rem;
   margin-top: 2.5rem;
   margin-left: 10rem;
@@ -305,6 +305,7 @@ p {
   margin: 0;
   font-weight: bold;
   margin-bottom: 1rem;
+  text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.85);
 }
 
 .Block-5-SubBlock-1 p,
@@ -399,7 +400,7 @@ p {
   align-items: center;
   justify-content: center;
   color: #3c3126;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
 
 .Block-6-SubHeader {

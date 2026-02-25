@@ -98,16 +98,6 @@ export default function HomePage() {
         </h2>
 
         <div className="Block-3-Cards-Container">
-          <div className="Block-3-SubImage">
-            <Image
-              className="Image-Before"
-              src="/TestSPb.png"
-              alt="Изображение до"
-              width={500}
-              height={500}
-              priority
-            />
-          </div>
           <div className="Block-3-SubBlock">
             <div>
               <a>
