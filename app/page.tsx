@@ -120,13 +120,11 @@ export default function HomePage() {
             </div>
           </div>
           <div className="Block-3-SubImage">
-            <Image
-              className="Image-After"
-              src="/TestSPb.png"
-              alt="Изображение после"
-              width={500}
-              height={500}
-              priority
+            <iframe
+              src="/map.html"
+              width="100%"
+              height="500px"
+              style={{ border: "none" }}
             />
           </div>
         </div>
