@@ -368,6 +368,7 @@ p {
   margin-top: 50px;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+  padding-bottom: 5rem;
   align-items: stretch;
   color: #3c3126;
 }
@@ -413,4 +414,48 @@ p {
 .Block-6-SubText {
   font-size: 1.6rem;
   color: #3c3126;
+}
+.Block-7 {
+  max-width: 1200px; /* Немного сузил для лучшей читаемости текста */
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  color: #3c3126;
+}
+
+.Block-7-Header {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 7rem;
+  color: #3c3126;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Новая сетка только для картинок и текста */
+.Block-7-Content {
+  display: grid;
+  /* Слева фиксируем ширину под картинки, справа отдаем остаток тексту */
+  grid-template-columns: 250px 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.Block-7-Images {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.Block-7-Images img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.Block-7-Text {
+  text-align: left;
+  font-family: "Jura", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.4;
 }

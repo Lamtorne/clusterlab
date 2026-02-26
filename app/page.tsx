@@ -287,6 +287,40 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <div className="Block-7">
+        <h2 className="Block-7-Header">Поддержка</h2>
+
+        <div className="Block-7-Content">
+          <div className="Block-7-Images">
+            <Image
+              className="Fasie-Picture"
+              src="/Fasie.png"
+              alt="Fasie logo"
+              width={300} // Уменьшил базовое значение для корректного масштабирования
+              height={150}
+              priority
+            />
+            <Image
+              className="Platform-Picture"
+              src="/Platform.png"
+              alt="Platform Logo"
+              width={300}
+              height={150}
+              priority
+            />
+          </div>
+
+          <div className="Block-7-Text">
+            <p>
+              Проект реализован при поддержке Фонда содействия инновациям в
+              рамках программы «Студенческий стартап» мероприятия «Платформа
+              университетского технологического предпринимательства»
+              федерального проекта «Платформа»
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

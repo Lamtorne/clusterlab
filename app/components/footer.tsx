@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import "@/app/components/footer.css"
+import React from "react";
+import Image from "next/image";
+import "@/app/components/footer.css";
 export default function Footer() {
   return (
     <footer className="footer-style">
@@ -23,18 +23,8 @@ export default function Footer() {
           width={25}
           height={20}
           priority
-          />
-          <a className="MailText">clusterlab.ru@gmail.com</a>
-      </div>
-      <div>
-        <Image
-          className="Logo-Fund-Img"
-          src="/logo_fund.png"
-          alt="Logo Fund Icon"
-          width={250}
-          height={50}
-          priority
-          />
+        />
+        <a className="MailText">clusterlab.ru@gmail.com</a>
       </div>
     </footer>
   );
