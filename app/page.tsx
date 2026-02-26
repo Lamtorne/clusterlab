@@ -21,16 +21,20 @@ export default function HomePage() {
               гиперспектральные данные российского спутника «Лобачевский»
             </p>
 
-            <div>
-              <button className="Block-1-Button-1">Начать работу</button>
-              <button className="Block-1-Button-2">Узнать больше</button>
+            <div className="Block-1-Buttons-All">
+              <Link href="#">
+                <p className="Block-1-Button-1">Начать работу</p>
+              </Link>
+              <Link href="#Block-2-Header">
+                <p className="Block-1-Button-2">Узнать больше</p>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       <div className="Block-2">
-        <h2 className="Block-2-Header">
+        <h2 className="Block-2-Header" id="Block-2-Header">
           Почему традиционное внесение удобрений неэффективно?
         </h2>
         <div className="Block-2-Cards-Container">

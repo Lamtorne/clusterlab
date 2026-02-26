@@ -14,7 +14,9 @@ const Header = () => {
           height={100}
           priority
         />
-        <a className="LogoText">ClusterLab</a>
+        <Link href="/">
+          <p className="LogoText">ClusterLab</p>
+        </Link>
       </div>
       <nav>
         <Link href="/a_tech">
