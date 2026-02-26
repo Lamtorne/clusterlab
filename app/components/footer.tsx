@@ -29,7 +29,7 @@ export default function Footer() {
         />
         <a className="MailText">clusterlab.ru@gmail.com</a>
       </div>
-      <nav>
+      <nav className="Pages">
         <p>Обработка персональных данных и договор оферты</p>
         <Link href="/a_tech">
           <p>О технологии</p>

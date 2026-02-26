@@ -37,24 +37,24 @@ footer {
   line-height: 1;
 }
 
-nav {
+.Pages {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-nav p {
+.Pages p {
   font-family: "Jura", sans-serif;
   text-decoration: none;
   color: #e8dcc4;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
   margin: 0;
 }
 
-nav p:hover {
+.Pages p:hover {
   color: #ff7043;
   text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
 }

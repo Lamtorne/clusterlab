@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-
-
-
-
 header {
   display: flex;
   justify-content: space-between;
@@ -24,7 +20,7 @@ header {
 .LogoText {
   font-family: "Righteous", sans-serif;
   font-size: 38px;
-  color: #E8DCC4;
+  color: #e8dcc4;
   line-height: 1;
   margin: 0;
 }
@@ -38,7 +34,7 @@ nav {
 nav p {
   font-family: "Jura", sans-serif;
   text-decoration: none;
-  color: #E8DCC4;
+  color: #e8dcc4;
   font-weight: 700;
   font-size: 18px;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -54,7 +50,7 @@ nav p:hover {
 .ButtonStart {
   font-family: "Jura", sans-serif;
   background-color: #ff7043;
-  color: #E8DCC4;
+  color: #e8dcc4;
   border: none;
   padding: 10px 25px;
   border-radius: 20px;
