@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import "@/app/components/footer.css";
 export default function Footer() {
   return (
@@ -13,7 +14,9 @@ export default function Footer() {
           height={100}
           priority
         />
-        <a className="LogoText">ClusterLab</a>
+        <Link href="/">
+          <p className="LogoText">ClusterLab</p>
+        </Link>
       </div>
       <div className="Mail">
         <Image
@@ -26,6 +29,17 @@ export default function Footer() {
         />
         <a className="MailText">clusterlab.ru@gmail.com</a>
       </div>
+      <nav>
+        <Link href="/a_tech">
+          <p>О технологии</p>
+        </Link>
+        <Link href="/steps">
+          <p>Этапы</p>
+        </Link>
+        <Link href="/prices">
+          <p>Тарифы</p>
+        </Link>
+      </nav>
     </footer>
   );
 }
