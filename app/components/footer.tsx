@@ -30,16 +30,8 @@ export default function Footer() {
         <a className="MailText">clusterlab.ru@gmail.com</a>
       </div>
       <nav className="Pages">
-        <p>Обработка персональных данных и договор оферты</p>
-        <Link href="/a_tech">
-          <p>О технологии</p>
-        </Link>
-        <Link href="/steps">
-          <p>Этапы</p>
-        </Link>
-        <Link href="/prices">
-          <p>Тарифы</p>
-        </Link>
+        <p>Согласие на обработку персональных данных</p>
+        <p>Договор оферты</p>
       </nav>
     </footer>
   );

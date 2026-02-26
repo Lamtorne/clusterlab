@@ -40,7 +40,7 @@ footer {
 .Pages {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 60px;
 }
 
 .Pages p {
@@ -48,7 +48,7 @@ footer {
   text-decoration: none;
   color: #e8dcc4;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
   margin: 0;
