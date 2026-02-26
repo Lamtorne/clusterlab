@@ -40,7 +40,7 @@ footer {
 nav {
   display: flex;
   align-items: center;
-  gap: 70px;
+  gap: 30px;
 }
 
 nav p {
@@ -57,4 +57,13 @@ nav p {
 nav p:hover {
   color: #ff7043;
   text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
+}
+
+.PersonalData {
+  font-family: "Jura", sans-serif;
+  font-size: 20px;
+  color: #e8dcc4;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
