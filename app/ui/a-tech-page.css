@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.Block-1 {
+  display: grid;
+  grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
+  gap: 6rem;
+  max-width: 1800px;
+  padding: 3rem 2rem;
+
+  align-items: center;
+  margin: 0 auto;
+}
+
+.Satellite-Picture {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.Block-1-Text {
+  background-image: url("/Logo-Light.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  padding: 2rem;
+  color: #3c3126;
+}
+
+.Block-1-Text-Blur {
+  backdrop-filter: blur(10px);
+  font-weight: 1000;
+}
+
+p {
+  font-weight: bold;
+}
