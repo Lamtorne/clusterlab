@@ -297,7 +297,7 @@ export default function HomePage() {
               className="Fasie-Picture"
               src="/Fasie.png"
               alt="Fasie logo"
-              width={300} // Уменьшил базовое значение для корректного масштабирования
+              width={500} // Уменьшил базовое значение для корректного масштабирования
               height={150}
               priority
             />
@@ -305,7 +305,7 @@ export default function HomePage() {
               className="Platform-Picture"
               src="/Platform.png"
               alt="Platform Logo"
-              width={300}
+              width={500}
               height={150}
               priority
             />

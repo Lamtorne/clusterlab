@@ -1,13 +1,16 @@
 import '@/app/ui/global.css';
 import '@/app/ui/app-page.css'
 import '@/app/components/header.css'
-import {righteous, inter, lusitana } from './ui/fonts'
+import { righteous, inter, lusitana } from './ui/fonts'
 import { Metadata } from 'next';
 import Header from '@/app/components/header.tsx'
 import Footer from '@/app/components/footer.tsx';
 
 export const metadata: Metadata = {
   title: 'ClusterLab',
+  icons: {
+    icon: 'icon.svg',
+  }
 };
 
 export default function RootLayout({
@@ -17,13 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body className={`${inter.className} antialiased`}>
 
-        <Header/>
+        <Header />
 
         <main>{children}</main>
 
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

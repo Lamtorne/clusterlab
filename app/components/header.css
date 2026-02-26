@@ -34,7 +34,7 @@ nav {
   gap: 30px;
 }
 
-nav a {
+nav p {
   font-family: "Jura", sans-serif;
   text-decoration: none;
   color: #E8DCC4;
@@ -42,9 +42,10 @@ nav a {
   font-size: 18px;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  margin: 0;
 }
 
-nav a:hover {
+nav p:hover {
   color: #ff7043;
   text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
 }
