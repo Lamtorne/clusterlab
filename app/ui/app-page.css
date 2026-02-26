@@ -186,8 +186,8 @@ p {
 }
 
 .Block-3-SubBlock {
-  font-size: 1.6rem;
-  margin-left: 2.5rem;
+  font-size: 2rem;
+  margin-left: 0.5rem;
   margin-right: 2.5rem;
   text-align: justify;
   color: #3c3126;
@@ -232,7 +232,6 @@ p {
   margin-bottom: 4rem;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  
 }
 
 .Block-4-Cards-Container {
@@ -277,7 +276,6 @@ p {
   margin-bottom: 5rem;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .Block-5-Cards-Container {
@@ -361,7 +359,6 @@ p {
   margin-bottom: 7rem;
   color: #3c3126;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .Block-6-Cards-Container {
@@ -411,7 +408,6 @@ p {
   margin-top: 20px;
   text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .Block-6-SubText {
