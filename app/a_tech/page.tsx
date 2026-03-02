@@ -4,17 +4,17 @@ import Image from "next/image";
 export default function A_TechPage() {
     return (
         <main className="PageBackground">
-            <div className="Block-1">
+            <div className="A-Tech-Page-Block-1">
                 <Image
-                    className="Satellite-Picture"
-                    src="/satellite.svg"
+                    className="A-Tech-Page-Satellite-Picture"
+                    src="/a-tech/satellite.svg"
                     alt="Satellite picture"
                     width={700}
                     height={500}
                     priority
                 />
-                <div className="Block-1-Text">
-                    <div className="Block-1-Text-Blur">
+                <div className="A-Tech-Page-Block-1-Text">
+                    <div className="A-Tech-Page-Block-1-Text-Blur">
                         <h2>Технологическая основа Clusterlab</h2>
 
                         <p>
@@ -23,6 +23,170 @@ export default function A_TechPage() {
 
                     </div>
                 </div>
+            </div>
+
+            <div className="A-Tech-Page-Block-2">
+                <h2 className="A-Tech-Page-Block-2-Header">
+                    Спутник "Лобачевский": платформа для агроэкологического мониторинга
+                </h2>
+                <div className="A-Tech-Page-Block-2-Cards-Container">
+                    <div className="A-Tech-Page-Block-2-Text">
+                        <p>
+                            Малый космический аппарат "Лобачевский" создан ННГУ им. Н. И. Лобачевский на базе спутниковой платформы "Геоскан 16U"
+                        </p>
+                        <p>
+                            Спутник оснащён спектральными камерами для ДЗЗ и FM-ретранслятором радиосигнала. Основная научная задача миссии - получение снимков с последующей обработкой данных.
+                        </p>
+                    </div>
+                    <div className="A-Tech-Page-Block-2-Image">
+                        <Image
+                            className="A-Tech-Page-Lobachev-Picture"
+                            src="/a-tech/lobachev_satelitte.svg"
+                            alt="Lobachev picture"
+                            width={500}
+                            height={500}
+                            priority
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="A-Tech-Page-Block-3">
+                <div className="A-Tech-Page-Block-3-Cards-Container">
+                    <div className="A-Tech-Page-Block-3-SubBlock">
+                        <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+                            <Image
+                                className="A-Tech-Page-Camera-Picture"
+                                src="/a-tech/camera.svg"
+                                alt="Lobachev picture"
+                                width={150}
+                                height={150}
+                                priority
+                            />
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubHeader">
+                            Бортовая аппаратура
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubText">
+                            <ul>
+                                <li>
+                                    Спектральные камеры:
+                                </li>
+                                <ol>
+                                    <li>
+                                        Мультиспектральная камера
+                                    </li>
+                                    <li>
+                                        Гиперспектральная камера
+                                    </li>
+                                </ol>
+                                <li>
+                                    Дополнительная аппаратура
+                                </li>
+                                <ol>
+                                    <li>
+                                        FM-ретранслятор радиосигнала
+                                    </li>
+                                    <li>
+                                        Мемристорная плата
+                                    </li>
+                                </ol>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="A-Tech-Page-Block-3-SubBlock">
+                        <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+                            <Image
+                                className="A-Tech-Page-Arrow-Picture"
+                                src="/a-tech/arrow.svg"
+                                alt="Arrow picture"
+                                width={150}
+                                height={150}
+                                priority
+                            />
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubHeader">
+                            Научные и прикладные задачи
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubText">
+                            <ul>
+                                <li>
+                                    Агроэкологический мониторинг:
+                                </li>
+                                <ol>
+                                    <li>
+                                        Спутниковая съемка полей и с/х культур
+                                    </li>
+                                    <li>
+                                        Оценка биофизических параметров растений
+                                    </li>
+                                </ol>
+                                <li>
+                                    Научные исследования
+                                </li>
+                                <li>
+                                    Радиолюбительская миссия:
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div className="A-Tech-Page-Block-3-SubSubBlock">
+                        <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+                            <Image
+                                className="A-Tech-Page-Sputnik-Picture"
+                                src="/a-tech/sputnik.svg"
+                                alt="Sputnik picture"
+                                width={150}
+                                height={150}
+                                priority
+                            />
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubHeader">
+                            Спутниковая платформа
+                        </div>
+                        <div className="A-Tech-Page-Block-3-SubText-Cards-Container">
+
+                            <div className="A-Tech-Page-Block-3-SubText">
+                                <p>
+                                    Платформа Геоскан 16U:
+                                </p>
+                                <ol>
+                                    <li>
+                                        Стандарт: CubeSat, форм-фактор 16U
+                                    </li>
+                                    <li>
+                                        Габариты  10×20×34 см
+                                    </li>
+                                    <li>
+                                        Высокоточная система ориентации и стабилизации
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div className="A-Tech-Page-Block-3-SubText">
+                                <p>
+                                    Разработчики:
+                                </p>
+                                <ol>
+                                    <li>
+                                        ННГУ им. Н. И. Лобачевского
+                                    </li>
+                                    <li>
+                                        АО "Геоскан"
+                                    </li>
+                                    <li>
+                                        Самарский университет
+                                    </li>
+                                    <li>
+                                        НПО "Лептон", Зеленоград
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
             </div>
         </main>
     );

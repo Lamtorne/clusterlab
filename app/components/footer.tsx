@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="Logo">
         <Image
           className="LogoImg"
-          src="/Logo-Transparent.svg"
+          src="/footer/Logo-Transparent.svg"
           alt="ClusterLab Logo"
           width={50}
           height={100}
@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="Mail">
         <Image
           className="Mail-Img"
-          src="/Mail.svg"
+          src="/footer/Mail.svg"
           alt="Mail Icon"
           width={25}
           height={20}

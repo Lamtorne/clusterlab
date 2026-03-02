@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.Block-1 {
+.App-Page-Block-1 {
   display: grid;
   grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
   gap: 6rem;
@@ -11,14 +11,14 @@
   margin: 0 auto;
 }
 
-.NASA-Picture {
+.App-Page-NASA-Picture {
   width: 100%;
   height: auto;
   border-radius: 24px;
   object-fit: cover;
 }
 
-.Block-1-Text {
+.App-Page-Block-1-Text {
   background-image: url("/Logo-Light.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -27,7 +27,7 @@
   color: #3c3126;
 }
 
-.Block-1-Text-Blur {
+.App-Page-Block-1-Text-Blur {
   backdrop-filter: blur(10px);
   font-weight: 1000;
 }
@@ -36,12 +36,12 @@ p {
   font-weight: bold;
 }
 
-.Block-1-Buttons-All {
+.App-Page-Block-1-Buttons-All {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.Block-1-Button-1 {
+.App-Page-Block-1-Button-1 {
   background-color: #ff7043;
   color: #e8dcc4;
   border: solid;
@@ -55,13 +55,13 @@ p {
   text-align: center;
 }
 
-.Block-1-Button-1:hover {
+.App-Page-Block-1-Button-1:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   filter: brightness(1.1);
 }
 
-.Block-1-Button-2 {
+.App-Page-Block-1-Button-2 {
   color: #000000;
   border: solid;
   border-color: #8eab90;
@@ -74,17 +74,17 @@ p {
   text-align: center;
 }
 
-.Block-1-Button-2:hover {
+.App-Page-Block-1-Button-2:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   filter: brightness(1.1);
 }
 
-.Block-2 {
+.App-Page-Block-2 {
   margin-top: 5rem;
 }
 
-.Block-2-Header {
+.App-Page-Block-2-Header {
   text-align: center;
   font-weight: bold;
   margin-bottom: 7rem;
@@ -92,7 +92,7 @@ p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-2-Cards-Container {
+.App-Page-Block-2-Cards-Container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -103,7 +103,7 @@ p {
   color: #3c3126;
 }
 
-.Block-2-SubBlock {
+.App-Page-Block-2-SubBlock {
   background-color: #8eab90;
   border-radius: 20px;
   padding: 40px 20px 30px 20px;
@@ -114,7 +114,7 @@ p {
   color: #3c3126;
 }
 
-.Block-2-Icon-Wrapper {
+.App-Page-Block-2-Icon-Wrapper {
   position: absolute;
   top: -90px;
   left: 50%;
@@ -131,7 +131,7 @@ p {
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
 
-.Block-2-SubHeader {
+.App-Page-Block-2-SubHeader {
   font-weight: 1000;
   font-style: bold;
   font-size: 2rem;
@@ -141,22 +141,22 @@ p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-2-SubText {
+.App-Page-Block-2-SubText {
   font-size: 1.6rem;
   color: #3c3126;
 }
 
-.Block-3 {
+.App-Page-Block-3 {
   margin-top: 6rem;
 }
 
-.Block-3-Header {
+.App-Page-Block-3-Header {
   text-align: center;
   color: #3c3126;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-3-Cards-Container {
+.App-Page-Block-3-Cards-Container {
   display: grid;
   grid-template-columns: repeat(2, 1.5fr);
   gap: 4.5rem;
@@ -166,7 +166,7 @@ p {
   align-items: stretch;
 }
 
-.Image-Before {
+.App-Page-Image-Before {
   width: auto;
   height: auto;
   border-radius: 24px;
@@ -175,7 +175,7 @@ p {
   justify-self: center;
 }
 
-.Image-After {
+.App-Page-Image-After {
   width: auto;
   height: auto;
   border-radius: 24px;
@@ -184,7 +184,7 @@ p {
   justify-self: center;
 }
 
-.Block-3-SubBlock {
+.App-Page-Block-3-SubBlock {
   font-size: 2rem;
   margin-left: 0.5rem;
   margin-right: 2.5rem;
@@ -192,16 +192,16 @@ p {
   color: #3c3126;
 }
 
-.Block-4 {
+.App-Page-Block-4 {
   margin-top: 7rem;
 }
 
-.Block-4-Header {
+.App-Page-Block-4-Header {
   margin-left: 6rem;
   color: #3c3126;
 }
 
-.Block-4-List {
+.App-Page-Block-4-List {
   width: 160px;
   height: 160px;
   font-size: 80px;
@@ -222,24 +222,24 @@ p {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-4-List p {
+.App-Page-Block-4-List p {
   margin: 0;
 }
 
-.Block-4-Header {
+.App-Page-Block-4-Header {
   text-align: center;
   margin-bottom: 4rem;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-4-Cards-Container {
+.App-Page-Block-4-Cards-Container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.Block-4-SubBlock {
+.App-Page-Block-4-SubBlock {
   display: flex;
   align-items: center;
   background: #8eab90;
@@ -249,7 +249,7 @@ p {
   border-radius: 25%;
 }
 
-.Block-4-SubText h2 {
+.App-Page-Block-4-SubText h2 {
   color: #3c3126;
   font-size: 1.8rem;
   margin: 0;
@@ -258,26 +258,26 @@ p {
   text-shadow: 10px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.Block-4-SubText p {
+.App-Page-Block-4-SubText p {
   color: #e8dcc4;
   font-size: 1.4rem;
   margin-left: 4rem;
   line-height: 1.4;
 }
 
-.Block-5 {
+.App-Page-Block-5 {
   margin-top: 7rem;
   color: #3c3126;
 }
 
-.Block-5-Header {
+.App-Page-Block-5-Header {
   text-align: center;
   margin-bottom: 5rem;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-5-Cards-Container {
+.App-Page-Block-5-Cards-Container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: (2, 1fr);
@@ -286,17 +286,17 @@ p {
   justify-self: center;
 }
 
-.Block-5-SubBlock-1 {
+.App-Page-Block-5-SubBlock-1 {
   background-color: #8eab90;
   border: #8eab90;
   border-radius: 10% 10% 0% 10%;
   padding: 2rem;
 }
 
-.Block-5-SubBlock-1 h2,
-.Block-5-SubBlock-2 h2,
-.Block-5-SubBlock-3 h2,
-.Block-5-SubBlock-4 h2 {
+.App-Page-Block-5-SubBlock-1 h2,
+.App-Page-Block-5-SubBlock-2 h2,
+.App-Page-Block-5-SubBlock-3 h2,
+.App-Page-Block-5-SubBlock-4 h2 {
   color: #e8dcc4;
   font-size: 1.8rem;
   margin: 0;
@@ -305,17 +305,17 @@ p {
   text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.85);
 }
 
-.Block-5-SubBlock-1 p,
-.Block-5-SubBlock-2 p,
-.Block-5-SubBlock-3 p,
-.Block-5-SubBlock-4 p {
+.App-Page-Block-5-SubBlock-1 p,
+.App-Page-Block-5-SubBlock-2 p,
+.App-Page-Block-5-SubBlock-3 p,
+.App-Page-Block-5-SubBlock-4 p {
   color: #3c3126;
   font-size: 1.4rem;
   margin: 0;
   line-height: 1.4;
 }
 
-.Block-5-SubBlock-1 {
+.App-Page-Block-5-SubBlock-1 {
   background-color: #8eab90;
   border: #8eab90;
   border-radius: 10% 10% 0% 10%;
@@ -323,7 +323,7 @@ p {
   box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
-.Block-5-SubBlock-2 {
+.App-Page-Block-5-SubBlock-2 {
   background-color: #8eab90;
   border: #8eab90;
   border-radius: 10% 10% 10% 0%;
@@ -331,7 +331,7 @@ p {
   box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
-.Block-5-SubBlock-3 {
+.App-Page-Block-5-SubBlock-3 {
   background-color: #8eab90;
   border: #8eab90;
   border-radius: 10% 0% 10% 10%;
@@ -339,7 +339,7 @@ p {
   box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
-.Block-5-SubBlock-4 {
+.App-Page-Block-5-SubBlock-4 {
   background-color: #ff7043;
   border: #ff7043;
   border-radius: 0% 10% 10% 10%;
@@ -347,12 +347,12 @@ p {
   box-shadow: inset 0px 0px 10px 10px #e8dcc4;
 }
 
-.Block-6 {
+.App-Page-Block-6 {
   margin-top: 7rem;
   color: #3c3126;
 }
 
-.Block-6-Header {
+.App-Page-Block-6-Header {
   text-align: center;
   font-weight: bold;
   margin-bottom: 7rem;
@@ -360,7 +360,7 @@ p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-6-Cards-Container {
+.App-Page-Block-6-Cards-Container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -372,7 +372,7 @@ p {
   color: #3c3126;
 }
 
-.Block-6-SubBlock {
+.App-Page-Block-6-SubBlock {
   background-color: #8eab90;
   border-radius: 15px;
   padding: 40px 20px 30px 20px;
@@ -383,7 +383,7 @@ p {
   color: #3c3126;
 }
 
-.Block-6-Icon-Wrapper {
+.App-Page-Block-6-Icon-Wrapper {
   position: absolute;
   top: -90px;
   left: 50%;
@@ -400,7 +400,7 @@ p {
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
 
-.Block-6-SubHeader {
+.App-Page-Block-6-SubHeader {
   font-weight: 1000;
   font-style: bold;
   font-size: 2rem;
@@ -410,18 +410,18 @@ p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-6-SubText {
+.App-Page-Block-6-SubText {
   font-size: 1.6rem;
   color: #3c3126;
 }
 
-.Block-7 {
+.App-Page-Block-7 {
   margin: 0 auto;
   padding: 3rem 1rem;
   color: #3c3126;
 }
 
-.Block-7-Header {
+.App-Page-Block-7-Header {
   text-align: center;
   font-weight: bold;
   margin-bottom: 1 rem;
@@ -429,13 +429,13 @@ p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.Block-7-Content {
+.App-Page-Block-7-Content {
   display: flex;
   grid-template-columns: 300px 300px;
   align-items: center;
 }
 
-.Block-7-Images {
+.App-Page-Block-7-Images {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -443,13 +443,13 @@ p {
   margin-left: 10rem;
 }
 
-.Block-7-Images img {
+.App-Page-Block-7-Images img {
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 
-.Block-7-Text {
+.App-Page-Block-7-Text {
   text-align: left;
   font-family: "Jura", sans-serif;
   font-size: 2.2rem;

@@ -8,7 +8,7 @@ const Header = () => {
       <div className="Logo">
         <Image
           className="LogoImg"
-          src="/Logo-Transparent.svg"
+          src="/header/Logo-Transparent.svg"
           alt="Next.js logo"
           width={50}
           height={100}
