@@ -100,7 +100,7 @@ section {
   right: 30px;
   width: 60px;
   height: 60px;
-  background-color: #ff7043;
+  background-color: #8daa81;
   color: white;
   border: none;
   border-radius: 50%;
@@ -116,7 +116,7 @@ section {
 }
 
 .ScrollToTopButton:hover {
-  background-color: #e05e36;
+  background-color: #6b9b7a;
   transform: scale(1.1);
 }
 
