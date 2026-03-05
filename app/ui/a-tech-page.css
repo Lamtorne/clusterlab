@@ -14,21 +14,51 @@
 .A-Tech-Page-Satellite-Picture {
   width: 100%;
   height: auto;
-  border-radius: 24px;
+  border-radius: 0 30px 30px 30px;
   object-fit: cover;
+  box-shadow: 0 20px 40px rgba(60, 49, 38, 0.2);
 }
 
 .A-Tech-Page-Block-1-Text {
+  position: relative; /* Контекст для позиционирования фона */
+  padding: 2rem;
+  color: #3c3126;
+  z-index: 1; /* Поднимаем текст выше фона */
+  overflow: visible; /* Позволяем блюру немного выходить за границы, если нужно */
+}
+
+.A-Tech-Page-Block-1-Text::before {
+  content: "";
+  position: absolute;
+  /* Центрируем и растягиваем на весь родительский блок */
+  top: 10;
+  left: 10;
+  right: 10;
+  bottom: 10;
+
   background-image: url("/a-tech/Logo-Light.svg");
   background-repeat: no-repeat;
   background-position: center;
+
+  /* 1. Увеличиваем масштаб логотипа. 
+     1.5 — это 150% от размера блока. Регулируй это число. */
+  transform: scale(1.3);
+
+  /* 2. Управляем размером внутри слоя */
   background-size: contain;
-  padding: 2rem;
-  color: #3c3126;
+
+  /* 3. Увеличиваем размытие */
+  filter: blur(10px);
+
+  /* Уводим на задний план, чтобы не перекрывать текст */
+  z-index: -1;
+
+  /* Можно добавить прозрачности, если логотип слишком яркий */
+  opacity: 0.6;
 }
 
 .A-Tech-Page-Block-1-Text-Blur {
-  backdrop-filter: blur(10px);
+  /* Убираем лишние фильтры отсюда, так как размыли сам фон через ::before */
   font-weight: 1000;
 }
 
@@ -59,12 +89,10 @@ p {
   background-color: #3c3126;
   border-radius: 0% 10% 10% 10%;
   padding: 5rem;
-
 }
 
 .A-Tech-Page-Block-2-Text p {
   color: #e8dcc4;
-
 }
 
 .A-Tech-Page-Block-2-Image {
@@ -81,13 +109,12 @@ p {
   box-shadow: inset 0px 0px 40px 40px #e8dcc4;
 }
 
-
 .A-Tech-Page-Block-3 {
   margin-top: 10rem;
 }
 
 .A-Tech-Page-Block-3-Icon-Wrapper {
-  position:relative;
+  position: relative;
   top: -90px;
   left: 50%;
   transform: translateX(-50%);
@@ -102,8 +129,6 @@ p {
   color: #3c3126;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
-
-
 
 .A-Tech-Page-Block-3-Cards-Container {
   display: grid;
@@ -122,7 +147,6 @@ p {
   margin-bottom: 10rem;
   justify-self: center;
 }
-
 
 .A-Tech-Page-Block-3-SubBlock {
   justify-self: center;
@@ -156,7 +180,6 @@ p {
 
 .A-Tech-Page-Block-3-SubText ul {
   list-style-type: disc;
-
 }
 
 .A-Tech-Page-Block-3-SubText ol {
@@ -168,11 +191,10 @@ p {
   margin-bottom: 5rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
-.A-Tech-Page-Block-4-Cards-Container{
+.A-Tech-Page-Block-4-Cards-Container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-
 
   justify-items: center;
   justify-self: center;
@@ -180,9 +202,9 @@ p {
 
 .A-Tech-Page-Block-4-Video {
   background-color: #3c3126;
-  color:#e8dcc4;
+  color: #e8dcc4;
   place-items: center;
-  display: grid;  
+  display: grid;
   min-width: 50rem;
 }
 .A-Tech-Page-Block-4-ImgTitle {
@@ -227,7 +249,7 @@ p {
 }
 
 .A-Tech-Page-Block-5-Icon-Wrapper {
-  position:relative;
+  position: relative;
   top: -90px;
   left: 50%;
   transform: translateX(-50%);
