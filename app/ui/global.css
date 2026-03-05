@@ -8,7 +8,6 @@
   width: 100%;
 }
 
-
 :root {
   --fs-h1: clamp(2rem, 5vw + 1rem, 4.2rem);
   --fs-h2: clamp(1.45rem, 3vw + 1rem, 2.75rem);
@@ -19,7 +18,7 @@
   --base-font-size: 100%;
 }
 
-@media(min-width: 1920px) {
+@media (min-width: 1920px) {
   :root {
     --base-font-size: 115%;
     --container-max: 1600px;
@@ -34,7 +33,7 @@
   }
 }
 
-@media(min-width: 3840px) {
+@media (min-width: 3840px) {
   :root {
     --base-font-size: 140%;
     --container-max: 2800px;
@@ -66,7 +65,6 @@ main {
   margin-inline: auto;
 }
 
-
 h1 {
   font-size: var(--fs-h1);
   line-height: 1.1;
@@ -93,4 +91,45 @@ video {
 
 section {
   padding-block: var(--section-padding);
+}
+
+/* Кнопка скролла наверх */
+.ScrollToTopButton {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #8daa81;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.ScrollToTopButton:hover {
+  background-color: #6b9b7a;
+  transform: scale(1.1);
+}
+
+/* Эффект появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ScrollToTopButton {
+  animation: fadeIn 0.4s;
 }
