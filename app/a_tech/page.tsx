@@ -130,64 +130,151 @@ export default function A_TechPage() {
                             </ul>
                         </div>
                     </div>
+                </div>
+
+                <div className="A-Tech-Page-Block-3-SubSubBlock">
+                    <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+                        <Image
+                            className="A-Tech-Page-Sputnik-Picture"
+                            src="/a-tech/sputnik.svg"
+                            alt="Sputnik picture"
+                            width={150}
+                            height={150}
+                            priority
+                        />
+                    </div>
+                    <div className="A-Tech-Page-Block-3-SubHeader">
+                        Спутниковая платформа
+                    </div>
+                    <div className="A-Tech-Page-Block-3-SubText-Cards-Container">
+
+                        <div className="A-Tech-Page-Block-3-SubText">
+                            <p>
+                                Платформа Геоскан 16U:
+                            </p>
+                            <ol>
+                                <li>
+                                    Стандарт: CubeSat, форм-фактор 16U
+                                </li>
+                                <li>
+                                    Габариты  10×20×34 см
+                                </li>
+                                <li>
+                                    Высокоточная система ориентации и стабилизации
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div className="A-Tech-Page-Block-3-SubText">
+                            <p>
+                                Разработчики:
+                            </p>
+                            <ol>
+                                <li>
+                                    ННГУ им. Н. И. Лобачевского
+                                </li>
+                                <li>
+                                    АО "Геоскан"
+                                </li>
+                                <li>
+                                    Самарский университет
+                                </li>
+                                <li>
+                                    НПО "Лептон", Зеленоград
+                                </li>
+                            </ol>
+                        </div>
                     </div>
 
-                    <div className="A-Tech-Page-Block-3-SubSubBlock">
-                        <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+                </div>
+            </div>
+
+
+            <div className="A-Tech-Page-Block-4">
+                <h2 className="A-Tech-Page-Block-4-Header">
+                    Медия и ресурсы.
+                </h2>
+                <div className="A-Tech-Page-Block-4-Cards-Container">
+                    <div className="A-Tech-Page-Block-4-Video">
+                        <p>Тут будет видео запуска</p>
+                    </div>
+                    <div className="A-Tech-Page-Block-4-Image">
+                        <Image
+                            className="A-Tech-Page-LobachevBody-Picture"
+                            src="/a-tech/LobachevBody.svg"
+                            alt="Sputnik body picture"
+                            width={700}
+                            height={700}
+                            priority
+                        />
+                        <div className="A-Tech-Page-Block-4-ImgTitle">
+                            Спутник "Лобачевский"
+                        </div>
+                    </div>
+
+                </div>
+                <nav className="A-Tech-Page-Block-4-Links">
+                    <p>
+                        Трансляция запуска: YouTube, Vk
+                    </p>
+                    <p>
+                        Статья о проекте на Space-π
+                    </p>
+                    <p>
+                        Новости в Телеграм Геоскана
+                    </p>
+                </nav>
+            </div>
+
+            <div className="A-Tech-Page-Block-5">
+                <h2 className="A-Tech-Page-Block-5-Header">
+                    Научная часть ClusterLab: кластеризация и LLM-интерпретация
+                </h2>
+
+                <div className="A-Tech-Page-Block-5-Cards-Container">
+                    <div className="A-Tech-Page-Block-5-SubBlock">
+                        <div className="A-Tech-Page-Block-5-Icon-Wrapper">
                             <Image
-                                className="A-Tech-Page-Sputnik-Picture"
-                                src="/a-tech/sputnik.svg"
-                                alt="Sputnik picture"
+                                className="A-Tech-Page-Box-Picture"
+                                src="/a-tech/box.svg"
+                                alt="Box picture"
                                 width={150}
                                 height={150}
                                 priority
                             />
                         </div>
-                        <div className="A-Tech-Page-Block-3-SubHeader">
-                            Спутниковая платформа
+                        <div className="A-Tech-Page-Block-5-SubHeader">
+                            <p>Машинное обучение для сегментации полец</p>
                         </div>
-                        <div className="A-Tech-Page-Block-3-SubText-Cards-Container">
-
-                            <div className="A-Tech-Page-Block-3-SubText">
-                                <p>
-                                    Платформа Геоскан 16U:
-                                </p>
-                                <ol>
-                                    <li>
-                                        Стандарт: CubeSat, форм-фактор 16U
-                                    </li>
-                                    <li>
-                                        Габариты  10×20×34 см
-                                    </li>
-                                    <li>
-                                        Высокоточная система ориентации и стабилизации
-                                    </li>
-                                </ol>
-                            </div>
-
-                            <div className="A-Tech-Page-Block-3-SubText">
-                                <p>
-                                    Разработчики:
-                                </p>
-                                <ol>
-                                    <li>
-                                        ННГУ им. Н. И. Лобачевского
-                                    </li>
-                                    <li>
-                                        АО "Геоскан"
-                                    </li>
-                                    <li>
-                                        Самарский университет
-                                    </li>
-                                    <li>
-                                        НПО "Лептон", Зеленоград
-                                    </li>
-                                </ol>
-                            </div>
+                        <div className="A-Tech-Page-Block-5-SubText">
+                            <p>
+                                Для каждого поля после его анализа подбирается лучший алгоритм кластеризации на основе метрик, рассчитанных с помощью данных с ДЗЗ. Превращаем поле из миллиона спектральных точек в четкие агрозоны.
+                            </p>
                         </div>
-
                     </div>
+                    <div className="A-Tech-Page-Block-5-SubBlock">
+                        <div className="A-Tech-Page-Block-5-Icon-Wrapper">
+                            <Image
+                                className="A-Tech-Page-PCHuman-Picture"
+                                src="/a-tech/pchuman.svg"
+                                alt="PCHuman picture"
+                                width={150}
+                                height={150}
+                                priority
+                            />
+                        </div>
+                        <div className="A-Tech-Page-Block-5-SubHeader">
+                            <p>LLM-интерпретация и расчет доз</p>
+                        </div>
+                        <div className="A-Tech-Page-Block-5-SubText">
+                            <p>
+                                Используем современные большие языковые модели для формирования экспертных рекомендаций удобрений для каждой зоны, учитывая тип культуры, вегетационный период, агрохимические характеристики региона.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </main>
     );
 }

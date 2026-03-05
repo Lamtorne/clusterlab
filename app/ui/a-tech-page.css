@@ -19,7 +19,7 @@
 }
 
 .A-Tech-Page-Block-1-Text {
-  background-image: url("/Logo-Light.svg");
+  background-image: url("/a-tech/Logo-Light.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -46,7 +46,7 @@ p {
 
 .A-Tech-Page-Block-2-Cards-Container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   margin-left: 15rem;
   margin-right: 15rem;
@@ -82,6 +82,10 @@ p {
 }
 
 
+.A-Tech-Page-Block-3 {
+  margin-top: 10rem;
+}
+
 .A-Tech-Page-Block-3-Icon-Wrapper {
   position:relative;
   top: -90px;
@@ -105,7 +109,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  gap: 0;
+  gap: 5rem;
   margin-bottom: 10rem;
   justify-self: center;
 }
@@ -126,6 +130,8 @@ p {
   width: 45ch;
   box-shadow: inset 0px 0px 5px 5px #e8dcc4;
   border-radius: 10%;
+  font-size: 2rem;
+  text-align: justify;
 }
 
 .A-Tech-Page-Block-3-SubSubBlock {
@@ -155,4 +161,95 @@ p {
 
 .A-Tech-Page-Block-3-SubText ol {
   list-style-type: decimal;
+}
+
+.A-Tech-Page-Block-4-Header {
+  justify-self: center;
+  margin-bottom: 5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.A-Tech-Page-Block-4-Cards-Container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+
+
+  justify-items: center;
+  justify-self: center;
+}
+
+.A-Tech-Page-Block-4-Video {
+  background-color: #3c3126;
+  color:#e8dcc4;
+  place-items: center;
+  display: grid;  
+  min-width: 50rem;
+}
+.A-Tech-Page-Block-4-ImgTitle {
+  justify-self: center;
+  font-size: 2.5rem;
+}
+
+.A-Tech-Page-Block-4-Links {
+  margin-top: 4rem;
+  justify-self: center;
+}
+.A-Tech-Page-Block-4-Links p {
+  color: #3c3126;
+  font-size: 1.5rem;
+}
+
+.A-Tech-Page-Block-5 {
+  margin-top: 10rem;
+}
+.A-Tech-Page-Block-5-Header {
+  justify-self: center;
+  margin-bottom: 5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.A-Tech-Page-Block-5-Cards-Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 5rem;
+  margin-bottom: 10rem;
+  justify-self: center;
+}
+
+.A-Tech-Page-Block-5-SubBlock {
+  justify-self: center;
+  background-color: #8eab90;
+  width: 45ch;
+  box-shadow: inset 0px 0px 5px 5px #e8dcc4;
+  border-radius: 10%;
+  font-size: 2rem;
+  text-align: justify;
+}
+
+.A-Tech-Page-Block-5-Icon-Wrapper {
+  position:relative;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e8dcc4;
+  border: 4px solid #8eab90;
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3c3126;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
+}
+
+.A-Tech-Page-Block-5-SubText {
+  padding: 3.5rem;
+  color: #e8dcc4;
+}
+.A-Tech-Page-Block-5-SubHeader {
+  padding: 0;
+  color: #e8dcc4;
+  justify-self: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }

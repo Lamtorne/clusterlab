@@ -9,7 +9,7 @@ import Footer from '@/app/components/footer.tsx';
 export const metadata: Metadata = {
   title: 'ClusterLab',
   icons: {
-    icon: 'icon.svg',
+    icon: 'images/icon.svg',
   }
 };
 
