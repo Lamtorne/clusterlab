@@ -19,6 +19,17 @@
 }
 
 .App-Page-Block-1-Text {
+  position: relative; /* Контекст для логотипа на заднем плане */
+  padding: 2rem;
+  color: #3c3126;
+  z-index: 1;
+  overflow: hidden; /* Чтобы увеличенный логотип не вылезал за границы блока */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.App-Page-Block-1-Text {
   background-image: url("/app-page/Logo-Light.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -28,7 +39,7 @@
 }
 
 .App-Page-Block-1-Text-Blur {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(18px);
   font-weight: 1000;
 }
 
