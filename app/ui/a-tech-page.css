@@ -14,8 +14,9 @@
 .A-Tech-Page-Satellite-Picture {
   width: 100%;
   height: auto;
-  border-radius: 24px;
   object-fit: cover;
+  border-radius: 0% 10% 10% 10%;
+  box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.5);
 }
 
 .A-Tech-Page-Block-1-Text {
@@ -56,7 +57,7 @@ p {
   margin-left: 5rem;
   margin-bottom: 5rem;
   margin-right: 5rem;
-  background-color: #3c3126;
+  background-color: #4e4236;
   border-radius: 0% 10% 10% 10%;
   padding: 5rem;
 
@@ -128,10 +129,12 @@ p {
   justify-self: center;
   background-color: #8eab90;
   width: 45ch;
+  margin-top: 5rem;
   box-shadow: inset 0px 0px 5px 5px #e8dcc4;
   border-radius: 10%;
   font-size: 2rem;
   text-align: justify;
+
 }
 
 .A-Tech-Page-Block-3-SubSubBlock {
@@ -144,13 +147,14 @@ p {
 }
 
 .A-Tech-Page-Block-3-SubHeader {
-  justify-self: center;
+  text-align: center;
+  margin-top: -3rem;
   color: #e8dcc4;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .A-Tech-Page-Block-3-SubText {
-  padding: 3.5rem;
+  padding: 5.2rem;
   color: #e8dcc4;
 }
 

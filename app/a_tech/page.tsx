@@ -9,7 +9,7 @@ export default function A_TechPage() {
                     className="A-Tech-Page-Satellite-Picture"
                     src="/a-tech/satellite.svg"
                     alt="Satellite picture"
-                    width={700}
+                    width={500}
                     height={500}
                     priority
                 />
