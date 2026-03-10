@@ -64,6 +64,7 @@ p {
   transition: 0.3s ease;
   margin-right: 0.4rem;
   text-align: center;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .App-Page-Block-1-Button-1:hover {
@@ -83,6 +84,7 @@ p {
   transition: 0.3s ease;
   margin-left: 0.4rem;
   text-align: center;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .App-Page-Block-1-Button-2:hover {

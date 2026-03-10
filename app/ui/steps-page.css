@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+.PageBackground {
+  background-color: #e8dcc4;
+  background-size: contain;
+  background-position: center;
+  min-height: auto;
+  width: 100%;
+}
+
+.Steps-Page-Block-1 {
+    background-color: #e8dcc4;
+    padding-top: 5rem;
+}
+
+.Steps-Page-Block-1-Header {
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Steps-Page-Block-1-Cards-Container {
+    display: grid;
+}
+
+.Steps-Page-Block-1-SubBlock {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    gap: 5rem;
+}
+
+.Steps-Page-Block-1-Text {
+    display: grid;
+    background-color: #3c3126;
+    margin: 5rem;
+    margin-top: 4rem;
+    padding: 3rem;
+    width: 65ch;
+    height: auto;
+    justify-self: center;
+}
+
+.Steps-Page-Block-1-SubHeader {
+    color: #e8dcc4;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.Steps-Page-Block-1-SubText {
+    color: #e8dcc4;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.Steps-Page-Block-1-SubText ul {
+    list-style: disc;
+    text-align: left;
+}
+
+.Steps-Page-Block-1-Steps {
+    display: grid;
+    justify-items: center;
+    height: 40ch;
+    margin-top: 2rem;
+}
+
+.Steps-Page-Block-1-Circle {
+    display: grid;
+    background-color: #F06F44;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    justify-content: center;
+}
+
+.Steps-Page-Block-1-Circle p {
+    font-size: 3.5rem;
+    font-style: bold;
+    margin-top: -0.5rem;
+}
+
+.Steps-Page-Block-1-Line {
+    background-color: #F06F44;
+    height: 8ch;
+    width: 0.5ch;
+}
+
+.Steps-Page-Block-2 {
+    margin-top: 10rem;
+    background-color: #8eab90;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.Steps-Page-Block-2-Header {
+    color: #e8dcc4;
+    margin-bottom: 5rem;
+}
+
+.Steps-Page-Block-2-Button {
+    background-color: #ff7043;
+    color: #e8dcc4;
+    border: solid;
+    border-color: #ff7043;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 700;
+    width: 20rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    justify-self: center;
+}
+
+
+.Steps-Page-Block-2-Button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
