@@ -192,9 +192,7 @@ export default function A_TechPage() {
       </div>
 
       <div className="A-Tech-Page-Block-5">
-        <h2 className="A-Tech-Page-Block-5-Header">
-          Научная часть ClusterLab: кластеризация и LLM-интерпретация
-        </h2>
+        <h2 className="A-Tech-Page-Block-5-Header">Научная часть ClusterLab</h2>
 
         <div className="A-Tech-Page-Block-5-Cards-Container">
           <div className="A-Tech-Page-Block-5-SubBlock">
@@ -203,13 +201,13 @@ export default function A_TechPage() {
                 className="A-Tech-Page-Box-Picture"
                 src="/a-tech/box.svg"
                 alt="Box picture"
-                width={150}
-                height={150}
+                width={700}
+                height={700}
                 priority
               />
             </div>
             <div className="A-Tech-Page-Block-5-SubHeader">
-              <p>Машинное обучение для сегментации полец</p>
+              <p>Машинное обучение для сегментации полей</p>
             </div>
             <div className="A-Tech-Page-Block-5-SubText">
               <p>
@@ -226,8 +224,8 @@ export default function A_TechPage() {
                 className="A-Tech-Page-PCHuman-Picture"
                 src="/a-tech/pchuman.svg"
                 alt="PCHuman picture"
-                width={150}
-                height={150}
+                width={700}
+                height={700}
                 priority
               />
             </div>

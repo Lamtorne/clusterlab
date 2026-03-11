@@ -1,10 +1,17 @@
 @import "tailwindcss";
+.PageBackground {
+  min-height: 100vh; /* Страница всегда на всю высоту экрана */
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* ГАРАНТИЯ: никакой белой полосы справа */
+  width: 100%;
+}
 
 .A-Tech-Page-Block-1 {
   display: grid;
-  grid-template-columns: minmax(700px, 1.5fr) 1.5fr;
-  gap: 6rem;
-  max-width: 1800px;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
   padding: 3rem 2rem;
 
   align-items: center;
@@ -65,6 +72,12 @@ p {
   margin-top: 5rem;
   color: #3c3126;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  max-width: 1200px; /* Ограничиваем ширину, чтобы строка не была слишком длинной */
+  margin-left: auto; /* Центрируем блок заголовка */
+  margin-right: auto; /* Центрируем блок заголовка */
+  padding: 0 2rem; /* Создаем зазор, если экран очень узкий */
+
+  line-height: 1.2; /* Чтобы многострочные заголовки не слипались */
 }
 
 .A-Tech-Page-Block-2-Cards-Container {
@@ -95,19 +108,14 @@ p {
 }
 
 .A-Tech-Page-Block-2-Image {
-  margin-bottom: 0.5rem;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-color: #8eab90;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-  outline: 5rem solid #e8dcc4;
-
-  box-shadow:
-    inset 0px 0px 40px 40px #e8dcc4,
-    0 0 80px 20px rgba(142, 171, 144, 0.7);
+  outline: none;
   margin: 0 auto;
 }
 
@@ -190,6 +198,10 @@ p {
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
 
+  max-width: 1400px; /* Чтобы блок не растягивался на весь экран */
+  margin: 0 auto; /* Центрируем контейнер */
+  padding: 0 1rem; /* Это «отлепит» видео от левого края */
+
   justify-items: center;
   justify-self: center;
 }
@@ -226,42 +238,46 @@ p {
 }
 
 .A-Tech-Page-Block-5 {
-  margin-top: 10rem;
-}
-.A-Tech-Page-Block-5-Header {
-  justify-self: center;
+  margin-top: 5rem;
   margin-bottom: 5rem;
+}
+
+.A-Tech-Page-Block-5-Header {
+  text-align: center;
+  margin-bottom: 7rem;
+  color: #3c3126;
+  font-weight: bold;
+  font-size: 2.4rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 .A-Tech-Page-Block-5-Cards-Container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  gap: 5rem;
-  margin-bottom: 10rem;
-  justify-self: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* Как в примере */
+  margin: 50px 1.5rem 0 1.5rem; /* margin-top + left/right из примера */
+  align-items: stretch;
 }
 
 .A-Tech-Page-Block-5-SubBlock {
-  justify-self: center;
   background-color: #8eab90;
-  width: 45ch;
-  box-shadow: inset 0px 0px 5px 5px #e8dcc4;
-  border-radius: 10%;
-  font-size: 2rem;
-  text-align: justify;
+  border-radius: 20px; /* Как в примере */
+  padding: 40px 20px 30px 20px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .A-Tech-Page-Block-5-Icon-Wrapper {
-  position: relative;
+  position: absolute; /* Ключевое отличие */
   top: -90px;
   left: 50%;
   transform: translateX(-50%);
   background: #e8dcc4;
   border: 4px solid #8eab90;
   border-radius: 100%;
-  width: 250px;
-  height: 250px;
+  width: 150px; /* Размер иконки из примера */
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,12 +286,23 @@ p {
 }
 
 .A-Tech-Page-Block-5-SubText {
-  padding: 3.5rem;
+  font-size: 1.6rem; /* Размер из примера */
   color: #e8dcc4;
+  margin-top: 10px;
+  text-align: center; /* В примере текст был по центру */
 }
 .A-Tech-Page-Block-5-SubHeader {
-  padding: 0;
+  font-weight: 1000;
+  font-size: 2rem; /* Размер из примера */
   color: #e8dcc4;
-  justify-self: center;
+  margin-top: 50px; /* Добавили отступ, чтобы текст не залез под иконку */
+  text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.A-Tech-Page-Box-Picture,
+.A-Tech-Page-PCHuman-Picture {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: contain;
 }
