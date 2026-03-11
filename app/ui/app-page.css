@@ -64,7 +64,7 @@ p {
   transition: 0.3s ease;
   margin-right: 0.4rem;
   text-align: center;
-   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .App-Page-Block-1-Button-1:hover {
@@ -84,7 +84,7 @@ p {
   transition: 0.3s ease;
   margin-left: 0.4rem;
   text-align: center;
-   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .App-Page-Block-1-Button-2:hover {
@@ -148,7 +148,7 @@ p {
   font-weight: 1000;
   font-style: bold;
   font-size: 2rem;
-  color: #3c3126;
+  color: #e8dcc4;
   margin-top: 20px;
   text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -156,7 +156,7 @@ p {
 
 .App-Page-Block-2-SubText {
   font-size: 1.6rem;
-  color: #3c3126;
+  color: #e8dcc4;
 }
 
 .App-Page-Block-3 {

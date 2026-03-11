@@ -69,24 +69,13 @@ export default function A_TechPage() {
                 priority
               />
             </div>
-            <div className="A-Tech-Page-Block-3-SubHeader">
-              Бортовая аппаратура
-            </div>
-            <div className="A-Tech-Page-Block-3-SubText">
-              <ul>
-                <li>Спектральные камеры:</li>
-                <ol>
-                  <li>Мультиспектральная камера</li>
-                  <li>Гиперспектральная камера</li>
-                </ol>
-                <li>Дополнительная аппаратура</li>
-                <ol>
-                  <li>FM-ретранслятор радиосигнала</li>
-                  <li>Мемристорная плата</li>
-                </ol>
-              </ul>
-            </div>
+            <p className="A-Tech-Page-Block-3-SubHeader">Бортовая аппаратура</p>
+            <p className="A-Tech-Page-Block-3-SubText">
+              Содержит спекральные камеры и дополнительную аппаратуру:
+              FM-ретранслятор и мемристорная плата.
+            </p>
           </div>
+
           <div className="A-Tech-Page-Block-3-SubBlock">
             <div className="A-Tech-Page-Block-3-Icon-Wrapper">
               <Image
@@ -98,66 +87,52 @@ export default function A_TechPage() {
                 priority
               />
             </div>
-            <div className="A-Tech-Page-Block-3-SubHeader">
-              Научные и прикладные задачи
-            </div>
-            <div className="A-Tech-Page-Block-3-SubText">
-              <ul>
-                <li>Агроэкологический мониторинг:</li>
-                <ol>
-                  <li>Спутниковая съемка полей и с/х культур</li>
-                  <li>Оценка биофизических параметров растений</li>
-                </ol>
-                <li>Научные исследования</li>
-                <li>Радиолюбительская миссия:</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <div className="A-Tech-Page-Block-3-SubSubBlock">
-          <div className="A-Tech-Page-Block-3-Icon-Wrapper">
-            <Image
-              className="A-Tech-Page-Sputnik-Picture"
-              src="/a-tech/sputnik.svg"
-              alt="Sputnik picture"
-              width={100}
-              height={100}
-              priority
-            />
+            <p className="A-Tech-Page-Block-3-SubHeader">Решаемые задачи</p>
+            <p className="A-Tech-Page-Block-3-SubText">
+              Проводит агромониторинг (спутниковая съёмка и оценка параметров
+              растений) и научные исследования
+            </p>
           </div>
-          <div className="A-Tech-Page-Block-3-SubHeader">
-            Спутниковая платформа
-          </div>
-          <div className="A-Tech-Page-Block-3-SubText-Cards-Container">
-            <div className="A-Tech-Page-Block-3-SubText">
-              <p>Платформа Геоскан 16U:</p>
-              <ol>
-                <li>Стандарт: CubeSat, форм-фактор 16U</li>
-                <li>Габариты 10×20×34 см</li>
-                <li>Высокоточная система ориентации и стабилизации</li>
-              </ol>
-            </div>
 
-            <div className="A-Tech-Page-Block-3-SubText">
-              <p>Разработчики:</p>
-              <ol>
-                <li>ННГУ им. Н. И. Лобачевского</li>
-                <li>АО "Геоскан"</li>
-                <li>Самарский университет</li>
-                <li>НПО "Лептон", Зеленоград</li>
-              </ol>
+          <div className="A-Tech-Page-Block-3-SubBlock">
+            <div className="A-Tech-Page-Block-3-Icon-Wrapper">
+              <Image
+                className="A-Tech-Page-Sputnik-Picture"
+                src="/a-tech/sputnik.svg"
+                alt="Sputnik picture"
+                width={100}
+                height={100}
+                priority
+              />
             </div>
+            <p className="A-Tech-Page-Block-3-SubHeader">
+              Спутниковая платформа
+            </p>
+            <p className="A-Tech-Page-Block-3-SubText">
+              Платформа Геоскан 16U (10×20×34 см) - система высокороточной
+              ориентации и стабилизации.
+            </p>
           </div>
         </div>
       </div>
 
       <div className="A-Tech-Page-Block-4">
-        <h2 className="A-Tech-Page-Block-4-Header">Медия и ресурсы.</h2>
+        <h2 className="A-Tech-Page-Block-4-Header">Медия и ресурсы</h2>
         <div className="A-Tech-Page-Block-4-Cards-Container">
           <div className="A-Tech-Page-Block-4-Video">
-            <p>Тут будет видео запуска</p>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="A-Tech-Page-Block-4-My-Video"
+            >
+              <source src="/a-tech/satellite_video.mp4" type="video/mp4" />
+              Ваш браузер не поддерживает видео.
+            </video>
           </div>
+
           <div className="A-Tech-Page-Block-4-Image">
             <Image
               className="A-Tech-Page-LobachevBody-Picture"
@@ -173,7 +148,7 @@ export default function A_TechPage() {
           </div>
         </div>
         <nav className="A-Tech-Page-Block-4-Links">
-          <p>Трансляция запуска: YouTube, Vk</p>
+          <p>Трансляция запуска: YouTube, VK</p>
           <p>Статья о проекте на Space-π</p>
           <p>Новости в Телеграм Геоскана</p>
         </nav>

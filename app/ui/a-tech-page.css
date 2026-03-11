@@ -69,13 +69,13 @@ p {
 
 .A-Tech-Page-Block-2-Cards-Container {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center; 
+  align-items: center;
   max-width: 1400px;
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 0 5rem;
-  margin-top: -2rem; 
+  margin-top: -2rem;
   position: relative;
   z-index: 2;
 }
@@ -84,7 +84,7 @@ p {
   background-color: #3c3126;
   border-radius: 0 40px 40px 40px;
   padding: 3rem;
-  margin: 0; 
+  margin: 0;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
@@ -115,16 +115,46 @@ p {
   margin-top: 10rem;
 }
 
-.A-Tech-Page-Block-3-Icon-Wrapper {
+.A-Tech-Page-Block-3-Header {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 7rem;
+  color: #3c3126;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.A-Tech-Page-Block-3-Cards-Container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 50px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  align-items: stretch;
+  color: #3c3126;
+}
+
+.A-Tech-Page-Block-3-SubBlock {
+  background-color: #8eab90;
+  border-radius: 20px;
+  padding: 40px 20px 30px 20px;
+  text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #3c3126;
+}
+
+.A-Tech-Page-Block-3-Icon-Wrapper {
+  position: absolute;
   top: -90px;
   left: 50%;
   transform: translateX(-50%);
   background: #e8dcc4;
   border: 4px solid #8eab90;
   border-radius: 100%;
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,69 +162,28 @@ p {
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
 }
 
-.A-Tech-Page-Block-3-Cards-Container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  gap: 5rem;
-  margin-bottom: 10rem;
-  justify-self: center;
-}
-
-.A-Tech-Page-Block-3-SubText-Cards-Container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  gap: 0;
-  margin-bottom: 10rem;
-  justify-self: center;
-}
-
-.A-Tech-Page-Block-3-SubBlock {
-  justify-self: center;
-  background-color: #8eab90;
-  width: 45ch;
-  margin-top: 5rem;
-  box-shadow: inset 0px 0px 5px 5px #e8dcc4;
-  border-radius: 10%;
-  font-size: 2rem;
-  text-align: justify;
-
-}
-
-.A-Tech-Page-Block-3-SubSubBlock {
-  font-size: 2rem;
-  justify-self: center;
-  background-color: #8eab90;
-  width: 75ch;
-  box-shadow: inset 0px 0px 5px 5px #e8dcc4;
-  border-radius: 10%;
-}
-
 .A-Tech-Page-Block-3-SubHeader {
-  text-align: center;
-  margin-top: -3rem;
+  font-weight: 1000;
+  font-style: bold;
+  font-size: 2rem;
   color: #e8dcc4;
+  margin-top: 20px;
+  text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .A-Tech-Page-Block-3-SubText {
-  padding: 5.2rem;
+  font-size: 1.6rem;
   color: #e8dcc4;
-}
-
-.A-Tech-Page-Block-3-SubText ul {
-  list-style-type: disc;
-}
-
-.A-Tech-Page-Block-3-SubText ol {
-  list-style-type: decimal;
 }
 
 .A-Tech-Page-Block-4-Header {
   justify-self: center;
+  font-weight: bold;
+  margin-top: 7rem;
   margin-bottom: 5rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  color: #3c3126;
 }
 .A-Tech-Page-Block-4-Cards-Container {
   display: grid;
@@ -206,15 +195,24 @@ p {
 }
 
 .A-Tech-Page-Block-4-Video {
-  background-color: #3c3126;
-  color: #e8dcc4;
-  place-items: center;
-  display: grid;
-  min-width: 50rem;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 0 30px 30px 30px;
+  overflow: hidden;
 }
+
+.A-Tech-Page-Block-4-My-Video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+}
+
 .A-Tech-Page-Block-4-ImgTitle {
   justify-self: center;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
+  color: #3c3126;
 }
 
 .A-Tech-Page-Block-4-Links {
