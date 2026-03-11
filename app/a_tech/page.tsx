@@ -158,10 +158,36 @@ export default function A_TechPage() {
             >
               YouTube
             </a>
-            , VK
+            ,{" "}
+            <a
+              href="https://vkvideo.ru/video-30315369_456244599?sh=4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="A-Tech-Page-Block-4-Media"
+            >
+              VK
+            </a>
           </p>
-          <p>Статья о проекте на Space-π</p>
-          <p>Новости в Телеграм Геоскана</p>
+          <p>
+            <a
+              href="https://spacepi.space/satellites/lobachevskij/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="A-Tech-Page-Block-4-Media"
+            >
+              Статья о проекте на Space-π
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://www.geoscan.ru/ru/products/cubesat?utm_source=telegram&utm_medium=organic&utm_campaign=geoscan-space&utm_content=description&clckid=ba482b39"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="A-Tech-Page-Block-4-Media"
+            >
+              Новости на сайте GEOSCAN
+            </a>
+          </p>
         </nav>
       </div>
 
