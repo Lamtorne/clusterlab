@@ -148,7 +148,18 @@ export default function A_TechPage() {
           </div>
         </div>
         <nav className="A-Tech-Page-Block-4-Links">
-          <p>Трансляция запуска: YouTube, VK</p>
+          <p>
+            Трансляция запуска:{" "}
+            <a
+              href="https://www.youtube.com/watch?v=lFOWEUSP9Vo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="A-Tech-Page-Block-4-Media"
+            >
+              YouTube
+            </a>
+            , VK
+          </p>
           <p>Статья о проекте на Space-π</p>
           <p>Новости в Телеграм Геоскана</p>
         </nav>
