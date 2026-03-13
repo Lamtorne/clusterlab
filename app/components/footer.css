@@ -17,11 +17,13 @@
   gap: 15px;
 }
 
+
 .Footer-LogoText {
   font-family: "Righteous", sans-serif;
   font-size: 38px;
   color: #e8dcc4;
   line-height: 1;
+  margin: 0;
 }
 
 .Footer-Mail {
