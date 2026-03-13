@@ -4,10 +4,10 @@ import Link from "next/link";
 import '@/app/components/header.css'
 const Header = () => {
   return (
-    <header className="Header">
-      <div className="Logo">
+    <header className="Header-Header">
+      <div className="Header-Logo">
         <Image
-          className="LogoImg"
+          className="Header-LogoImg"
           src="/header/Logo-Transparent.svg"
           alt="Next.js logo"
           width={50}
@@ -15,10 +15,10 @@ const Header = () => {
           priority
         />
         <Link href="/">
-          <p className="LogoText">ClusterLab</p>
+          <p className="Header-LogoText">ClusterLab</p>
         </Link>
       </div>
-      <nav>
+      <nav className="Header-nav">
         <Link href="/a_tech">
           <p>О технологии</p>
         </Link>
@@ -28,7 +28,7 @@ const Header = () => {
         <Link href="/prices">
           <p>Тарифы</p>
         </Link>
-        <button className="ButtonStart">Начать работу</button>
+        <button className="HeaderButtonStart">Начать работу</button>
       </nav>
     </header>
   );

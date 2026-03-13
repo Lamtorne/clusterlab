@@ -1,9 +1,34 @@
+"use client";
+import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import Image from "next/image";
 
 export default function A_TechPage() {
+  const [isVisible, setIsVisible] = useState(false);
+  
+    useEffect(() => {
+      const toggleVisibility = () => {
+        if (window.scrollY > 300) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      };
+      window.addEventListener("scroll", toggleVisibility);
+      return () => window.removeEventListener("scroll", toggleVisibility);
+    }, []);
+  
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
   return (
     <main className="PageBackground">
+      {isVisible && (
+        <button onClick={scrollToTop} className="ScrollToTopButton">
+          ↑
+        </button>
+      )}
       <div className="A-Tech-Page-Block-1">
         <Image
           className="A-Tech-Page-Satellite-Picture"
@@ -48,8 +73,8 @@ export default function A_TechPage() {
               className="A-Tech-Page-Lobachev-Picture"
               src="/a-tech/lobachev_satelitte.svg"
               alt="Lobachev picture"
-              width={500}
-              height={500}
+              width={700}
+              height={800}
               priority
             />
           </div>
