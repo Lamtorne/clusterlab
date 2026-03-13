@@ -28,7 +28,7 @@ const Header = () => {
         <Link href="/prices">
           <p>Тарифы</p>
         </Link>
-        <button className="HeaderButtonStart">Начать работу</button>
+        <button className="Header-ButtonStart">Начать работу</button>
       </nav>
     </header>
   );
