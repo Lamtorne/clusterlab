@@ -61,6 +61,10 @@
   font-weight: 1000;
 }
 
+.A-Tech-Page-Block-1-Text-Blur h2 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
 p {
   font-weight: bold;
 }
@@ -68,8 +72,8 @@ p {
 .A-Tech-Page-Block-2-Header {
   text-align: center;
   font-weight: bold;
-  margin-bottom: 5rem;
-  margin-top: 5rem;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
   color: #3c3126;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   max-width: 1200px; /* Ограничиваем ширину, чтобы строка не была слишком длинной */
@@ -120,7 +124,7 @@ p {
 }
 
 .A-Tech-Page-Block-3 {
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .A-Tech-Page-Block-3-Header {
@@ -243,7 +247,6 @@ p {
   color: #ff7043;
   text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
 }
-
 
 .A-Tech-Page-Block-5 {
   margin-top: 5rem;
