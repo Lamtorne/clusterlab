@@ -5,7 +5,8 @@
   background-size:cover;
   background-repeat: repeat-y;
   background-position: center;
-  height: 430vh;
+  height: auto;
+  padding-bottom: 10rem;
   width: 100%;
 }
 

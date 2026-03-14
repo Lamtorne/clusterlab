@@ -3,7 +3,8 @@
   background-color: #e8dcc4;
   background-size: contain;
   background-position: center;
-  height: 300vh;
+  height: auto;
+  padding-bottom: 10rem;
   width: 100%;
 }
 
