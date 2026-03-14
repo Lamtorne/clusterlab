@@ -86,7 +86,27 @@
   justify-content: center;
 }
 
+.Steps-Page-Block-1-Circle-1,
+.Steps-Page-Block-1-Circle-2,
+.Steps-Page-Block-1-Circle-3 {
+  box-shadow: 0px 10px 50px 10px rgba(240, 111, 68, 0.5);
+  display: grid;
+  background-color: #f06f44;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+}
+
 .Steps-Page-Block-1-Circle p {
+  font-size: 3.5rem;
+  font-style: bold;
+  margin-top: -0.5rem;
+}
+
+.Steps-Page-Block-1-Circle-1 p,
+.Steps-Page-Block-1-Circle-2 p,
+.Steps-Page-Block-1-Circle-3 p {
   font-size: 3.5rem;
   font-style: bold;
   margin-top: -0.5rem;

@@ -28,7 +28,7 @@ export default function A_TechPage() {
               </div>
             </div>
             <div className="Steps-Page-Block-1-Steps">
-              <div className="Steps-Page-Block-1-Circle">
+              <div className="Steps-Page-Block-1-Circle-1">
                 <p>1</p>
               </div>
               <div className="Steps-Page-Block-1-Line"></div>
@@ -41,7 +41,7 @@ export default function A_TechPage() {
             <div className="Steps-Page-Block-1-Steps">
               <div className="Steps-Page-Block-1-Circle"></div>
               <div className="Steps-Page-Block-1-Line"></div>
-              <div className="Steps-Page-Block-1-Circle">
+              <div className="Steps-Page-Block-1-Circle-2">
                 <p>2</p>
               </div>
               <div className="Steps-Page-Block-1-Line"></div>
@@ -93,7 +93,7 @@ export default function A_TechPage() {
               <div className="Steps-Page-Block-1-Line"></div>
               <div className="Steps-Page-Block-1-Circle"></div>
               <div className="Steps-Page-Block-1-Line"></div>
-              <div className="Steps-Page-Block-1-Circle">
+              <div className="Steps-Page-Block-1-Circle-3">
                 <p>3</p>
               </div>
             </div>
