@@ -23,7 +23,7 @@ export default function A_TechPage() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
   return (
-    <main className="PageBackground">
+    <main className="A-Tech-Page-PageBackground">
       {isVisible && (
         <button onClick={scrollToTop} className="ScrollToTopButton">
           ↑

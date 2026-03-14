@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-.PageBackground {
+.Prices-Page-PageBackground {
   background-color: #e8dcc4;
-  background-size: contain;
+  background-size:cover;
   background-position: center;
   height: 220vh;
   width: 100%;

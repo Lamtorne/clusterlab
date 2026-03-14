@@ -23,7 +23,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="PageBackground">
+    <main className="App-Page-PageBackground">
       {isVisible && (
         <button onClick={scrollToTop} className="ScrollToTopButton">
           ↑

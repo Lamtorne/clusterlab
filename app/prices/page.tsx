@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function A_TechPage() {
     return (
         <main>
-            <div className="PageBackground">
+            <div className="Prices-Page-PageBackground">
                 <h2 className="Prices-Page-Header">
                     Расскажем про возможные тарифы и версии подписки: выберите подходящую и начните работу
                 </h2>
@@ -110,7 +110,7 @@ export default function A_TechPage() {
                 </div>
 
 
-                
+
                 <div className="Prices-Page-Block-2">
                     <div className="Prices-Page-Block-2-Cards-Container">
                         <div className="Prices-Page-Block-2-SubBlock">

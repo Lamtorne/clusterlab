@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function A_TechPage() {
     return (
-        <main className="PageBackground">
+        <main className="Steps-Page-PageBackground">
             <div className="Steps-Page-Block-1">
                 <h2 className="Steps-Page-Block-1-Header">
                     Какой путь Вы пройдете, чтобы получить нужный результат?

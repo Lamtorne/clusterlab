@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-.PageBackground {
-  background-color: #e8dcc4;
-  background-size: contain;
-  background-position: center;
-  width: 100%;
-}
 
 :root {
   --fs-h1: clamp(2rem, 5vw + 1rem, 4.2rem);

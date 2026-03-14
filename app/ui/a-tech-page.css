@@ -1,9 +1,9 @@
 @import "tailwindcss";
-.PageBackground {
+.A-Tech-Page-PageBackground {
   background-color: #e8dcc4;
   background-size: contain;
   background-position: center;
-  height: 330vh;
+  height: 300vh;
   width: 100%;
 }
 
