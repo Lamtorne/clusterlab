@@ -2,7 +2,7 @@
 
 .App-Page-PageBackground {
   background-color: #e8dcc4;
-  background-size:cover;
+  background-size: cover;
   background-repeat: repeat-y;
   background-position: center;
   height: auto;
@@ -332,7 +332,7 @@ p {
 .App-Page-Block-5-SubBlock-2 p,
 .App-Page-Block-5-SubBlock-3 p,
 .App-Page-Block-5-SubBlock-4 p {
-  color: #3c3126;
+  color: #e8dcc4;
   font-size: 1.4rem;
   margin: 0;
   line-height: 1.4;
@@ -427,7 +427,7 @@ p {
   font-weight: 1000;
   font-style: bold;
   font-size: 2rem;
-  color: #3c3126;
+  color: #e8dcc4;
   margin-top: 20px;
   text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -435,7 +435,7 @@ p {
 
 .App-Page-Block-6-SubText {
   font-size: 1.6rem;
-  color: #3c3126;
+  color: #e8dcc4;
 }
 
 .App-Page-Block-7 {
