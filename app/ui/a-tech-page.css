@@ -1,9 +1,9 @@
 @import "tailwindcss";
 .PageBackground {
-  min-height: 100vh; /* Страница всегда на всю высоту экрана */
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden; /* ГАРАНТИЯ: никакой белой полосы справа */
+  background-color: #e8dcc4;
+  background-size: contain;
+  background-position: center;
+  height: 330vh;
   width: 100%;
 }
 
@@ -24,6 +24,7 @@
   border-radius: 0 30px 30px 30px;
   object-fit: cover;
   box-shadow: 0 20px 40px rgba(60, 49, 38, 0.2);
+  margin-top: 2rem;
 }
 
 .A-Tech-Page-Block-1-Text {
@@ -32,6 +33,7 @@
   color: #3c3126;
   z-index: 1;
   overflow: visible;
+  margin-top: 2rem;
 }
 
 .A-Tech-Page-Block-1-Text-Blur h2 {

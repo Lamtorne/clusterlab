@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
+
 .PageBackground {
   background-color: #e8dcc4;
   background-size: contain;
   background-position: center;
-  min-height: auto;
+  height: 220vh;
   width: 100%;
 }
 

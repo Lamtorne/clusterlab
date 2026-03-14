@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+.PageBackground {
+  background-color: #e8dcc4;
+  background-size: contain;
+  background-position: center;
+  height: 430vh;
+  width: 100%;
+}
+
 .App-Page-Block-1 {
   display: grid;
   grid-template-columns: minmax(700px, 1.5fr) 1.5fr;

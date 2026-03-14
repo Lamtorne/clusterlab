@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+.PageBackground {
+  background-color: #e8dcc4;
+  background-size: contain;
+  background-position: center;
+  height: 220vh;
+  width: 100%;
+}
+.Prices-Page-Header {
+    padding-top: 5rem;
+    display: grid;
+    text-align: center;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-bottom: 10rem;
+}
+
+.Prices-Page-Block-1 {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.Prices-Page-Block-1-Cards-Container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.Prices-Page-Block-1-SubBlock {
+    background-color: rgba(60, 49, 38, 0.95);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    height: 70ch;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Prices-Page-Block-1-Type-Wrapper {
+    position: relative;
+    top: -2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
+    background-color: #e8dcc4;
+    border-color: #3c3126;
+    border-radius: 20%;
+    border-width: 0.2rem;
+}
+
+.Prices-Page-Block-1-Type-Wrapper p {
+    margin: 0;
+    color: #3c3126;
+    font-size: 1.8rem;
+}
+
+.Prices-Page-Block-1-SubHeader {
+    color: #e8dcc4;
+    text-align: center;
+}
+
+.Prices-Page-Block-1-SubHeader h2 {
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Prices-Page-Block-1-SubText {
+    margin-top: 1rem;
+    color: #e8dcc4;
+    padding: 0.8rem;
+    font-size: 1.6rem;
+}
+
+.Prices-Page-Block-1-SubText ul {
+    list-style: disc;
+}
+
+.Prices-Page-Block-1-Price {
+    color: #ff7043;
+    font-size: 2rem;
+}
+
+.Prices-Page-Block-1-Price p {
+    margin: 0;
+    text-align: center;
+}
+
+
+.Prices-Page-Block-1-Button {
+    background-color: #ff7043;
+    color: #e8dcc4;
+    border: solid;
+    border-color: #ff7043;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    justify-self: center;
+}
+
+.Prices-Page-Block-1-Button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+
+.Prices-Page-Block-1-Bottom {
+    margin-top: auto;
+    display: grid;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 16px;
+    padding-bottom: 2rem;
+}
+
+.Prices-Page-Block-2 {
+    margin-top: 10rem;
+}
+
+.Prices-Page-Block-2-Cards-Container {
+    display: flex;
+    justify-self: center;
+}
+
+.Prices-Page-Block-2-SubBlock {
+    background-color: rgba(142, 171, 144, 0.95);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 10rem;
+    height: 60ch;
+
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Prices-Page-Block-2-Type-Wrapper {
+    position: relative;
+    top: -2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
+    background-color: #e8dcc4;
+    border-color: #8eab90;
+    border-radius: 20%;
+    border-width: 0.2rem;
+}
+
+.Prices-Page-Block-2-Type-Wrapper p {
+    margin: 0;
+    color: #3c3126;
+    font-size: 1.8rem;
+}
+
+.Prices-Page-Block-2-SubHeader {
+    color: #e8dcc4;
+    text-align: center;
+}
+
+.Prices-Page-Block-2-SubHeader h2 {
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.Prices-Page-Block-2-SubText {
+    margin-top: 1rem;
+    color: #e8dcc4;
+    padding: 0.8rem;
+    font-size: 1.6rem;
+}
+
+.Prices-Page-Block-2-SubText ul {
+    list-style: disc;
+}
+
+.Prices-Page-Block-2-Price {
+    color: #3c3126;
+    font-size: 2rem;
+}
+
+.Prices-Page-Block-2-Price p {
+    margin: 0;
+    text-align: center;
+}
+
+
+.Prices-Page-Block-2-Button {
+    background-color: #ff7043;
+    color: #e8dcc4;
+    border: solid;
+    border-color: #ff7043;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    justify-self: center;
+}
+
+.Prices-Page-Block-2-Button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+
+.Prices-Page-Block-2-Bottom {
+    margin-top: auto;
+    display: grid;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 16px;
+    padding-bottom: 2rem;
+}
