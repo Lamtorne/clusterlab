@@ -42,7 +42,7 @@
   margin: 0;
 }
 
-.Header-nav p:hover {
+.Header-nav-p:hover {
   color: #ff7043;
   text-shadow: 0px 0px 12px rgba(255, 112, 67, 0.5);
 }

@@ -1,9 +1,32 @@
+"use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function A_TechPage() {
+export default function StepsPage() {
+     const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+        window.addEventListener("scroll", toggleVisibility);
+        return () => window.removeEventListener("scroll", toggleVisibility);
+    }, []);
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
     return (
         <main className="Steps-Page-PageBackground">
+            {isVisible && (
+                <button onClick={scrollToTop} className="ScrollToTopButton">
+                    ↑
+                </button>
+            )}
             <div className="Steps-Page-Block-1">
                 <h2 className="Steps-Page-Block-1-Header">
                     Какой путь Вы пройдете, чтобы получить нужный результат?

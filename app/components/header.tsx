@@ -20,15 +20,17 @@ const Header = () => {
       </div>
       <nav className="Header-nav">
         <Link href="/a_tech">
-          <p>О технологии</p>
+          <p className="Header-nav-p">О технологии</p>
         </Link>
         <Link href="/steps">
-          <p>Этапы</p>
+          <p className="Header-nav-p">Этапы</p>
         </Link>
         <Link href="/prices">
-          <p>Тарифы</p>
+          <p className="Header-nav-p">Тарифы</p>
         </Link>
-        <button className="Header-ButtonStart">Начать работу</button>
+        <Link href="/sign_in">
+          <p className="Header-ButtonStart">Начать работу</p>
+        </Link>
       </nav>
     </header>
   );
