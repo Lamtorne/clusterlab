@@ -4,7 +4,7 @@
   background-size: contain;
   background-position: center;
   height: auto;
-  padding-bottom: 5rem;
+  padding-bottom: 1rem;
   width: 100%;
 }
 
@@ -232,6 +232,7 @@ p {
   justify-self: center;
   font-size: 2.3rem;
   color: #3c3126;
+  font-weight: bold;
 }
 
 .A-Tech-Page-Block-4-Links {
