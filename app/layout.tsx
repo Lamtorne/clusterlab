@@ -1,6 +1,5 @@
 import '@/app/ui/global.css';
 import '@/app/ui/app-page.css'
-import '@/app/components/header.css'
 import { righteous, inter, lusitana } from './ui/fonts'
 import { Metadata } from 'next';
 

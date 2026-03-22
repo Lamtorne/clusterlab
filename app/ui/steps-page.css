@@ -25,17 +25,15 @@
 }
 
 .Steps-Page-Block-1-Cards-Container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   width: 100%;
-  max-width: 900px; /* Ограничиваем ширину, чтобы блоки были ближе друг к другу */
-  margin: 3rem; /* Центрируем сам контейнер */
+  margin: 3rem;
 }
 
 .Steps-Page-Block-1-SubBlock {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .Steps-Page-Block-1-Text {

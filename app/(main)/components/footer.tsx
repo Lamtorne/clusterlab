@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "@/app/components/footer.css";
+import "@/app/(main)/components/footer.css";
 export default function Footer() {
   return (
     <footer className="Footer-footer">

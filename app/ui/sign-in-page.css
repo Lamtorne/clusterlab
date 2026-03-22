@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+.SignIn-Page-PageBackground {
+  background-color: #e8dcc4;
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center;
+  height: auto;
+  padding-bottom: 1rem;
+  width: 100%;
+}

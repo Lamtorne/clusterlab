@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import '@/app/components/header.css'
+import '@/app/(main)/components/header.css'
 const Header = () => {
   return (
     <header className="Header-Header">
