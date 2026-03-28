@@ -9,3 +9,21 @@
   padding-bottom: 1rem;
   width: 100%;
 }
+
+.SignIn-Page-Block-1 {
+  padding-top: 10rem;
+}
+
+.SignIn-Page-Block-1-Header{
+  display: flex;
+  justify-self: center;
+  gap: 1rem;
+}
+
+.SignIn-Page-Block-1-Header h2 {
+  font-family: "Righteous", sans-serif;
+  font-size: 4rem;
+  color: #3c3126;
+  line-height: 1;
+  margin: 0;
+}
