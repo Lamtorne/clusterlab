@@ -19,4 +19,4 @@ class User(Base):
     max_area: Mapped[float] = mapped_column(Numeric(3, 1), default=10.0)
     current_area: Mapped[float] = mapped_column(Numeric(3, 1), default=0.0)
 
-    fields: Mapped[list["Field"]] = relationship("Field", back_populates="owner")
+    fields: Mapped[list["Field"]] = relationship("Field", back_populates="user")

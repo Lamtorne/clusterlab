@@ -19,16 +19,23 @@ class User(BaseModel):
 
 
 class FieldCreate(BaseModel):
-    culture: str = Field(description='Культура, выращиваемая на поле. Для более точных рекомендаций - standard, pro')
-    latitude: float = Field(..., description='Широта центра поля')
-    longitude: float = Field(..., description='Долгота центра поля')
-    radius: float = Field(..., description='Радиус поля в метрах')
-    region: str = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
+    culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
+                                            'точных рекомендаций - standard, pro')
+    latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
+    longitude: float = Field(..., description='Долгота центра поля', ge=-180, le=180)
+    radius: float = Field(..., description='Радиус поля в метрах', ge=5, le=3000)
+    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
 
 
 class Field(BaseModel):
     id: int
     user_id: int
+    culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
+                                            'точных рекомендаций - standard, pro')
+    latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
+    longitude: float= Field(..., description='Долгота центра поля', ge=-180, le=180)
+    radius: float = Field(..., description='Радиус поля в метрах', ge=5, le=3000)
+    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
     model_config = ConfigDict(from_attributes=True)
 
 
