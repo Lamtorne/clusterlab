@@ -18,5 +18,19 @@ class User(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class FieldCreate(BaseModel):
+    culture: str = Field(description='Культура, выращиваемая на поле. Для более точных рекомендаций - standard, pro')
+    latitude: float = Field(..., description='Широта центра поля')
+    longitude: float = Field(..., description='Долгота центра поля')
+    radius: float = Field(..., description='Радиус поля в метрах')
+    region: str = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
+
+
+class Field(BaseModel):
+    id: int
+    user_id: int
+    model_config = ConfigDict(from_attributes=True)
+
+
 class RefreshTokenRequest(BaseModel):
     refresh_token: str
