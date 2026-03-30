@@ -31,11 +31,11 @@ class Field(BaseModel):
     id: int
     user_id: int
     culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
-                                            'точных рекомендаций - standard, pro')
+                                            'точных рекомендаций - standard, pro', max_length=150)
     latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
     longitude: float= Field(..., description='Долгота центра поля', ge=-180, le=180)
     radius: float = Field(..., description='Радиус поля в метрах', ge=5, le=3000)
-    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
+    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro', max_length=150)
     model_config = ConfigDict(from_attributes=True)
 
 
