@@ -1,29 +1,115 @@
 @import "tailwindcss";
 
-.SignIn-Page-PageBackground {
-  background-color: #e8dcc4;
-  background-size: cover;
-  background-repeat: repeat-y;
-  background-position: center;
-  height: auto;
-  padding-bottom: 1rem;
-  width: 100%;
-}
-
-.SignIn-Page-Block-1 {
-  padding-top: 10rem;
-}
-
-.SignIn-Page-Block-1-Header{
+.auth-container {
+  background-color: #e8dcc4; /* Твой бежевый цвет */
+  background-image: linear-gradient(135deg, #e8dcc4 0%, #d4c4a8 100%);
+  min-height: 100vh;
   display: flex;
-  justify-self: center;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
-.SignIn-Page-Block-1-Header h2 {
+.auth-card {
+  background: #c1d0bb; /* Полупрозрачный белый */
+  backdrop-filter: blur(10px); /* Эффект размытия фона за карточкой */
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(60, 49, 38, 0.15);
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.auth-logo {
+  margin: 0 auto 1rem;
+}
+
+.auth-header h1 {
   font-family: "Righteous", sans-serif;
-  font-size: 4rem;
+  font-size: 3rem;
   color: #3c3126;
-  line-height: 1;
-  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: #6d5f52;
+  font-size: 0.9rem;
+}
+
+.auth-form .input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3c3126;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.auth-form input {
+  padding: 12px 16px;
+  border: 2px solid #d4c4a8;
+  border-radius: 12px;
+  background: white;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: #3c3126;
+  box-shadow: 0 0 0 4px rgba(60, 49, 38, 0.05);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #3c3126;
+  color: #e8dcc4;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+}
+
+.auth-button:hover {
+  background-color: #2a221a;
+  transform: translateY(-2px);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #6d5f52;
+  text-align: center;
+}
+
+.auth-footer a {
+  color: #3c3126;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
