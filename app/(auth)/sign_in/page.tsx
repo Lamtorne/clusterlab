@@ -45,17 +45,6 @@ export default function Sign_InPage() {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="input-group">
-            <label>Имя или название компании</label>
-            <input
-              type="text"
-              placeholder="Иван Иванов"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="input-group">
             <label>Почта</label>
             <input
               type="email"
@@ -86,7 +75,7 @@ export default function Sign_InPage() {
 
         <div className="auth-footer">
           <span>Нет аккаунта? </span>
-          <Link href="/sign-up">Зарегистрироваться</Link>
+          <Link href="/sign_up">Зарегистрироваться</Link>
         </div>
       </div>
     </main>
