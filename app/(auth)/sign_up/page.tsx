@@ -8,7 +8,6 @@ import Image from "next/image";
 export default function Sign_Up() {
   const router = useRouter();
 
-  const [fullName, setFullName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,7 @@ export default function Sign_Up() {
         },
         body: JSON.stringify({
           email: email,
-          full_name: fullName,
+          full_name: companyName,
           password: password,
         }),
       });
@@ -38,7 +37,7 @@ export default function Sign_Up() {
         localStorage.setItem("user_id", data.id);
 
         // 2. Перекидываем в личный кабинет (заглушку)
-        router.push("/dashboard");
+        router.push("/");
       } else {
         const errorData = await response.json();
         setError(errorData.detail || "Ошибка при регистрации");
