@@ -18,11 +18,34 @@ export default function Sign_Up() {
     e.preventDefault();
     setError("");
 
-    // Позже здесь будет fetch('/api/auth/register', ...)
-    console.log("Регистрация:", { fullName, companyName, email, password });
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          full_name: fullName,
+          password: password,
+        }),
+      });
 
-    // После успешной регистрации обычно редиректим на логин или сразу в профиль
-    router.push("/sign_in");
+      if (response.ok) {
+        const data = await response.json();
+
+        // 1. Сохраняем информацию о том, что юзер вошел (пока можно в localStorage)
+        localStorage.setItem("user_id", data.id);
+
+        // 2. Перекидываем в личный кабинет (заглушку)
+        router.push("/dashboard");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.detail || "Ошибка при регистрации");
+      }
+    } catch (err) {
+      setError("Не удалось связаться с сервером. Проверь, запущен ли FastAPI.");
+    }
   };
 
   return (
