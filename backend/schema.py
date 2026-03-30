@@ -11,6 +11,7 @@ class UserCreate(BaseModel):
 class User(BaseModel):
     id: int
     email: EmailStr
+    full_name: str = Field(description='Имя или название компании')
     tariff: str = Field(default='test', description='Тариф: test, standard, pro')
     tariff_ends_at: datetime = Field(default_factory=lambda: datetime.now() + timedelta(days=7))
     current_area: float = Field(default=0.0, description='Проанализированная площадь')
