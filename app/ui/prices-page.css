@@ -1,234 +1,371 @@
-@import "tailwindcss";
+/*@import "tailwindcss";
 
 .Prices-Page-PageBackground {
   background-color: #e8dcc4;
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   height: auto;
   padding-bottom: 5rem;
   width: 100%;
 }
 .Prices-Page-Header {
-    padding-top: 5rem;
-    display: grid;
-    text-align: center;
-    margin-left: 10rem;
-    margin-right: 10rem;
-    margin-bottom: 10rem;
+  padding-top: 5rem;
+  color: #3c3126;
+  font-weight: bolder;
+  display: grid;
+  text-align: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-bottom: 10rem;
 }
 
 .Prices-Page-Block-1 {
-    margin-left: 2rem;
-    margin-right: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .Prices-Page-Block-1-Cards-Container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 .Prices-Page-Block-1-SubBlock {
-    background-color: rgba(60, 49, 38, 0.95);
-    padding-left: 5rem;
-    padding-right: 5rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    height: 70ch;
+  background-color: rgba(60, 49, 38, 0.95);
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  height: 70ch;
 
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .Prices-Page-Block-1-Type-Wrapper {
-    position: relative;
-    top: -2%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
-    background-color: #e8dcc4;
-    border-color: #3c3126;
-    border-radius: 20%;
-    border-width: 0.2rem;
+  position: relative;
+  top: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
+  background-color: #e8dcc4;
+  border-color: #3c3126;
+  border-radius: 20%;
+  border-width: 0.2rem;
 }
 
 .Prices-Page-Block-1-Type-Wrapper p {
-    margin: 0;
-    color: #3c3126;
-    font-size: 1.8rem;
+  margin: 0;
+  color: #3c3126;
+  font-size: 1.8rem;
 }
 
 .Prices-Page-Block-1-SubHeader {
-    color: #e8dcc4;
-    text-align: center;
+  color: #e8dcc4;
+  text-align: center;
 }
 
 .Prices-Page-Block-1-SubHeader h2 {
-    font-size: 2.2rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 2.2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .Prices-Page-Block-1-SubText {
-    margin-top: 1rem;
-    color: #e8dcc4;
-    padding: 0.8rem;
-    font-size: 1.6rem;
+  margin-top: 1rem;
+  color: #e8dcc4;
+  padding: 0.8rem;
+  font-size: 1.6rem;
 }
 
 .Prices-Page-Block-1-SubText ul {
-    list-style: disc;
+  list-style: disc;
 }
 
 .Prices-Page-Block-1-Price {
-    color: #ff7043;
-    font-size: 2rem;
+  color: #ff7043;
+  font-size: 2rem;
 }
 
 .Prices-Page-Block-1-Price p {
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  text-align: center;
 }
 
-
 .Prices-Page-Block-1-Button {
-    background-color: #ff7043;
-    color: #e8dcc4;
-    border: solid;
-    border-color: #ff7043;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    justify-self: center;
+  background-color: #ff7043;
+  color: #e8dcc4;
+  border: solid;
+  border-color: #ff7043;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  justify-self: center;
 }
 
 .Prices-Page-Block-1-Button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1);
 }
 
-
 .Prices-Page-Block-1-Bottom {
-    margin-top: auto;
-    display: grid;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 16px;
-    padding-bottom: 2rem;
+  margin-top: auto;
+  display: grid;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: 2rem;
 }
 
 .Prices-Page-Block-2 {
-    margin-top: 10rem;
+  margin-top: 10rem;
 }
 
 .Prices-Page-Block-2-Cards-Container {
-    display: flex;
-    justify-self: center;
+  display: flex;
+  justify-self: center;
 }
 
 .Prices-Page-Block-2-SubBlock {
-    background-color: rgba(142, 171, 144, 0.95);
-    padding-left: 5rem;
-    padding-right: 5rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    margin-bottom: 10rem;
-    height: 60ch;
+  background-color: rgba(142, 171, 144, 0.95);
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 10rem;
+  height: 60ch;
 
-
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-
 .Prices-Page-Block-2-Type-Wrapper {
-    position: relative;
-    top: -2%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
-    background-color: #e8dcc4;
-    border-color: #8eab90;
-    border-radius: 20%;
-    border-width: 0.2rem;
+  position: relative;
+  top: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.45);
+  background-color: #e8dcc4;
+  border-color: #8eab90;
+  border-radius: 20%;
+  border-width: 0.2rem;
 }
 
 .Prices-Page-Block-2-Type-Wrapper p {
-    margin: 0;
-    color: #3c3126;
-    font-size: 1.8rem;
+  margin: 0;
+  color: #3c3126;
+  font-size: 1.8rem;
 }
 
 .Prices-Page-Block-2-SubHeader {
-    color: #e8dcc4;
-    text-align: center;
+  color: #e8dcc4;
+  text-align: center;
 }
 
 .Prices-Page-Block-2-SubHeader h2 {
-    font-size: 2.2rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 2.2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .Prices-Page-Block-2-SubText {
-    margin-top: 1rem;
-    color: #e8dcc4;
-    padding: 0.8rem;
-    font-size: 1.6rem;
+  margin-top: 1rem;
+  color: #e8dcc4;
+  padding: 0.8rem;
+  font-size: 1.6rem;
 }
 
 .Prices-Page-Block-2-SubText ul {
-    list-style: disc;
+  list-style: disc;
 }
 
 .Prices-Page-Block-2-Price {
-    color: #3c3126;
-    font-size: 2rem;
+  color: #3c3126;
+  font-size: 2rem;
 }
 
 .Prices-Page-Block-2-Price p {
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  text-align: center;
 }
 
-
 .Prices-Page-Block-2-Button {
-    background-color: #ff7043;
-    color: #e8dcc4;
-    border: solid;
-    border-color: #ff7043;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    justify-self: center;
+  background-color: #ff7043;
+  color: #e8dcc4;
+  border: solid;
+  border-color: #ff7043;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  justify-self: center;
 }
 
 .Prices-Page-Block-2-Button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1);
 }
 
-
 .Prices-Page-Block-2-Bottom {
-    margin-top: auto;
-    display: grid;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 16px;
-    padding-bottom: 2rem;
+  margin-top: auto;
+  display: grid;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: 2rem;
+}
+*/
+
+.Prices-Page-PageBackground {
+  background-color: #e8dcc4;
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Prices-Page-Header {
+  padding: 5rem 2rem 4rem;
+  color: #3c3126;
+  font-weight: 800;
+  text-align: center;
+  max-width: 800px;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+/* ГЛАВНЫЙ КОНТЕЙНЕР: теперь всё в один ряд с переносом */
+.Prices-Page-Cards-Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem; /* Расстояние между карточками */
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 2rem;
+}
+
+/* КАРТОЧКА */
+.Price-Card {
+  background-color: rgba(60, 49, 38, 0.96);
+  border-radius: 24px;
+  padding: 3.5rem 2.5rem 2rem;
+  flex: 1 1 400px; /* Растягиваться | Сжиматься | Базовая ширина */
+  max-width: 600px; /* Но не шире 500px, чтобы не стали слишком плоскими */
+
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  height: auto; /* Позволяем карточке растягиваться под контент */
+  padding-bottom: 2.5rem;
+}
+
+/* Специальный цвет для Демо-карточки */
+.Price-Card.demo {
+  background-color: rgba(142, 171, 144, 0.98);
+}
+
+/* ЯРЛЫК (Стандарт/Про/Демо) */
+.Price-Card-Badge {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e8dcc4;
+  min-width: 160px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #3c3126;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Price-Card-Badge p {
+  color: #3c3126;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.Price-Card-SubHeader {
+  color: #e8dcc4;
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.Price-Card-Features {
+  color: #e8dcc4;
+  font-size: 1.2rem;
+  flex-grow: 1; /* Толкает подвал вниз */
+}
+
+.Price-Card-Features ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.Price-Card-Features li {
+  margin-bottom: 0.8rem;
+}
+
+/* ПОДВАЛ КАРТОЧКИ */
+.Price-Card-Bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+
+.Price-Card-Price {
+  color: #ff7043;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Демо цена чуть темнее для читаемости на зеленом */
+.demo .Price-Card-Price {
+  color: #3c3126;
+}
+
+.Price-Card-Button {
+  background-color: #ff7043;
+  color: #e8dcc4;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.Price-Card-Button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 5px 15px rgba(240, 111, 68, 0.4);
 }
