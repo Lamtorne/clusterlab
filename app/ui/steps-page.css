@@ -26,8 +26,9 @@
 
 .Steps-Page-Block-1-Cards-Container {
   display: grid;
-  width: 100%;
-  margin: 3rem;
+  margin: 3rem auto;
+  max-width: 1400px;
+  padding: 0 1rem;
 }
 
 .Steps-Page-Block-1-SubBlock {
@@ -39,10 +40,11 @@
 .Steps-Page-Block-1-Text {
   display: grid;
   background-color: #8eab90;
-  margin: 5rem;
+  margin: 2rem;
   margin-top: 4rem;
-  padding: 3rem;
-  width: 65ch;
+  padding: 2rem;
+  width: 100%;
+  max-width: 65ch;
   height: auto;
   justify-self: center;
   border-radius: 0px 24px 24px 24px;
