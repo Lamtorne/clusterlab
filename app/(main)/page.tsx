@@ -48,7 +48,7 @@ export default function HomePage() {
             </p>
 
             <div className="App-Page-Block-1-Buttons-All">
-              <Link href="#">
+              <Link href="/sign_in">
                 <p className="App-Page-Block-1-Button-1">Начать работу</p>
               </Link>
               <Link href="#App-Page-Block-2-Header">

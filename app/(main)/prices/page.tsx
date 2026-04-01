@@ -244,7 +244,7 @@ export default function PricesPage() {
               <div className="Price-Card-Price">
                 <p>{tier.price}</p>
               </div>
-              <Link href="/sign_up" className="Price-Card-Button">
+              <Link href="/sign_in" className="Price-Card-Button">
                 Начать Работу
               </Link>
             </div>
