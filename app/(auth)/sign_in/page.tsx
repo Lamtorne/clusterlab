@@ -9,21 +9,47 @@ export default function Sign_InPage() {
   const router = useRouter();
 
   // Добавляем Full Name к состоянию
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
-    // Пока оставляем заглушку, скоро заменим на fetch запрос к FastAPI
-    if (email && password) {
-      console.log("Данные для входа:", { fullName, email, password });
+    // Данные для OAuth2PasswordRequestForm (FastAPI)
+    const formData = new URLSearchParams();
+    formData.append("username", email); // Бэкенд ждет email в поле username
+    formData.append("password", password);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users/token", {
+        // Замени на свой URL
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Неверный email или пароль");
+      }
+
+      const data = await response.json();
+
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("user_name", data.user_name);
+
       router.push("/");
-    } else {
-      setError("Пожалуйста, заполните все поля.");
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
