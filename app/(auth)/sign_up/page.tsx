@@ -36,8 +36,11 @@ export default function Sign_Up() {
         // 1. Сохраняем информацию о том, что юзер вошел (пока можно в localStorage)
         localStorage.setItem("user_id", data.id);
 
+        if (data.access_token) {
+          localStorage.setItem("access_token", data.access_token);
+        }
         // 2. Перекидываем в личный кабинет (заглушку)
-        router.push("/");
+        router.push("/main_profile");
       } else {
         const errorData = await response.json();
         setError(errorData.detail || "Ошибка при регистрации");

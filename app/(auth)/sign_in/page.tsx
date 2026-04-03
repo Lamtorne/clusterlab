@@ -42,9 +42,11 @@ export default function Sign_InPage() {
       const data = await response.json();
 
       localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("user_name", data.user_name);
+      if (data.user_name) {
+        localStorage.setItem("user_name", data.user_name);
+      }
 
-      router.push("/");
+      router.push("/main_profile");
       router.refresh();
     } catch (err: any) {
       setError(err.message);
