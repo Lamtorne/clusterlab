@@ -5,6 +5,7 @@ import jwt
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+import bcrypt
 
 from backend.models.users import User as UserModel
 from backend.config import SECRET_KEY, ALGORITHM
@@ -17,17 +18,21 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl='users/token')
 
 
 def hash_password(password: str) -> str:
-    '''
-    password to hash using bcrypt algorithm
-    '''
-    return pwd_context.hash(password)
+    # Превращаем строку в байты
+    pwd_bytes = password.encode('utf-8')
+    # Генерируем соль
+    salt = bcrypt.gensalt()
+    # Хешируем
+    hashed = bcrypt.hashpw(pwd_bytes, salt)
+    # Возвращаем обратно как строку для базы данных
+    return hashed.decode('utf-8')
 
 
-def verify_password(password: str, hash_password: str) -> bool:
-    '''
-    verifying password through using password hash
-    '''
-    return pwd_context.verify(password, hash_password)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return bcrypt.checkpw(
+        plain_password.encode('utf-8'),
+        hashed_password.encode('utf-8')
+    )
 
 
 def create_access_token(data: dict):

@@ -21,6 +21,7 @@ async def create_user(user: UserCreate, db: AsyncSession = Depends(get_async_db)
     result_email = await db.scalars(select(UserModel).where(UserModel.email == user.email))
     if result_email.first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email already exists')
+    print(f"DEBUG: Registrating {user.email} with password length: {len(user.password)}")
 
     # creating onject user
     db_user = UserModel(
