@@ -53,7 +53,7 @@ export default function NewFieldPage() {
 
       if (response.ok) {
         // Успех: редирект в ЛК
-        router.push("/main_profile");
+        router.push("/fields");
       } else {
         const errorData = await response.json();
         // Обработка твоих кастомных ошибок из FastAPI
