@@ -1,22 +1,124 @@
-.New-Field-Background
-{
-  background-color: #e8dcc4;
-  min-height: 100vh;
-}
-.New-Field-Button {
-  background-color:#ff7043;
-  color: #e8dcc4;
-  padding: 12px 24px;
-  border-radius: 50px; /* Более скругленная, как в Фигме */
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+:root {
+  --text-color: #3c3126; /* Темный текст */
+  --orange-btn: #ff7043; /* Кнопка Начать */
+  --orange-hover: #f4511e;
 }
 
-.New-Field-Button:hover {
-  filter: brightness(1.1);
+.new-field-page {
+  background-color: #e6e1c5;
+
+  min-height: 100vh;
+  padding: 40px;
+
+  /* Если страница находится внутри layout с боковым меню, 
+     убедись, что нет лишних отступов */
+  margin: 0;
+}
+
+.new-field-title {
+  color: var(--text-color);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.new-field-form {
+  max-width: 800px; /* Чтобы поля не растягивались на весь экран */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Стили для групп полей (карточек) */
+.input-grid,
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Настройка сетки для координат (Широта/Долгота в одну строку) */
+@media (min-width: 600px) {
+  .input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .input-item-full {
+    grid-column: span 2; /* Радиус на всю ширину */
+  }
+}
+
+/* Стили отдельного поля ввода */
+.input-item p {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  text-transform: capitalize; /* Как в макете 'Широта', 'Долгота' */
+}
+
+.input-item input {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Почти невидимая рамка */
+  border-radius: 12px;
+  color: #3c3126;
+  font-size: 1rem;
+
+  /* Добавляем легкую тень для объема */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.input-item input:focus {
+  outline: none;
+  border-color: #ff7043;
+  box-shadow: 0 4px 12px rgba(255, 112, 67, 0.15);
+}
+
+.input-item input::placeholder {
+  color: rgba(60, 49, 38, 0.4); /* Тусклый текст */
+}
+
+/* Стили для строки с площадью */
+.area-info {
+  margin-top: 10px;
+  color: var(--text-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.placeholder-text {
+  color: rgba(60, 49, 38, 0.6);
+  font-weight: 400;
+}
+
+.icons {
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
+/* Стили кнопки "Начать" */
+.new-field-submit {
+  background-color: var(--orange-btn);
+  color: #ffffff;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  width: fit-content;
+}
+
+.new-field-submit:hover {
+  background-color: var(--orange-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 112, 67, 0.3);
 }

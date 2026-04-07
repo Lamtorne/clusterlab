@@ -40,7 +40,7 @@ export default function Sign_Up() {
           localStorage.setItem("access_token", data.access_token);
         }
         // 2. Перекидываем в личный кабинет (заглушку)
-        router.push("/main_profile");
+        router.push("/profile");
       } else {
         const errorData = await response.json();
         setError(errorData.detail || "Ошибка при регистрации");

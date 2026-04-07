@@ -46,7 +46,7 @@ export default function Sign_InPage() {
         localStorage.setItem("user_name", data.user_name);
       }
 
-      router.push("/main_profile");
+      router.push("/profile");
       router.refresh();
     } catch (err: any) {
       setError(err.message);
