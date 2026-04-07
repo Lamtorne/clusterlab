@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+
 from datetime import datetime
+from decimal import Decimal
+
 from backend.models.fields import Field as FieldModel
 from backend.schema import FieldCreate, Field as FieldSchema
 from backend.db_depends import get_async_db
@@ -17,7 +20,8 @@ async def create_field(
         db: AsyncSession = Depends(get_async_db),
         current_user=Depends(get_current_user)
 ):
-    calculated_area = round(((2*payload.radius) ** 2) / 10000, 2)
+    calculated_area_float = ((2*payload.radius) ** 2) / 10000
+    calculated_area = Decimal(str(round(calculated_area_float, 2)))
 
     if datetime.now() > current_user.tariff_ends_at:
         raise HTTPException(403, detail='Срок подписки завершён')
