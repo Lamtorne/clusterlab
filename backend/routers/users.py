@@ -69,10 +69,16 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
 
 @router.get('/personal_info')
 async def get_personal_info(current_user = Depends(get_current_user)):
+    if current_user.tariff == 'test':
+        tier = 'Тестовый'
+    elif current_user.tariff == 'pro':
+        tier = 'Про'
+    else:
+        tier = 'Стандарт'
     return {
-        'name': current_user.full_name,
-        'tariff': current_user.tariff,
-        'tariff_ends_at': current_user.tariff_ends_at,
-        'max_area': current_user.max_area,
-        'current_area': current_user.current_area
-    }
+            "name": current_user.full_name,
+            "tier": tier,
+            "expireDate": current_user.tariff_ends_at.strftime("%d.%m.%Y"),
+            "usedHectares": float(current_user.current_area),
+            "totalHectares": float(current_user.max_area)
+        }
