@@ -8,6 +8,7 @@ app = FastAPI(
 )
 
 app.include_router(users.router)
+app.include_router(fields.router, prefix='/fields')
 
 app.add_middleware(
     CORSMiddleware,
