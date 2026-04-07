@@ -46,7 +46,7 @@ export default function NewFieldPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Передаем токен для get_current_user
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Передаем токен для get_current_user
         },
         body: JSON.stringify(payload),
       });
