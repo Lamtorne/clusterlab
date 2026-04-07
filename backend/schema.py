@@ -20,12 +20,16 @@ class User(BaseModel):
 
 
 class FieldCreate(BaseModel):
+    IN_PROGRESS = "В обработке"
+    COMPLETED = "Завершено"
+    ERROR = "Ошибка"
     culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
                                             'точных рекомендаций - standard, pro')
     latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
     longitude: float = Field(..., description='Долгота центра поля', ge=-180, le=180)
-    radius: float = Field(..., description='Радиус поля в метрах', ge=5, le=3000)
-    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro')
+    radius: float = Field(..., description='Радиус поля в метрах', ge=3, le=10000)
+    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro', min_length=2)
+    agrochem: str | None = Field(description='Известные агрохимические данные', min_length=2)
 
 
 class Field(BaseModel):
@@ -35,8 +39,10 @@ class Field(BaseModel):
                                             'точных рекомендаций - standard, pro', max_length=150)
     latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
     longitude: float= Field(..., description='Долгота центра поля', ge=-180, le=180)
-    radius: float = Field(..., description='Радиус поля в метрах', ge=5, le=3000)
+    radius: float = Field(..., description='Радиус поля в метрах', ge=3, le=3000)
     region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro', max_length=150)
+    agrochem: str | None = Field(description='Известные агрохимические данные', min_length=2)
+    status: FieldStatus = FieldStatus.IN_PROGRESS
     model_config = ConfigDict(from_attributes=True)
 
 

@@ -11,8 +11,8 @@ export default function Header() {
           <Image
             src="/header/Logo-Transparent.svg"
             alt="Logo"
-            width={120}
-            height={120}
+            width={100}
+            height={100}
           />
         </div>
       </div>
