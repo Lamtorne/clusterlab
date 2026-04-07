@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "app/ui/new-field.css";
 import Link from "next/link";
 import Image from "next/image";
