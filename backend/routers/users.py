@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from backend.models.users import User as UserModel
 from backend.schema import UserCreate, User as UserSchema
 from backend.db_depends import get_async_db
-from backend.auth import hash_password, verify_password, create_access_token
+from backend.auth import hash_password, verify_password, create_access_token, get_current_user
 
 router = APIRouter(prefix='/users', tags=['users'])
 
@@ -64,4 +64,15 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
         "access_token": access_token,
         "token_type": "bearer",
         "user_name": user.full_name
+    }
+
+
+@router.get('/personal_info')
+async def get_personal_info(current_user = Depends(get_current_user)):
+    return {
+        'name': current_user.full_name,
+        'tariff': current_user.tariff,
+        'tariff_ends_at': current_user.tariff_ends_at,
+        'max_area': current_user.max_area,
+        'current_area': current_user.current_area
     }
