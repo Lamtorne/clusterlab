@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import "app/ui/profile.css"; // Создадим этот файл рядом
+import "@/app/ui/profile.css"; // Создадим этот файл рядом
 
 export default function ProfilePage() {
   // В будущем сюда придут данные с бэкенда ClusterLab
@@ -8,7 +8,7 @@ export default function ProfilePage() {
     name: "Арина",
     tier: "Тестовый",
     expireDate: "01.06.2026",
-    usedHectares: 9, // Для теста поставил 9, чтобы увидеть оранжевый цвет
+    usedHectares: 7, // Для теста поставил 9, чтобы увидеть оранжевый цвет
     totalHectares: 10,
   });
 

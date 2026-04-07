@@ -1,3 +1,15 @@
+.profile-container,
+.profile-container * {
+  font-family: "Jura", sans-serif !important;
+}
+
+.profile-welcome,
+.profile-tier,
+.profile-expire {
+  font-family: "Jura", sans-serif !important;
+  letter-spacing: -0.02em; /* Чтобы заголовки смотрелись плотнее, как в Figma */
+}
+
 .profile-container {
   background-color: #e6e1c5; /* Тот самый бежевый */
   min-height: 100vh;
