@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from datetime import datetime, timedelta
-
+from typing import ClassVar
+from enum import Enum
 
 class UserCreate(BaseModel):
     email: EmailStr = Field(..., description='Email пользователя')
