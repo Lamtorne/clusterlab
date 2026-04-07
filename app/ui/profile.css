@@ -1,0 +1,16 @@
+/* 1. Переменные (Цвета из твоей Фигмы) */
+:root {
+  --bg-beige: #e8dcc4; /* Основной фон */
+  --sidebar-green: #a3b899; /* Фон сайдбара */
+  --header-brown: #3c3126; /* Фон хедера */
+  --brand-orange: #ff7043; /* Кнопки и акценты */
+  --text-dark: #3c3126; /* Цвет текста */
+  --text-light: #e8dcc4; /* Светлый текст (для хедера) */
+  --transition: all 0.3s ease;
+}
+
+.Profile-Background
+{
+  background-color: #e8dcc4;
+  min-height: 100vh;
+}

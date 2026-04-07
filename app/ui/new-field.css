@@ -1,0 +1,22 @@
+.New-Field-Background
+{
+  background-color: #e8dcc4;
+  min-height: 100vh;
+}
+.New-Field-Button {
+  background-color:#ff7043;
+  color: #e8dcc4;
+  padding: 12px 24px;
+  border-radius: 50px; /* Более скругленная, как в Фигме */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.New-Field-Button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
+}

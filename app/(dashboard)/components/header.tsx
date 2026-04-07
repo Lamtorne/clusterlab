@@ -5,21 +5,20 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="dashboard-header">
-      <div className="header-left">
-        {/* Можно оставить пустым или продублировать лого для мобильных версий */}
-        <div className="mobile-logo">
+    <header className="Header">
+      <div className="Header-Left">
+        <div className="Header-Logo">
           <Image
             src="/header/Logo-Transparent.svg"
             alt="Logo"
-            width={40}
-            height={40}
+            width={120}
+            height={120}
           />
         </div>
       </div>
 
-      <div className="header-right">
-        <Link href="/tariffs" className="upgrade-button">
+      <div className="Header-Right">
+        <Link href="/tariffs" className="Header-Upgrade-Button">
           Обновить Тариф
         </Link>
       </div>

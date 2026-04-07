@@ -1,0 +1,62 @@
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-green);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 18px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.nav-item:hover {
+  background-color: rgba(232, 220, 196, 0.4);
+}
+
+/* Состояние активной страницы */
+.nav-item.active {
+  background-color: var(--bg-beige);
+  color: var(--brand-orange);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Кнопка "Выйти" внизу */
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(60, 49, 38, 0.1);
+  padding-top: 20px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
+}

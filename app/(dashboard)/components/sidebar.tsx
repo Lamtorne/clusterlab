@@ -15,16 +15,6 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-logo">
-        {/* Твой логотип из хедера */}
-        <Image
-          src="/header/Logo-Transparent.svg"
-          alt="Logo"
-          width={50}
-          height={50}
-        />
-      </div>
-
       <nav className="sidebar-nav">
         {menuItems.map((item) => {
           const isActive = pathname === item.href;
@@ -34,7 +24,6 @@ export default function Sidebar() {
               href={item.href}
               className={`nav-item ${isActive ? "active" : ""}`}
             >
-              {/* Если иконок пока нет, можно временно оставить просто текст */}
               <span className={isActive ? "text-orange" : ""}>{item.name}</span>
             </Link>
           );
