@@ -19,10 +19,12 @@ class User(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class FieldStatus(str, Enum):
+    IN_PROGRESS = 'В обработке'
+    DONE = 'Готово'
+    ERROR = 'Ошибка'
+
 class FieldCreate(BaseModel):
-    IN_PROGRESS: str = "В обработке"
-    COMPLETED: str = "Завершено"
-    ERROR: str = "Ошибка"
     culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
                                             'точных рекомендаций - standard, pro')
     latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
@@ -32,19 +34,15 @@ class FieldCreate(BaseModel):
     agrochem: str | None = Field(description='Известные агрохимические данные', min_length=2)
 
 
-class Field(BaseModel):
+class Field(FieldCreate):
     id: int
     user_id: int
-    culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
-                                            'точных рекомендаций - standard, pro', max_length=150)
-    latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
-    longitude: float= Field(..., description='Долгота центра поля', ge=-180, le=180)
-    radius: float = Field(..., description='Радиус поля в метрах', ge=3, le=3000)
-    region: str | None = Field(description='Регион (область, край, республика). Для более точных рекомендаций - standard, pro', max_length=150)
-    agrochem: str | None = Field(description='Известные агрохимические данные', min_length=2)
+    area: float
     status: FieldStatus = FieldStatus.IN_PROGRESS
-    model_config = ConfigDict(from_attributes=True)
 
+    ERROR_MSG: ClassVar[str] = 'Ошибка'
+
+    model_config = ConfigDict(from_attributes=True)
 
 class RefreshTokenRequest(BaseModel):
     refresh_token: str
