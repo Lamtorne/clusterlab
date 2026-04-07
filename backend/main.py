@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import users
+from backend.routers import users, fields
 
 app = FastAPI(
     title='ClusterLab',
