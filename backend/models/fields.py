@@ -15,6 +15,8 @@ class Field(Base):
     area: Mapped[float] = mapped_column(Numeric(5, 1), nullable=False)  # площадь поля в га
     culture: Mapped[str | None] = mapped_column(String(150), nullable=True)
     region: Mapped[str | None] = mapped_column(String(150), nullable=True)
+    status: Mapped[str] = mapped_column(String(50), nullable=False, default="В обработке")
+    agrochem: Mapped[str | None] = mapped_column(String(150), nullable=True)
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     user:Mapped["User"] = relationship("User", back_populates='fields')
