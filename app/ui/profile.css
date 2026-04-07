@@ -1,16 +1,83 @@
-/* 1. Переменные (Цвета из твоей Фигмы) */
-:root {
-  --bg-beige: #e8dcc4; /* Основной фон */
-  --sidebar-green: #a3b899; /* Фон сайдбара */
-  --header-brown: #3c3126; /* Фон хедера */
-  --brand-orange: #ff7043; /* Кнопки и акценты */
-  --text-dark: #3c3126; /* Цвет текста */
-  --text-light: #e8dcc4; /* Светлый текст (для хедера) */
-  --transition: all 0.3s ease;
+.profile-container {
+  background-color: #e6e1c5; /* Тот самый бежевый */
+  min-height: 100vh;
+  padding: 40px;
+  color: #3c3126;
+  font-family: sans-serif;
 }
 
-.Profile-Background
-{
-  background-color: #e8dcc4;
-  min-height: 100vh;
+.profile-welcome {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.profile-info {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.highlight {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Секция с прогресс-баром */
+.usage-section {
+  margin-top: 50px;
+  max-width: 500px;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 15px;
+  transition:
+    width 0.5s ease-in-out,
+    background-color 0.3s;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Цвета как в Figma */
+.normal-usage {
+  background-color: #a3b899; /* Зеленый */
+}
+
+.high-usage {
+  background-color: #ff7043; /* Оранжевый */
+}
+
+.percent-text {
+  color: #3c3126;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.usage-hint {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.7;
 }
