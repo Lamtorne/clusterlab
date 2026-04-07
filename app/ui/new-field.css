@@ -122,3 +122,24 @@
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(255, 112, 67, 0.3);
 }
+
+/* Цвет значения площади, как в твоем профиле */
+.area-value {
+  color: #3c3126;
+  font-weight: 700;
+  font-family: "Jura", sans-serif;
+  margin: 0 10px;
+}
+
+/* Эффект нажатой кнопки */
+.new-field-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Анимация иконок */
+.icons {
+  font-size: 1.2rem;
+  margin-left: 10px;
+}

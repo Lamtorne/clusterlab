@@ -3,8 +3,11 @@ import { useState } from "react";
 import "app/ui/new-field.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 export default function NewFieldPage() {
-  // Добавляем состояние для хранения данных формы
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     lat: "",
     lon: "",
@@ -14,10 +17,54 @@ export default function NewFieldPage() {
     agrochemicals: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [calculatedArea, setCalculatedArea] = useState(0);
+
+  // UX: Считаем площадь сразу для отображения пользователю
+  useEffect(() => {
+    const r = parseFloat(formData.radius);
+    if (r > 0) {
+      const area = (Math.PI * Math.pow(r, 2)) / 10000;
+      setCalculatedArea(Number(area.toFixed(2)));
+    }
+  }, [formData.radius]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Отправляем на бэкенд ClusterLab:", formData);
-    // Тут будет fetch запрос
+    setLoading(true);
+
+    const payload = {
+      latitude: parseFloat(formData.lat),
+      longitude: parseFloat(formData.lon),
+      radius: parseFloat(formData.radius),
+      culture: formData.crop,
+      region: formData.region,
+      agrochem: formData.agrochemicals,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8000/fields/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Передаем токен для get_current_user
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        // Успех: редирект в ЛК
+        router.push("/main_profile");
+      } else {
+        const errorData = await response.json();
+        // Обработка твоих кастомных ошибок из FastAPI
+        alert(`Внимание: ${errorData.detail}`);
+      }
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+      alert("Не удалось связаться с сервером. Проверьте, запущен ли бэкенд.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -111,13 +158,16 @@ export default function NewFieldPage() {
 
         {/* Пока заглушка площади, как в Фигме */}
         <div className="area-info">
-          Площадь поля:{" "}
-          <span className="placeholder-text">{`{Тут полученная площадь поля}`}</span>
-          <span className="icons">✔️ ❌</span>
+          Площадь поля: <span className="area-value">{calculatedArea} га</span>
+          <span className="icons">{calculatedArea > 0 ? "✔️" : "❌"}</span>
         </div>
 
-        <button type="submit" className="new-field-submit">
-          Начать
+        <button
+          type="submit"
+          className="new-field-submit"
+          disabled={loading || calculatedArea <= 0}
+        >
+          {loading ? "Запуск..." : "Начать"}
         </button>
       </form>
     </main>
