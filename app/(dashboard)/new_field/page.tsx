@@ -23,7 +23,7 @@ export default function NewFieldPage() {
   useEffect(() => {
     const r = parseFloat(formData.radius);
     if (r > 0) {
-      const area = (Math.PI * Math.pow(r, 2)) / 10000;
+      const area = Math.pow(2 * r, 2) / 10000;
       setCalculatedArea(Number(area.toFixed(2)));
     }
   }, [formData.radius]);
