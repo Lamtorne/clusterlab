@@ -20,9 +20,9 @@ class User(BaseModel):
 
 
 class FieldCreate(BaseModel):
-    IN_PROGRESS = "В обработке"
-    COMPLETED = "Завершено"
-    ERROR = "Ошибка"
+    IN_PROGRESS: str = "В обработке"
+    COMPLETED: str = "Завершено"
+    ERROR: str = "Ошибка"
     culture: str | None = Field(description='Культура, выращиваемая на поле (пшеница, кукуруза и т.д.). Для более '
                                             'точных рекомендаций - standard, pro')
     latitude: float = Field(..., description='Широта центра поля', ge=-90, le=90)
