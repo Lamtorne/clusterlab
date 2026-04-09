@@ -54,3 +54,8 @@ async def create_field(
 
     # background_tasks.add_task(run_clustering_logic, new_field.id)
     return new_field
+
+@router.get('/my_fields', response_model=list[FieldSchema])
+async def get_user_fields(db: AsyncSession = Depends(get_async_db), current_user = Depends(get_current_user)):
+    result = await db.scalars(select(FieldModel).where(FieldModel.user_id == current_user.id))
+    return result.all()
