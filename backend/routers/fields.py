@@ -10,6 +10,7 @@ from backend.schema import FieldCreate, Field as FieldSchema
 from backend.db_depends import get_async_db
 from backend.auth import get_current_user
 from backend.services.analysis import run_clustering_logic
+from backend.database import async_session_maker
 
 router = APIRouter(prefix='/fields', tags=['fields'])
 
@@ -63,7 +64,7 @@ async def create_field(
         print(f"ERROR: {e}")
         raise HTTPException(500, detail='Ошибка сохранения в БД')
 
-    background_tasks.add_task(run_clustering_logic, new_field.id)
+    await run_clustering_logic(new_field.id, async_session_maker)
     return new_field
 
 @router.get('/my_fields', response_model=list[FieldSchema])
