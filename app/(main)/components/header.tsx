@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import "@/app/(main)/components/header.css"
 const Header = () => {
   return (
     <header className="Header-Header">
@@ -27,7 +28,7 @@ const Header = () => {
         <Link href="/prices" className="Header-nav-p">
           Тарифы
         </Link>
-        <Link href="/sign_in" className="Header-nav-p">
+        <Link href="/sign_in" className="Header-ButtonStart">
           Начать работу
         </Link>
       </nav>
