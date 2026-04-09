@@ -13,10 +13,6 @@
   align-items: center;
 }
 
-.Header-nav a:hover {
-  color: #ff7043;
-}
-
 .Header-nav-link:hover {
   color: #ff7043;
   text-shadow: 0px 0px 10px rgba(255, 112, 67, 0.4);
