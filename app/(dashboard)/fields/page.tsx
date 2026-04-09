@@ -67,18 +67,18 @@ export default function FieldsPage() {
 
               <div className="Field-Card-Info">
                 <div className="Info-Item">
-                  <img src="/icons/area.svg" alt="Площадь:" />
+                  <img src="/dashboard/area.svg" alt="Площадь:" />
                   <span>{field.area} га</span>
                 </div>
                 <div className="Info-Item">
-                  <img src="/icons/leaf.svg" alt="Культура:" />
+                  <img src="/dashboard/leaf.svg" alt="Культура:" />
                   <span>{field.culture}</span>
                 </div>
                 <div className="Info-Item">
-                  <span className={`Status-Dot ${field.status}`}></span>
-                  <span>
-                    {field.status === "В обработке" ? "В обработке" : "Готово"}
-                  </span>
+                  <span
+                    className={`Status-Dot ${field.status === "В обработке" ? "status-orange" : "status-green"}`}
+                  ></span>
+                  <span>{field.status}</span>
                 </div>
               </div>
             </div>

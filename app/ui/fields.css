@@ -54,3 +54,30 @@
 .Status-Dot.processing {
   background-color: #d1b48c;
 }
+
+/* Базовый стиль кружочка */
+.Status-Dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%; /* Делаем круглым */
+  display: inline-block;
+  flex-shrink: 0; /* Чтобы кружок не сжимался */
+}
+
+/* Оранжевый — для статуса "В обработке" */
+.status-orange {
+  background-color: #ff7043; /* Тот самый оранжевый из лого */
+  box-shadow: 0 0 8px rgba(255, 112, 67, 0.4); /* Легкое свечение */
+}
+
+/* Зеленый — для статуса "Готово" */
+.status-green {
+  background-color: #5d7a5d; /* Темно-зеленый из макета */
+}
+
+/* Сдвиг текста от кружочка */
+.Info-Item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
