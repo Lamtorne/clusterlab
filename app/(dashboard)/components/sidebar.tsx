@@ -1,17 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   const menuItems = [
     { name: "Профиль", href: "/profile", icon: "/icons/profile.svg" },
     { name: "Мои поля", href: "/fields", icon: "/icons/fields.svg" },
     { name: "Новое поле", href: "/new_field", icon: "/icons/plus.svg" },
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_name");
+
+    router.push("/");
+
+    router.refresh();
+  };
 
   return (
     <aside className="sidebar">
@@ -32,10 +42,8 @@ export default function Sidebar() {
 
       <div className="sidebar-footer">
         <button
-          onClick={() => {
-            /* логика выхода */
-          }}
-          className="nav-item logout-btn"
+          onClick={handleLogout}
+          className="nav-item logout-btn w-full text-left"
         >
           Выйти
         </button>

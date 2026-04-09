@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+.Header-nav a,
+.Header-nav p {
+  font-family: "Jura", sans-serif;
+  text-decoration: none;
+  color: #e8dcc4;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 !important; /* ГАРАНТИРОВАННОЕ ОБНУЛЕНИЕ */
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.Header-nav a:hover {
+  color: #ff7043;
+}
+
+.Header-nav-link:hover {
+  color: #ff7043;
+  text-shadow: 0px 0px 10px rgba(255, 112, 67, 0.4);
+}
+
 .Header-Header {
   display: flex;
   justify-content: space-between;
@@ -26,9 +48,12 @@
 }
 
 .Header-nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 35px; /* Расстояние между ссылками */
+  margin: 0;
+  padding: 0;
 }
 
 .Header-nav p {

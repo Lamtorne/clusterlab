@@ -18,17 +18,17 @@ const Header = () => {
         </Link>
       </div>
       <nav className="Header-nav">
-        <Link href="/a_tech">
-          <p className="Header-nav-p">О технологии</p>
+        <Link href="/a_tech" className="Header-nav-p">
+          О технологии
         </Link>
-        <Link href="/steps">
-          <p className="Header-nav-p">Этапы</p>
+        <Link href="/steps" className="Header-nav-p">
+          Этапы
         </Link>
-        <Link href="/prices">
-          <p className="Header-nav-p">Тарифы</p>
+        <Link href="/prices" className="Header-nav-p">
+          Тарифы
         </Link>
-        <Link href="/sign_in">
-          <p className="Header-ButtonStart">Начать работу</p>
+        <Link href="/sign_in" className="Header-nav-p">
+          Начать работу
         </Link>
       </nav>
     </header>
