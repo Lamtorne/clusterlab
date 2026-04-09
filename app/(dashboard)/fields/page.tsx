@@ -1,3 +1,4 @@
+/*
 "use client";
 import { useState, useEffect } from "react";
 import "@/app/ui/profile.css"
@@ -11,7 +12,82 @@ export default function FieldsPage() {
       </h2>
 
       <div className="Fields-Cards-Container">
-        {/*А тут я не знаю, как делать N элементов из  БД, стили я сделаю, оформлю, но именно случайное количество не знаю как */}
+      </div>
+    </main>
+  );
+}
+  */
+
+"use client";
+import { useState, useEffect } from "react";
+import "@/app/ui/profile.css";
+
+export default function FieldsPage() {
+  const [fields, setFields] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFields = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        const response = await fetch("http://localhost:8000/fields/my_fields", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setFields(data);
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки полей:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFields();
+  }, []);
+
+  if (loading) return <p>Загрузка полей...</p>;
+
+  return (
+    <main className="Fields-Background">
+      <h2 className="Fields-Header">Мои поля</h2>
+
+      <div className="Fields-Cards-Container">
+        {fields.length > 0 ? (
+          fields.map((field) => (
+            <div key={field.id} className="Field-Card">
+              <div className="Field-Card-Top">
+                <span className="Field-Name">Поле #{field.id}</span>
+                <span className="Field-Date">
+                  {new Date(field.created_at).toLocaleDateString()}
+                </span>
+              </div>
+
+              <div className="Field-Card-Info">
+                <div className="Info-Item">
+                  <img src="/icons/area.svg" alt="Площадь" />
+                  <span>{field.area} га</span>
+                </div>
+                <div className="Info-Item">
+                  <img src="/icons/leaf.svg" alt="Культура" />
+                  <span>{field.culture}</span>
+                </div>
+                <div className="Info-Item">
+                  {/* Статус: кружок как в Фигме */}
+                  <span className={`Status-Dot ${field.status}`}></span>
+                  <span>
+                    {field.status === "processing" ? "В обработке" : "Готово"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>
+            У вас пока нет полей для анализа. Создайте первое в разделе "Новое
+            поле"!
+          </p>
+        )}
       </div>
     </main>
   );

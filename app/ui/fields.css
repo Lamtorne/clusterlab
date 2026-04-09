@@ -1,5 +1,56 @@
-.Fields-Background
-{
+.Fields-Header {
+  font-weight: bold;
+}
+
+.Fields-Background {
   background-color: #e8dcc4;
   min-height: 100vh;
+  padding: 40px;
+}
+
+.Fields-Cards-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Отступ между карточками */
+  margin-top: 30px;
+}
+
+.Field-Card {
+  background-color: #9fb48e;
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.Field-Card-Top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-family: var(--font-comfortaa);
+}
+
+.Field-Card-Info {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.Info-Item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Status-Dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Status-Dot.ready {
+  background-color: #5d7a5d;
+}
+.Status-Dot.processing {
+  background-color: #d1b48c;
 }

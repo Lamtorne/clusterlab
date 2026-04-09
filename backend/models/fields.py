@@ -1,7 +1,7 @@
-from sqlalchemy import Integer, Numeric, String, CheckConstraint, ForeignKey
+from sqlalchemy import Integer, Numeric, String, CheckConstraint, ForeignKey, DateTime, func
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from backend.database import Base
-
+from datetime import datetime
 
 class Field(Base):
     __tablename__ = 'fields'
@@ -17,6 +17,7 @@ class Field(Base):
     region: Mapped[str | None] = mapped_column(String(150), nullable=True)
     status: Mapped[str] = mapped_column(String(50), nullable=False, default="В обработке")
     agrochem: Mapped[str | None] = mapped_column(String(150), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, server_default=func.now())
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     user:Mapped["User"] = relationship("User", back_populates='fields')

@@ -40,6 +40,7 @@ class Field(FieldCreate):
     user_id: int
     area: float
     status: FieldStatus = FieldStatus.IN_PROGRESS
+    created_at: datetime
 
     ERROR_MSG: ClassVar[str] = 'Ошибка'
 
