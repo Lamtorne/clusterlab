@@ -59,24 +59,25 @@ export default function FieldsPage() {
               <div className="Field-Card-Top">
                 <span className="Field-Name">Поле #{field.id}</span>
                 <span className="Field-Date">
-                  {new Date(field.created_at).toLocaleDateString()}
+                  {field.created_at
+                    ? new Date(field.created_at).toLocaleDateString("ru-RU")
+                    : "Дата не указана"}
                 </span>
               </div>
 
               <div className="Field-Card-Info">
                 <div className="Info-Item">
-                  <img src="/icons/area.svg" alt="Площадь" />
+                  <img src="/icons/area.svg" alt="Площадь:" />
                   <span>{field.area} га</span>
                 </div>
                 <div className="Info-Item">
-                  <img src="/icons/leaf.svg" alt="Культура" />
+                  <img src="/icons/leaf.svg" alt="Культура:" />
                   <span>{field.culture}</span>
                 </div>
                 <div className="Info-Item">
-                  {/* Статус: кружок как в Фигме */}
                   <span className={`Status-Dot ${field.status}`}></span>
                   <span>
-                    {field.status === "processing" ? "В обработке" : "Готово"}
+                    {field.status === "В обработке" ? "В обработке" : "Готово"}
                   </span>
                 </div>
               </div>
