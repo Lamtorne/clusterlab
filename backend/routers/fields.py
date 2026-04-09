@@ -9,7 +9,7 @@ from backend.models.fields import Field as FieldModel
 from backend.schema import FieldCreate, Field as FieldSchema
 from backend.db_depends import get_async_db
 from backend.auth import get_current_user
-from analysis import run_clustering_logic
+from backend.services.analysis import run_clustering_logic
 
 router = APIRouter(prefix='/fields', tags=['fields'])
 
