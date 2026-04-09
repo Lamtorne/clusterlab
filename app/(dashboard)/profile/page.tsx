@@ -1,16 +1,52 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import "@/app/ui/profile.css"; // Создадим этот файл рядом
 
 export default function ProfilePage() {
-  // В будущем сюда придут данные с бэкенда ClusterLab
-  const [userData, setUserData] = useState({
-    name: "Арина",
-    tier: "Тестовый",
-    expireDate: "01.06.2026",
-    usedHectares: 7, // Для теста поставил 9, чтобы увидеть оранжевый цвет
-    totalHectares: 10,
-  });
+  const router = useRouter();
+  const [userData, setUserData] = useState(null); // Изначально данных нет
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("access_token");
+
+      if (!token) {
+        router.push("/sign_in");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "http://localhost:8000/users/personal_info",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserData(data);
+        } else {
+          // Если токен протух (401), отправляем на вход
+          localStorage.removeItem("access_token");
+          router.push("/sign_in");
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки профиля:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [router]);
+
+  if (loading) return <p>Загрузка профиля...</p>;
+  if (!userData) return null;
 
   const usagePercentage =
     (userData.usedHectares / userData.totalHectares) * 100;
@@ -34,7 +70,7 @@ export default function ProfilePage() {
           <div className="progress-labels">
             <span>Использовано площади</span>
             <span>
-              {userData.usedHectares} / {userData.totalHectares} га
+              {userData.usedHectares.toFixed(1)} / {userData.totalHectares} га
             </span>
           </div>
 
@@ -44,7 +80,7 @@ export default function ProfilePage() {
               style={{ width: `${usagePercentage}%` }}
             >
               <span className="percent-text">
-                {userData.usedHectares} / {userData.totalHectares} га
+                {usagePercentage.toFixed(0)}%
               </span>
             </div>
           </div>

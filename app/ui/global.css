@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 :root {
   --fs-h1: clamp(2rem, 5vw + 1rem, 4.2rem);
   --fs-h2: clamp(1.45rem, 3vw + 1rem, 2.75rem);
@@ -21,7 +20,6 @@
 @media (min-width: 2560px) {
   :root {
     --base-font-size: 120%;
-    /* Bumps root to ~19.2px */
     --container-max: 2000px;
   }
 }
@@ -86,7 +84,6 @@ section {
   padding-block: var(--section-padding);
 }
 
-/* Кнопка скролла наверх */
 .ScrollToTopButton {
   position: fixed;
   bottom: 30px;
@@ -113,7 +110,6 @@ section {
   transform: scale(1.1);
 }
 
-/* Эффект появления */
 @keyframes fadeIn {
   from {
     opacity: 0;
