@@ -52,4 +52,5 @@ async def create_field(
         print(f"ERROR: {e}")
         raise HTTPException(500, detail='Ошибка сохранения в БД')
 
+    # background_tasks.add_task(run_clustering_logic, new_field.id)
     return new_field

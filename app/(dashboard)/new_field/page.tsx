@@ -71,9 +71,7 @@ export default function NewFieldPage() {
     <main className="new-field-page">
       <h2 className="new-field-title">Новое поле для анализа</h2>
 
-      {/* Оборачиваем в форму, чтобы работала кнопка type="submit" */}
       <form onSubmit={handleSubmit} className="new-field-form">
-        {/* Карточка 1: Координаты и Радиус */}
         <div className="input-grid">
           <div className="input-item">
             <p>Широта</p>
@@ -113,7 +111,6 @@ export default function NewFieldPage() {
           </div>
         </div>
 
-        {/* Карточка 2: Данные о культуре */}
         <div className="input-group">
           <div className="input-item">
             <p>Культура на поле</p>
@@ -141,7 +138,6 @@ export default function NewFieldPage() {
           </div>
         </div>
 
-        {/* Карточка 3: Агрохимия */}
         <div className="input-group">
           <div className="input-item">
             <p>Известные агрохим данные</p>
@@ -156,10 +152,8 @@ export default function NewFieldPage() {
           </div>
         </div>
 
-        {/* Пока заглушка площади, как в Фигме */}
         <div className="area-info">
           Площадь поля: <span className="area-value">{calculatedArea} га</span>
-          <span className="icons">{calculatedArea > 0 ? "✔️" : "❌"}</span>
         </div>
 
         <button
