@@ -53,7 +53,7 @@ def download_field_data(field_id, user_id, lat, lon, radius):
 
     point = ee.Geometry.Point([float(lon), float(lat)])
     # Указываем проекцию явно, чтобы буфер строился корректно
-    region = point.buffer(safe_radius).bounds(proj='EPSG:4326')
+    region = point.buffer(safe_radius).bounds(maxError=1)
 
     print(f"--- [GEE] Запрос снимка: lat={lat}, lon={lon}, radius={safe_radius}m ---")
 
