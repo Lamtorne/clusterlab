@@ -1,5 +1,5 @@
 .sidebar {
-  width: 260px;
+  width: 300px;
   background-color: #9fb48e;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,11 @@
   flex-grow: 1;
 }
 
+.Sidebar-wrapper{
+  display: flex;
+  gap: 20px;
+}
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -35,6 +40,9 @@
   transition: var(--transition);
 }
 
+.nav-item span {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
 .nav-item:hover {
   background-color: rgba(232, 220, 196, 0.4);
 }
@@ -48,6 +56,7 @@
 
 /* Кнопка "Выйти" внизу */
 .sidebar-footer {
+  display: flex;
   margin-top: auto;
   border-top: 1px solid rgba(60, 49, 38, 0.1);
   padding-top: 20px;
@@ -59,4 +68,6 @@
   cursor: pointer;
   width: 100%;
   font-family: inherit;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  
 }
