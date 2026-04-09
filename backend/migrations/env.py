@@ -9,6 +9,7 @@ from alembic import context
 from backend.database import Base
 from backend.models.users import User
 from backend.models.fields import Field
+from backend.models.analysis_result import AnalysisResult
 
 # Если есть модель Field, добавь её тоже:
 # from backend.models.fields import Field
