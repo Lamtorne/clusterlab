@@ -9,9 +9,20 @@ from backend.models.fields import Field as FieldModel
 from backend.schema import FieldCreate, Field as FieldSchema
 from backend.db_depends import get_async_db
 from backend.auth import get_current_user
+from analysis import run_clustering_logic
 
 router = APIRouter(prefix='/fields', tags=['fields'])
 
+@router.get("/{field_id}/status")
+async def get_field_status(
+    field_id: int,
+    db: AsyncSession = Depends(get_async_db)
+):
+    result = await db.execute(select(FieldModel).where(FieldModel.id == field_id))
+    field = result.scalar_one_or_none()
+    if not field:
+        raise HTTPException(404, detail="Поле не найдено")
+    return {"status": field.status}
 
 @router.post('/analyze', response_model=FieldSchema)
 async def create_field(
@@ -52,7 +63,7 @@ async def create_field(
         print(f"ERROR: {e}")
         raise HTTPException(500, detail='Ошибка сохранения в БД')
 
-    # background_tasks.add_task(run_clustering_logic, new_field.id)
+    background_tasks.add_task(run_clustering_logic, new_field.id)
     return new_field
 
 @router.get('/my_fields', response_model=list[FieldSchema])
