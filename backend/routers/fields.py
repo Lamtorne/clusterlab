@@ -64,7 +64,7 @@ async def create_field(
         print(f"ERROR: {e}")
         raise HTTPException(500, detail='Ошибка сохранения в БД')
 
-    await run_clustering_logic(new_field.id, async_session_maker)
+    background_tasks.add_task(run_clustering_logic, new_field.id, async_session_maker)
     return new_field
 
 @router.get('/my_fields', response_model=list[FieldSchema])
