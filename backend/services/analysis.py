@@ -317,8 +317,10 @@ def download_field_data(lat, lon, radius):
         evalscript=EVALSCRIPT_BANDS,
         input_data=[
             SentinelHubRequest.input_data(
-                data_collection=DataCollection.SENTINEL2_L2A,
-                time_interval=('2020-05-01', '2026-04-09'),
+                data_collection=DataCollection.SENTINEL2_L2A.define_from(
+                    "s2l2a", service_url=config.sh_base_url
+                ),
+                time_interval=('2024-05-01', '2026-04-09'),
                 mosaicking_order='leastCC',
             )
         ],
