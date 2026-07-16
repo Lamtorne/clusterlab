@@ -11,6 +11,8 @@ from backend.db_depends import get_async_db
 from backend.auth import get_current_user
 from backend.services.analysis import run_clustering_logic
 from backend.database import async_session_maker
+from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
+
 
 router = APIRouter(prefix='/fields', tags=['fields'])
 
@@ -71,3 +73,37 @@ async def create_field(
 async def get_user_fields(db: AsyncSession = Depends(get_async_db), current_user = Depends(get_current_user)):
     result = await db.scalars(select(FieldModel).where(FieldModel.user_id == current_user.id))
     return result.all()
+
+@router.get("/{field_id}/result")
+async def get_field_result(
+    field_id: int,
+    db: AsyncSession = Depends(get_async_db),
+    current_user=Depends(get_current_user)
+):
+    result = await db.execute(
+        select(FieldModel).where(
+            FieldModel.id == field_id,
+            FieldModel.user_id == current_user.id
+        )
+    )
+    field = result.scalar_one_or_none()
+    if not field:
+        raise HTTPException(404, detail="Поле не найдено")
+
+    if field.status != "Готово":
+        return {"status": field.status, "field": None, "result": None}
+
+    analysis_result = await db.execute(
+        select(AnalysisResultModel).where(AnalysisResultModel.field_id == field_id)
+    )
+    analysis = analysis_result.scalar_one_or_none()
+
+    return {
+        "status": field.status,
+        "field": {
+            "culture": field.culture,
+            "region": field.region,
+            "area": float(field.area),
+        },
+        "result": analysis.cluster_data if analysis else None,
+    }
