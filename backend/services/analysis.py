@@ -266,10 +266,16 @@ from sentinelhub import (
     BBox, CRS, MimeType, bbox_to_dimensions
 )
 
+from pathlib import Path
+from dotenv import load_dotenv
+
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
 def get_sentinel_config():
     config = SHConfig()
-    config.sh_client_id = os.getenv("sh-614d1235-5856-4561-a98d-f3012ecd3a44")
-    config.sh_client_secret = os.getenv("I4UsrLr6XpOuBKrQggqJV8weklLf5Okl")
+    config.sh_client_id = os.getenv("SH_CLIENT_ID")
+    config.sh_client_secret = os.getenv("SH_CLIENT_SECRET")
     config.sh_token_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
     config.sh_base_url = "https://sh.dataspace.copernicus.eu"
     return config
