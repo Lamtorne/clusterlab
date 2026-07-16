@@ -1,0 +1,98 @@
+.Field-Result-Page {
+  padding: 32px;
+}
+
+.Field-Result-Split {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.Field-Result-Left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.Field-Result-Region {
+  color: #6b7280;
+  margin-top: -12px;
+}
+
+.Field-Result-Stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Stat-Item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+}
+
+.Stat-Label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.Stat-Value {
+  font-weight: 600;
+}
+
+.Cluster-Legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Cluster-Legend-Item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.Cluster-Legend-Swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.Download-Button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: not-allowed;
+  color: #9ca3af;
+}
+
+.Field-Result-Right {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Cluster-Map-Wrapper {
+  margin-top: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  image-rendering: pixelated; /* чёткие границы пикселей вместо размытия */
+}
+
+@media (max-width: 900px) {
+  .Field-Result-Split {
+    grid-template-columns: 1fr;
+  }
+}

@@ -92,3 +92,16 @@
   font-style: italic;
   opacity: 0.7;
 }
+
+.status-red {
+  background-color: #ef4444; /* или подходящий тебе красный */
+}
+
+.Field-Card--clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.Field-Card--clickable:hover {
+  transform: translateY(-2px);
+}
