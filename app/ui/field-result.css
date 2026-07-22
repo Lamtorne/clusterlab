@@ -136,3 +136,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+.Cluster-Map-Container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+}
