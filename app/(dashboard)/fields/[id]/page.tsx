@@ -20,7 +20,16 @@ interface ResultData {
   } | null;
 }
 
-const CLUSTER_COLORS = ["#4ade80", "#f87171", "#60a5fa", "#fbbf24", "#a78bfa", "#fb923c", "#2dd4bf", "#f472b6"];
+const CLUSTER_COLORS = [
+  "#4ade80",
+  "#f87171",
+  "#60a5fa",
+  "#fbbf24",
+  "#a78bfa",
+  "#fb923c",
+  "#2dd4bf",
+  "#f472b6",
+];
 
 export default function FieldResultPage() {
   const params = useParams();
@@ -71,41 +80,36 @@ export default function FieldResultPage() {
   return (
     <main className="Field-Result-Page">
       <div className="Field-Result-Split">
-
-        {/* Левая колонка — данные о поле */}
         <div className="Field-Result-Left">
           <h2>{data.field?.culture}</h2>
           <p className="Field-Result-Region">{data.field?.region}</p>
 
           <div className="Field-Result-Stats">
             <div className="Stat-Item">
-              <span className="Stat-Label">Площадь</span>
+              <span className="Stat-Label">Площадь поля</span>
               <span className="Stat-Value">{data.field?.area} га</span>
-            </div>
-            <div className="Stat-Item">
-              <span className="Stat-Label">Алгоритм</span>
-              <span className="Stat-Value">{data.result?.algorithm}</span>
             </div>
             <div className="Stat-Item">
               <span className="Stat-Label">Кластеров</span>
               <span className="Stat-Value">{data.result?.n_clusters}</span>
             </div>
-            <div className="Stat-Item">
-              <span className="Stat-Label">Качество разделения</span>
-              <span className="Stat-Value">{data.result?.silhouette_score}</span>
-            </div>
           </div>
 
           <div className="Cluster-Legend">
-            {Array.from({ length: data.result?.n_clusters ?? 0 }).map((_, i) => (
-              <div key={i} className="Cluster-Legend-Item">
-                <span
-                  className="Cluster-Legend-Swatch"
-                  style={{ backgroundColor: CLUSTER_COLORS[i % CLUSTER_COLORS.length] }}
-                />
-                Кластер {i + 1}
-              </div>
-            ))}
+            {Array.from({ length: data.result?.n_clusters ?? 0 }).map(
+              (_, i) => (
+                <div key={i} className="Cluster-Legend-Item">
+                  <span
+                    className="Cluster-Legend-Swatch"
+                    style={{
+                      backgroundColor:
+                        CLUSTER_COLORS[i % CLUSTER_COLORS.length],
+                    }}
+                  />
+                  Кластер {i + 1}
+                </div>
+              ),
+            )}
           </div>
 
           {/* Заглушка под будущее: скачивание результатов и рекомендации */}
@@ -123,7 +127,6 @@ export default function FieldResultPage() {
             <canvas ref={canvasRef} />
           </div>
         </div>
-
       </div>
     </main>
   );
