@@ -1,13 +1,7 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import "@/app/ui/profile.css";
-
-interface MapData {
-  width: number;
-  height: number;
-  labels: number[];
-}
+import "@/app/ui/field-result.css";
 
 interface ResultData {
   status: string;
@@ -16,19 +10,16 @@ interface ResultData {
     algorithm: string;
     n_clusters: number;
     silhouette_score: number;
-    map_data: MapData;
   } | null;
 }
 
 const CLUSTER_COLORS = [
-  "#4ade80",
-  "#f87171",
-  "#60a5fa",
-  "#fbbf24",
-  "#a78bfa",
-  "#fb923c",
-  "#2dd4bf",
-  "#f472b6",
+  "#3C3126",
+  "#EC6A40",
+  "#6B9B7A",
+  "#E6E1C5",
+  "#7D8C6B",
+  "#A65D57"
 ];
 
 export default function FieldResultPage() {
@@ -36,7 +27,6 @@ export default function FieldResultPage() {
   const id = params.id as string;
   const [data, setData] = useState<ResultData | null>(null);
   const [error, setError] = useState("");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -51,40 +41,28 @@ export default function FieldResultPage() {
       .catch(() => setError("Не удалось загрузить результаты анализа"));
   }, [id]);
 
-  useEffect(() => {
-    if (!data?.result?.map_data || !canvasRef.current) return;
-
-    const { width, height, labels } = data.result.map_data;
-    const canvas = canvasRef.current;
-    const scale = Math.max(4, Math.min(24, Math.floor(500 / width)));
-    canvas.width = width * scale;
-    canvas.height = height * scale;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    labels.forEach((clusterLabel, i) => {
-      const x = i % width;
-      const y = Math.floor(i / width);
-      ctx.fillStyle = CLUSTER_COLORS[clusterLabel % CLUSTER_COLORS.length];
-      ctx.fillRect(x * scale, y * scale, scale, scale);
-    });
-  }, [data]);
-
   if (error) return <p className="error-message">{error}</p>;
-  if (!data) return <p>Загрузка...</p>;
+  if (!data) return <p className="Field-Result-Loading">Загрузка...</p>;
   if (data.status !== "Готово") {
-    return <p>Анализ ещё не завершён. Текущий статус: {data.status}</p>;
+    return <p className="Field-Result-Loading">Анализ ещё не завершён. Текущий статус: {data.status}</p>;
   }
 
   return (
     <main className="Field-Result-Page">
       <div className="Field-Result-Split">
+
         <div className="Field-Result-Left">
-          <h2>{data.field?.culture}</h2>
-          <p className="Field-Result-Region">{data.field?.region}</p>
+          <h2 className="Field-Result-Title">Поле №{id}</h2>
 
           <div className="Field-Result-Stats">
+            <div className="Stat-Item">
+              <span className="Stat-Label">Культура</span>
+              <span className="Stat-Value">{data.field?.culture}</span>
+            </div>
+            <div className="Stat-Item">
+              <span className="Stat-Label">Регион</span>
+              <span className="Stat-Value">{data.field?.region}</span>
+            </div>
             <div className="Stat-Item">
               <span className="Stat-Label">Площадь поля</span>
               <span className="Stat-Value">{data.field?.area} га</span>
@@ -96,23 +74,17 @@ export default function FieldResultPage() {
           </div>
 
           <div className="Cluster-Legend">
-            {Array.from({ length: data.result?.n_clusters ?? 0 }).map(
-              (_, i) => (
-                <div key={i} className="Cluster-Legend-Item">
-                  <span
-                    className="Cluster-Legend-Swatch"
-                    style={{
-                      backgroundColor:
-                        CLUSTER_COLORS[i % CLUSTER_COLORS.length],
-                    }}
-                  />
-                  Кластер {i + 1}
-                </div>
-              ),
-            )}
+            {Array.from({ length: data.result?.n_clusters ?? 0 }).map((_, i) => (
+              <div key={i} className="Cluster-Legend-Item">
+                <span
+                  className="Cluster-Legend-Swatch"
+                  style={{ backgroundColor: CLUSTER_COLORS[i % CLUSTER_COLORS.length] }}
+                />
+                Кластер {i + 1}
+              </div>
+            ))}
           </div>
 
-          {/* Заглушка под будущее: скачивание результатов и рекомендации */}
           <div className="Field-Result-Actions">
             <button className="Download-Button" disabled>
               Скачать результаты (скоро)
@@ -120,13 +92,13 @@ export default function FieldResultPage() {
           </div>
         </div>
 
-        {/* Правая колонка — карта кластеризации */}
         <div className="Field-Result-Right">
-          <h3>Карта кластеров</h3>
-          <div className="Cluster-Map-Wrapper">
-            <canvas ref={canvasRef} />
+          <h3 className="Field-Result-Subtitle">Карта кластеров</h3>
+          <div className="Cluster-Map-Placeholder">
+            <span>Карта появится здесь</span>
           </div>
         </div>
+
       </div>
     </main>
   );
