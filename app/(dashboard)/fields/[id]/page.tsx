@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import "@/app/ui/field-result.css";
+import "@/app/ui/profile.css";
 
 interface MapData {
   width: number;
