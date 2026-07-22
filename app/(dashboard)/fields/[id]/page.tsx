@@ -1,15 +1,32 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import "@/app/ui/field-result.css";
+
+const ClusterMap = dynamic(() => import("@/app/(dashboard)/fields/cluster_map"), { ssr: false });
+
+interface MapData {
+  width: number;
+  height: number;
+  labels: number[];
+}
 
 interface ResultData {
   status: string;
-  field: { culture: string; region: string; area: number } | null;
+  field: {
+    culture: string;
+    region: string;
+    area: number;
+    latitude: number;
+    longitude: number;
+    radius: number;
+  } | null;
   result: {
     algorithm: string;
     n_clusters: number;
     silhouette_score: number;
+    map_data: MapData;
   } | null;
 }
 
@@ -94,8 +111,16 @@ export default function FieldResultPage() {
 
         <div className="Field-Result-Right">
           <h3 className="Field-Result-Subtitle">Карта кластеров</h3>
-          <div className="Cluster-Map-Placeholder">
-            <span>Карта появится здесь</span>
+          <div className="Cluster-Map-Container">
+            {data.field && data.result && (
+              <ClusterMap
+                lat={data.field.latitude}
+                lon={data.field.longitude}
+                radius={data.field.radius}
+                mapData={data.result.map_data}
+                clusterColors={CLUSTER_COLORS}
+              />
+            )}
           </div>
         </div>
 

@@ -104,6 +104,9 @@ async def get_field_result(
             "culture": field.culture,
             "region": field.region,
             "area": float(field.area),
+            "latitude": float(field.latitude),
+            "longitude": float(field.longitude),
+            "radius": float(field.radius),
         },
         "result": analysis.cluster_data if analysis else None,
     }
