@@ -15,7 +15,12 @@ from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
 from fastapi.responses import HTMLResponse
 from backend.services.analysis import build_cluster_map_html
 
-CLUSTER_COLORS = ["#3C3126", "#EC6A40", "#6B9B7A", "#E6E1C5", "#7D8C6B", "#A65D57"]
+CLUSTER_COLORS = ["#FFB800",
+  "#FF5722",
+  "#00D2C4",
+  "#FFFFFF",
+  "#E91E63",
+  "#29B6F6"]
 
 
 
