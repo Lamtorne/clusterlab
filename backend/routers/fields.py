@@ -12,6 +12,11 @@ from backend.auth import get_current_user
 from backend.services.analysis import run_clustering_logic
 from backend.database import async_session_maker
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
+from fastapi.responses import HTMLResponse
+from backend.services.analysis import build_cluster_map_html
+
+CLUSTER_COLORS = ["#3C3126", "#EC6A40", "#6B9B7A", "#E6E1C5", "#7D8C6B", "#A65D57"]
+
 
 
 router = APIRouter(prefix='/fields', tags=['fields'])
@@ -110,3 +115,33 @@ async def get_field_result(
         },
         "result": analysis.cluster_data if analysis else None,
     }
+
+@router.get("/{field_id}/map", response_class=HTMLResponse)
+async def get_field_map(
+    field_id: int,
+    db: AsyncSession = Depends(get_async_db),
+    current_user=Depends(get_current_user),
+):
+    result = await db.execute(
+        select(FieldModel).where(FieldModel.id == field_id, FieldModel.user_id == current_user.id)
+    )
+    field = result.scalar_one_or_none()
+    if not field or field.status != "Готово":
+        raise HTTPException(404, detail="Карта недоступна")
+
+    analysis_result = await db.execute(
+        select(AnalysisResultModel).where(AnalysisResultModel.field_id == field_id)
+    )
+    analysis = analysis_result.scalar_one_or_none()
+    if not analysis:
+        raise HTTPException(404, detail="Результат анализа не найден")
+
+    html = await asyncio.to_thread(
+        build_cluster_map_html,
+        field.latitude,
+        field.longitude,
+        field.radius,
+        analysis.cluster_data["map_data"],
+        CLUSTER_COLORS,
+    )
+    return HTMLResponse(content=html)

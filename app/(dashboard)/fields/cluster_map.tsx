@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, ImageOverlay } from "react-leaflet";
+import { MapContainer, TileLayer, ImageOverlay, Rectangle } from "react-leaflet";
 import type { LatLngBoundsExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -22,7 +22,6 @@ export default function ClusterMap({ lat, lon, radius, mapData, clusterColors }:
   const [overlayUrl, setOverlayUrl] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Те же формулы, что и на бэкенде в download_field_data — bbox по координатам и радиусу
   const safeRadius = Math.max(radius, 100);
   const delta = safeRadius / 111000;
   const bounds: LatLngBoundsExpression = [
@@ -49,7 +48,7 @@ export default function ClusterMap({ lat, lon, radius, mapData, clusterColors }:
       imageData.data[i * 4] = r;
       imageData.data[i * 4 + 1] = g;
       imageData.data[i * 4 + 2] = b;
-      imageData.data[i * 4 + 3] = 180; // полупрозрачность, чтобы видеть карту под слоем
+      imageData.data[i * 4 + 3] = 200;
     });
     ctx.putImageData(imageData, 0, 0);
 
@@ -63,10 +62,14 @@ export default function ClusterMap({ lat, lon, radius, mapData, clusterColors }:
       scrollWheelZoom={true}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; OpenStreetMap contributors'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
       />
       {overlayUrl && <ImageOverlay url={overlayUrl} bounds={bounds} />}
+      <Rectangle
+        bounds={bounds}
+        pathOptions={{ color: "#ffffff", weight: 2, fill: false }}
+      />
     </MapContainer>
   );
 }

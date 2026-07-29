@@ -1,10 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import dynamic from "next/dynamic";
 import "@/app/ui/field-result.css";
-
-const ClusterMap = dynamic(() => import("@/app/(dashboard)/fields/cluster_map"), { ssr: false });
 
 interface MapData {
   width: number;
@@ -36,13 +33,14 @@ const CLUSTER_COLORS = [
   "#6B9B7A",
   "#E6E1C5",
   "#7D8C6B",
-  "#A65D57"
+  "#A65D57",
 ];
 
 export default function FieldResultPage() {
   const params = useParams();
   const id = params.id as string;
   const [data, setData] = useState<ResultData | null>(null);
+  const [mapHtml, setMapHtml] = useState<string | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -57,6 +55,19 @@ export default function FieldResultPage() {
       .then(setData)
       .catch(() => setError("Не удалось загрузить результаты анализа"));
   }, [id]);
+
+  // Как только основные данные загружены и статус "Готово" — отдельно запрашиваем HTML карты
+  useEffect(() => {
+    if (data?.status !== "Готово") return;
+
+    const token = localStorage.getItem("access_token");
+    fetch(`http://localhost:8000/fields/${id}/map`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.text())
+      .then(setMapHtml)
+      .catch(() => setMapHtml(null));
+  }, [data, id]);
 
   if (error) return <p className="error-message">{error}</p>;
   if (!data) return <p className="Field-Result-Loading">Загрузка...</p>;
@@ -112,14 +123,13 @@ export default function FieldResultPage() {
         <div className="Field-Result-Right">
           <h3 className="Field-Result-Subtitle">Карта кластеров</h3>
           <div className="Cluster-Map-Container">
-            {data.field && data.result && (
-              <ClusterMap
-                lat={data.field.latitude}
-                lon={data.field.longitude}
-                radius={data.field.radius}
-                mapData={data.result.map_data}
-                clusterColors={CLUSTER_COLORS}
+            {mapHtml ? (
+              <iframe
+                srcDoc={mapHtml}
+                style={{ width: "100%", height: "100%", border: "none", borderRadius: "12px" }}
               />
+            ) : (
+              <p>Загрузка карты...</p>
             )}
           </div>
         </div>

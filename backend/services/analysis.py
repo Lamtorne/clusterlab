@@ -18,6 +18,11 @@ from sklearn.metrics import silhouette_score
 
 from backend.models.fields import Field as FieldModel
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
+import folium
+from shapely.geometry import shape, mapping
+from shapely.ops import unary_union
+from rasterio import features as rio_features
+from rasterio import transform as rio_transform
 
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
@@ -213,3 +218,83 @@ async def run_clustering_logic(field_id: int, db_factory):
                 update(FieldModel).where(FieldModel.id == field_id).values(status="Ошибка")
             )
             await db.commit()
+
+def get_zoom_for_radius(radius: float) -> int:
+    if radius <= 300:
+        return 18
+    elif radius <= 800:
+        return 17
+    elif radius <= 1500:
+        return 16
+    return 15
+
+
+def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: list[str]) -> str:
+    """
+    Строит интерактивную карту кластеров (folium) на реальных спутниковых тайлах.
+    Синхронная и не самая лёгкая функция — вызывать через asyncio.to_thread.
+    """
+    lat = float(lat)
+    lon = float(lon)
+    safe_radius = max(float(radius), 100.0)
+    delta = safe_radius / 111000
+
+    west, south = lon - delta, lat - delta
+    east, north = lon + delta, lat + delta
+
+    width = map_data["width"]
+    height = map_data["height"]
+    labels = np.array(map_data["labels"], dtype="int16").reshape(height, width)
+
+    # Строим affine-трансформацию вручную по bbox — то же, что делал rasterio при чтении .tif
+    affine = rio_transform.from_bounds(west, south, east, north, width, height)
+
+    # Векторизация: превращаем растровую сетку кластеров в полигоны
+    shapes_gen = rio_features.shapes(labels, transform=affine)
+
+    polygons_by_cluster: dict[int, list] = {}
+    for geom, value in shapes_gen:
+        cluster_id = int(value)
+        polygons_by_cluster.setdefault(cluster_id, []).append(shape(geom))
+
+    # Объединяем разрозненные кусочки одного кластера в единый полигон (dissolve)
+    geo_features = []
+    for cluster_id, polys in polygons_by_cluster.items():
+        merged = unary_union(polys)
+        geo_features.append({
+            "type": "Feature",
+            "properties": {
+                "cluster": cluster_id,
+                "color": cluster_colors[cluster_id % len(cluster_colors)],
+            },
+            "geometry": mapping(merged),
+        })
+
+    geojson_data = {"type": "FeatureCollection", "features": geo_features}
+
+    m = folium.Map(location=[lat, lon], zoom_start=get_zoom_for_radius(safe_radius), control_scale=True)
+
+    folium.TileLayer(
+        tiles="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+        attr="Google",
+        name="Google Satellite",
+        overlay=False,
+        control=True,
+    ).add_to(m)
+
+    folium.GeoJson(
+        geojson_data,
+        name="Зоны кластеризации",
+        style_function=lambda feature: {
+            "fillColor": feature["properties"]["color"],
+            "color": "white",
+            "weight": 1,
+            "fillOpacity": 0.5,
+        },
+        highlight_function=lambda feature: {"weight": 3, "color": "yellow", "fillOpacity": 0.7},
+        tooltip=folium.GeoJsonTooltip(fields=["cluster"], aliases=["Зона №:"], sticky=True),
+    ).add_to(m)
+
+    folium.LayerControl().add_to(m)
+
+    return m.get_root().render()
