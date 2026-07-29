@@ -24,6 +24,8 @@ from shapely.ops import unary_union
 from rasterio import features as rio_features
 from rasterio import transform as rio_transform
 
+import httpx
+
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
@@ -296,5 +298,72 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
     ).add_to(m)
 
     folium.LayerControl().add_to(m)
-
     return m.get_root().render()
+
+# функции для LLM
+
+def compute_cluster_stats(array: np.ndarray, labels: np.ndarray, n_clusters: int) -> list[dict]:
+    """
+    Считает характеристики каждого кластера: долю площади, NDVI, NDMI
+    """
+    height, width, bands = array.shape
+    pixels = array.reshape(-1, bands)
+    total_pixels = len(labels)
+
+    stats = []
+    for cluster_id in range(n_clusters):
+        mask = labels == cluster_id
+        cluster_pixels = pixels[mask]
+        if len(cluster_pixels) == 0:
+            continue
+
+        b02, b03, b04, b08, b11, b12 = [cluster_pixels[:, i] for i in range(6)]
+        ndvi = (b08 - b04) / (b08 + b04 + 1e-6)   # индекс растительности
+        ndmi = (b08 - b11) / (b08 + b11 + 1e-6)   # индекс влажности
+
+        stats.append({
+            "cluster": int(cluster_id),
+            "share_percent": round(100 * mask.sum() / total_pixels, 1),
+            "mean_ndvi": round(float(ndvi.mean()), 3),
+            "mean_ndmi": round(float(ndmi.mean()), 3),
+        })
+    return stats
+
+# Составляем промпт
+def build_llm_prompt(field_info, cluster_stats: list[dict]) -> str:
+    clusters_text = "\n".join(
+        f"- Зона {c['cluster'] + 1}: {c['share_percent']}% площади поля, "
+        f"NDVI (индекс растительности) = {c['mean_ndvi']}, "
+        f"NDMI (индекс влажности) = {c['mean_ndmi']}"
+        for c in cluster_stats
+    )
+
+    return f"""Ты — агроном-консультант по точному земледелию. Дай рекомендации по внесению удобрений.
+
+Данные о поле:
+- Культура: {field_info.culture or "не указана"}
+- Регион: {field_info.region or "не указан"}
+- Известные агрохимические данные почвы: {field_info.agrochem or "не указаны"}
+- Площадь: {field_info.area} га
+
+Поле разделено на зоны по данным спутниковой съёмки Sentinel-2:
+{clusters_text}
+
+Для каждой зоны дай краткую рекомендацию: какое удобрение и в какой примерной дозировке (кг/га) внести, и коротко объясни почему, опираясь на NDVI и NDMI. Отвечай по-русски, структурированно по зонам, без лишних вступлений."""
+
+async def get_llm_recommendations(field_info, cluster_stats: list[dict]) -> str:
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    prompt = build_llm_prompt(field_info, cluster_stats)
+
+    async with httpx.AsyncClient(timeout=90) as client:
+        response = await client.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={"Authorization": f"Bearer {api_key}"},
+            json={
+                "model": "openrouter/free",  # автороутер выбирает доступную бесплатную модель
+                "messages": [{"role": "user", "content": prompt}],
+            },
+        )
+        response.raise_for_status()
+        data = response.json()
+        return data["choices"][0]["message"]["content"]
