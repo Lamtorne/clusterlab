@@ -14,6 +14,7 @@ from backend.database import async_session_maker
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
 from fastapi.responses import HTMLResponse
 from backend.services.analysis import build_cluster_map_html
+from sqlalchemy import func
 
 CLUSTER_COLORS = ["#FFB800",
   "#FF5722",
@@ -37,6 +38,13 @@ async def get_field_status(
         raise HTTPException(404, detail="Поле не найдено")
     return {"status": field.status}
 
+async def get_used_area(user_id: int, db: AsyncSession) -> Decimal:
+    result = await db.execute(
+        select(func.coalesce(func.sum(FieldModel.area), 0))
+        .where(FieldModel.user_id == user_id, FieldModel.status != "Ошибка")
+    )
+    return result.scalar()
+
 @router.post('/analyze', response_model=FieldSchema)
 async def create_field(
         payload: FieldCreate,
@@ -50,7 +58,10 @@ async def create_field(
     if datetime.now() > current_user.tariff_ends_at:
         raise HTTPException(403, detail='Срок подписки завершён')
 
-    if current_user.current_area + calculated_area > current_user.max_area:
+    # Считаем реально использованную площадь на лету, а не по хранимому счётчику
+    used_area = await get_used_area(current_user.id, db)
+
+    if used_area + calculated_area > current_user.max_area:
         raise HTTPException(400, detail='Площадь для анализа закончилась')
 
     new_field = FieldModel(
@@ -65,7 +76,7 @@ async def create_field(
         status="В обработке"
     )
 
-    current_user.current_area += calculated_area
+    # Больше НЕ трогаем current_user.current_area — считаем всегда динамически
     db.add(new_field)
 
     try:
