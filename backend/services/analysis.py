@@ -187,12 +187,26 @@ async def run_clustering_logic(field_id: int, db_factory):
                 return model.fit_predict(data_scaled)
 
             labels = await asyncio.to_thread(fit_final_model)
+            print(f"[TASK] Кластеризация завершена, меток: {len(labels)}")
+
+            # --- Шаг 3: характеристики кластеров + рекомендации от LLM ---
+            cluster_stats = compute_cluster_stats(pixels_flat, labels, n_clusters)
+            print(f"[TASK] Статистика по кластерам посчитана: {cluster_stats}")
+
+            try:
+                recommendations = await get_llm_recommendations(field_info, cluster_stats)
+                print(f"[TASK] Рекомендации от LLM получены")
+            except Exception as llm_error:
+                print(f"!!! [LLM ERROR] Не удалось получить рекомендации: {llm_error}")
+                recommendations = "Не удалось сгенерировать рекомендации. Попробуйте позже."
 
             analysis_data = {
                 "field_id": field_id,
                 "algorithm": best_name,
                 "n_clusters": int(n_clusters),
                 "silhouette_score": float(score),
+                "cluster_stats": cluster_stats,
+                "recommendations": recommendations,
                 "map_data": {
                     "width": width,
                     "height": height,

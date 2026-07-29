@@ -9,6 +9,13 @@ interface MapData {
   labels: number[];
 }
 
+interface ClusterStat {
+  cluster: number;
+  share_percent: number;
+  mean_ndvi: number;
+  mean_ndmi: number;
+}
+
 interface ResultData {
   status: string;
   field: {
@@ -23,6 +30,8 @@ interface ResultData {
     algorithm: string;
     n_clusters: number;
     silhouette_score: number;
+    cluster_stats: ClusterStat[];
+    recommendations: string;
     map_data: MapData;
   } | null;
 }
@@ -56,7 +65,6 @@ export default function FieldResultPage() {
       .catch(() => setError("Не удалось загрузить результаты анализа"));
   }, [id]);
 
-  // Как только основные данные загружены и статус "Готово" — отдельно запрашиваем HTML карты
   useEffect(() => {
     if (data?.status !== "Готово") return;
 
@@ -102,15 +110,32 @@ export default function FieldResultPage() {
           </div>
 
           <div className="Cluster-Legend">
-            {Array.from({ length: data.result?.n_clusters ?? 0 }).map((_, i) => (
-              <div key={i} className="Cluster-Legend-Item">
-                <span
-                  className="Cluster-Legend-Swatch"
-                  style={{ backgroundColor: CLUSTER_COLORS[i % CLUSTER_COLORS.length] }}
-                />
-                Кластер {i + 1}
-              </div>
-            ))}
+            {Array.from({ length: data.result?.n_clusters ?? 0 }).map((_, i) => {
+              const stat = data.result?.cluster_stats?.find((s) => s.cluster === i);
+              return (
+                <div key={i} className="Cluster-Legend-Item">
+                  <span
+                    className="Cluster-Legend-Swatch"
+                    style={{ backgroundColor: CLUSTER_COLORS[i % CLUSTER_COLORS.length] }}
+                  />
+                  <span>
+                    Кластер {i + 1}
+                    {stat && (
+                      <span className="Cluster-Legend-Details">
+                        {" "}— {stat.share_percent}% площади, NDVI {stat.mean_ndvi}
+                      </span>
+                    )}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="Field-Result-Recommendations">
+            <h4 className="Field-Result-Subtitle">Рекомендации по удобрениям</h4>
+            <p className="Recommendations-Text">
+              {data.result?.recommendations || "Рекомендации ещё не готовы"}
+            </p>
           </div>
 
           <div className="Field-Result-Actions">
