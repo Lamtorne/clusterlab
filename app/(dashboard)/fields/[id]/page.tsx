@@ -158,7 +158,6 @@ export default function FieldResultPage() {
             )}
           </div>
         </div>
-
       </div>
     </main>
   );
