@@ -26,6 +26,7 @@ from rasterio import features as rio_features
 from rasterio import transform as rio_transform
 import re
 from gigachat import GigaChat
+import json
 
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
@@ -358,33 +359,27 @@ def compute_cluster_stats(pixels_flat: np.ndarray, labels: np.ndarray, n_cluster
 
 # Составляем промпт
 def build_llm_prompt(field_info, cluster_stats: list[dict]) -> str:
-    clusters_text = "\n".join(
-        f"- Зона {c['cluster'] + 1}: {c['share_percent']}% площади поля, "
-        f"NDVI (индекс растительности) = {c['mean_ndvi']}, "
-        f"NDMI (индекс влажности) = {c['mean_ndmi']}"
-        for c in cluster_stats
-    )
+    clusters_json = json.dumps(cluster_stats, ensure_ascii=False)  # 👈 эта строка должна быть здесь
 
     return f"""Ты — агроном-консультант по точному земледелию.
 
-    Данные о поле:
-    - Культура: {field_info.culture or "не указана"}
-    - Регион: {field_info.region or "не указан"}
-    - Известные агрохимические данные почвы: {field_info.agrochem or "не указаны"}
-    - Площадь: {field_info.area} га
+Данные о поле:
+- Культура: {field_info.culture or "не указана"}
+- Регион: {field_info.region or "не указан"}
+- Известные агрохимические данные почвы: {field_info.agrochem or "не указаны"}
+- Площадь: {field_info.area} га
 
-    Зоны поля по данным спутниковой съёмки:
-    {clusters_json}
+Зоны поля по данным спутниковой съёмки:
+{clusters_json}
 
-    Для каждой зоны определи удобрение и дозировку (кг/га) на основе NDVI и NDMI.
+Для каждой зоны определи удобрение и дозировку (кг/га) на основе NDVI и NDMI.
 
-    Ответь СТРОГО в виде валидного JSON-массива, без markdown-разметки, без пояснений до или после — только сам JSON. Для каждой зоны укажи:
-    - "cluster": номер зоны (число, как в исходных данных)
-    - "fertilizer": название удобрения
-    - "dose_kg_ha": дозировка (число)
-    - "reasoning": краткое обоснование (1-2 предложения)
-    - "short_rec": подсказка до 5 слов, например "Много азота, +40 кг/га\""""
-
+Ответь СТРОГО в виде валидного JSON-массива, без markdown-разметки, без пояснений до или после — только сам JSON. Для каждой зоны укажи:
+- "cluster": номер зоны (число, как в исходных данных)
+- "fertilizer": название удобрения
+- "dose_kg_ha": дозировка (число)
+- "reasoning": краткое обоснование (1-2 предложения)
+- "short_rec": подсказка до 5 слов, например "Много азота, +40 кг/га\""""
 
 gigachat_client = GigaChat(
     credentials=os.getenv("GIGACHAT_AUTH_KEY"),
