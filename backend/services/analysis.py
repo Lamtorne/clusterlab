@@ -383,6 +383,7 @@ def build_llm_prompt(field_info, cluster_stats: list[dict]) -> str:
 
 gigachat_client = GigaChat(
     credentials=os.getenv("GIGACHAT_AUTH_KEY"),
+    scope="GIGACHAT_API_PERS",
     verify_ssl_certs=False,
 )
 
