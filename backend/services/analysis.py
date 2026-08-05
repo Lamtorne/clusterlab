@@ -18,13 +18,14 @@ from sklearn.metrics import silhouette_score
 
 from backend.models.fields import Field as FieldModel
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
+from backend.models.field_recommendation import FieldRecommendation as FieldRecommendationModel
 import folium
 from shapely.geometry import shape, mapping
 from shapely.ops import unary_union
 from rasterio import features as rio_features
 from rasterio import transform as rio_transform
-
-import httpx
+import re
+from gigachat import GigaChat
 
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
@@ -189,16 +190,17 @@ async def run_clustering_logic(field_id: int, db_factory):
             labels = await asyncio.to_thread(fit_final_model)
             print(f"[TASK] Кластеризация завершена, меток: {len(labels)}")
 
-            # --- Шаг 3: характеристики кластеров + рекомендации от LLM ---
+            # --- Шаг 3: характеристики кластеров ---
             cluster_stats = compute_cluster_stats(pixels_flat, labels, n_clusters)
             print(f"[TASK] Статистика по кластерам посчитана: {cluster_stats}")
 
+            # --- Шаг 4: рекомендации от LLM ---
+            zones = []
             try:
-                recommendations = await get_llm_recommendations(field_info, cluster_stats)
-                print(f"[TASK] Рекомендации от LLM получены")
+                zones = await get_llm_recommendations(field_info, cluster_stats)
+                print(f"[TASK] Рекомендации получены: {len(zones)} зон")
             except Exception as llm_error:
                 print(f"!!! [LLM ERROR] Не удалось получить рекомендации: {llm_error}")
-                recommendations = "Не удалось сгенерировать рекомендации. Попробуйте позже."
 
             analysis_data = {
                 "field_id": field_id,
@@ -206,7 +208,6 @@ async def run_clustering_logic(field_id: int, db_factory):
                 "n_clusters": int(n_clusters),
                 "silhouette_score": float(score),
                 "cluster_stats": cluster_stats,
-                "recommendations": recommendations,
                 "map_data": {
                     "width": width,
                     "height": height,
@@ -220,6 +221,19 @@ async def run_clustering_logic(field_id: int, db_factory):
                 silhouette_score=score
             )
             db.add(new_result)
+
+            if zones:
+                # сортируем по номеру кластера — гарантирует совпадение индекса списка с cluster_id
+                zones_sorted = sorted(zones, key=lambda z: z["cluster"])
+                short_recs = [z.get("short_rec", "") for z in zones_sorted]
+
+                new_recommendation = FieldRecommendationModel(
+                    field_id=field_id,
+                    zones_rec=zones_sorted,
+                    short_zone_rec=short_recs,
+                )
+                db.add(new_recommendation)
+                print(f"[TASK] Рекомендации сохранены: short_zone_rec={short_recs}")
 
             await db.execute(
                 update(FieldModel).where(FieldModel.id == field_id).values(status="Готово")
@@ -351,32 +365,44 @@ def build_llm_prompt(field_info, cluster_stats: list[dict]) -> str:
         for c in cluster_stats
     )
 
-    return f"""Ты — агроном-консультант по точному земледелию. Дай рекомендации по внесению удобрений.
+    return f"""Ты — агроном-консультант по точному земледелию.
 
-Данные о поле:
-- Культура: {field_info.culture or "не указана"}
-- Регион: {field_info.region or "не указан"}
-- Известные агрохимические данные почвы: {field_info.agrochem or "не указаны"}
-- Площадь: {field_info.area} га
+    Данные о поле:
+    - Культура: {field_info.culture or "не указана"}
+    - Регион: {field_info.region or "не указан"}
+    - Известные агрохимические данные почвы: {field_info.agrochem or "не указаны"}
+    - Площадь: {field_info.area} га
 
-Поле разделено на зоны по данным спутниковой съёмки Sentinel-2:
-{clusters_text}
+    Зоны поля по данным спутниковой съёмки:
+    {clusters_json}
 
-Для каждой зоны дай краткую рекомендацию: какое удобрение и в какой примерной дозировке (кг/га) внести, и коротко объясни почему, опираясь на NDVI и NDMI. Отвечай по-русски, структурированно по зонам, без лишних вступлений."""
+    Для каждой зоны определи удобрение и дозировку (кг/га) на основе NDVI и NDMI.
 
-async def get_llm_recommendations(field_info, cluster_stats: list[dict]) -> str:
-    api_key = os.getenv("OPENROUTER_API_KEY")
+    Ответь СТРОГО в виде валидного JSON-массива, без markdown-разметки, без пояснений до или после — только сам JSON. Для каждой зоны укажи:
+    - "cluster": номер зоны (число, как в исходных данных)
+    - "fertilizer": название удобрения
+    - "dose_kg_ha": дозировка (число)
+    - "reasoning": краткое обоснование (1-2 предложения)
+    - "short_rec": подсказка до 5 слов, например "Много азота, +40 кг/га\""""
+
+
+gigachat_client = GigaChat(
+    credentials=os.getenv("GIGACHAT_AUTH_KEY"),
+    verify_ssl_certs=False,
+)
+
+
+def clean_json_response(raw_text: str) -> str:
+    """GigaChat иногда оборачивает JSON в markdown-блок — убираем перед парсингом."""
+    return re.sub(r"^```(?:json)?|```$", "", raw_text.strip(), flags=re.MULTILINE).strip()
+
+
+async def get_llm_recommendations(field_info, cluster_stats: list[dict]) -> list[dict]:
     prompt = build_llm_prompt(field_info, cluster_stats)
 
-    async with httpx.AsyncClient(timeout=90) as client:
-        response = await client.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={"Authorization": f"Bearer {api_key}"},
-            json={
-                "model": "openrouter/free",  # автороутер выбирает доступную бесплатную модель
-                "messages": [{"role": "user", "content": prompt}],
-            },
-        )
-        response.raise_for_status()
-        data = response.json()
-        return data["choices"][0]["message"]["content"]
+    response = await asyncio.to_thread(gigachat_client.chat, prompt)
+    raw_text = response.choices[0].message.content
+    print(f"[GIGACHAT RAW] {raw_text}")  # временно — чтобы видеть сырой ответ в консоли
+
+    cleaned = clean_json_response(raw_text)
+    return json.loads(cleaned)

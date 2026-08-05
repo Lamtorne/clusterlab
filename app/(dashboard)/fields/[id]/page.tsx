@@ -31,7 +31,6 @@ interface ResultData {
     n_clusters: number;
     silhouette_score: number;
     cluster_stats: ClusterStat[];
-    recommendations: string;
     map_data: MapData;
   } | null;
 }
@@ -50,6 +49,7 @@ export default function FieldResultPage() {
   const id = params.id as string;
   const [data, setData] = useState<ResultData | null>(null);
   const [mapHtml, setMapHtml] = useState<string | null>(null);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -75,6 +75,19 @@ export default function FieldResultPage() {
       .then((res) => res.text())
       .then(setMapHtml)
       .catch(() => setMapHtml(null));
+  }, [data, id]);
+
+  // Отдельный запрос к рекомендациям — они хранятся в другой таблице/эндпоинте
+  useEffect(() => {
+    if (data?.status !== "Готово") return;
+
+    const token = localStorage.getItem("access_token");
+    fetch(`http://localhost:8000/fields/${id}/recommendations`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((res) => setRecommendations(res.zones || []))
+      .catch(() => setRecommendations([]));
   }, [data, id]);
 
   if (error) return <p className="error-message">{error}</p>;
@@ -133,9 +146,13 @@ export default function FieldResultPage() {
 
           <div className="Field-Result-Recommendations">
             <h4 className="Field-Result-Subtitle">Рекомендации по удобрениям</h4>
-            <p className="Recommendations-Text">
-              {data.result?.recommendations || "Рекомендации ещё не готовы"}
-            </p>
+            {recommendations.length > 0 ? (
+              <pre style={{ whiteSpace: "pre-wrap", fontSize: "0.85rem" }}>
+                {JSON.stringify(recommendations, null, 2)}
+              </pre>
+            ) : (
+              <p className="Recommendations-Text">Рекомендации ещё не готовы</p>
+            )}
           </div>
 
           <div className="Field-Result-Actions">

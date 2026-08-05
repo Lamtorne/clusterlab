@@ -14,6 +14,7 @@ from backend.database import async_session_maker
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
 from fastapi.responses import HTMLResponse
 from backend.services.analysis import build_cluster_map_html
+from backend.models.field_recommendation import FieldRecommendation as FieldRecommendationModel
 from sqlalchemy import func
 
 CLUSTER_COLORS = ["#FFB800",
@@ -161,3 +162,25 @@ async def get_field_map(
         CLUSTER_COLORS,
     )
     return HTMLResponse(content=html)
+
+
+@router.get("/{field_id}/recommendations")
+async def get_field_recommendations(
+    field_id: int,
+    db: AsyncSession = Depends(get_async_db),
+    current_user=Depends(get_current_user),
+):
+    field_result = await db.execute(
+        select(FieldModel).where(FieldModel.id == field_id, FieldModel.user_id == current_user.id)
+    )
+    if not field_result.scalar_one_or_none():
+        raise HTTPException(404, detail="Поле не найдено")
+
+    rec_result = await db.execute(
+        select(FieldRecommendationModel).where(FieldRecommendationModel.field_id == field_id)
+    )
+    rec = rec_result.scalar_one_or_none()
+    if not rec:
+        raise HTTPException(404, detail="Рекомендации ещё не готовы")
+
+    return {"zones": rec.zones_rec}
