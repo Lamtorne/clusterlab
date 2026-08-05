@@ -316,24 +316,23 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
 
 # функции для LLM
 
-def compute_cluster_stats(array: np.ndarray, labels: np.ndarray, n_clusters: int) -> list[dict]:
+def compute_cluster_stats(pixels_flat: np.ndarray, labels: np.ndarray, n_clusters: int) -> list[dict]:
     """
-    Считает характеристики каждого кластера: долю площади, NDVI, NDMI
+    Считает характеристики каждого кластера: долю площади, NDVI, NDMI.
+    Принимает уже плоский массив пикселей (N, bands), не исходный 3D-массив.
     """
-    height, width, bands = array.shape
-    pixels = array.reshape(-1, bands)
     total_pixels = len(labels)
 
     stats = []
     for cluster_id in range(n_clusters):
         mask = labels == cluster_id
-        cluster_pixels = pixels[mask]
+        cluster_pixels = pixels_flat[mask]
         if len(cluster_pixels) == 0:
             continue
 
         b02, b03, b04, b08, b11, b12 = [cluster_pixels[:, i] for i in range(6)]
-        ndvi = (b08 - b04) / (b08 + b04 + 1e-6)   # индекс растительности
-        ndmi = (b08 - b11) / (b08 + b11 + 1e-6)   # индекс влажности
+        ndvi = (b08 - b04) / (b08 + b04 + 1e-6)
+        ndmi = (b08 - b11) / (b08 + b11 + 1e-6)
 
         stats.append({
             "cluster": int(cluster_id),
