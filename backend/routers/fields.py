@@ -13,7 +13,12 @@ from backend.services.analysis import run_clustering_logic
 from backend.database import async_session_maker
 from backend.models.analysis_result import AnalysisResult as AnalysisResultModel
 from fastapi.responses import HTMLResponse
-from backend.services.analysis import build_cluster_map_html
+from backend.services.analysis import (
+    run_clustering_logic,
+    build_cluster_map_html,
+    build_cluster_polygons,
+    build_prescription_shapefile,
+)
 from backend.models.field_recommendation import FieldRecommendation as FieldRecommendationModel
 from sqlalchemy import func
 from fastapi.responses import StreamingResponse
