@@ -143,3 +143,77 @@
   font-size: 1.2rem;
   margin-left: 10px;
 }
+
+.Subscription-Modal-Overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 49, 38, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.Subscription-Modal {
+  background: #e6e1c5;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 560px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.Subscription-Modal h3 {
+  margin: 0 0 12px 0;
+  color: #3c3126;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.Subscription-Modal p {
+  color: rgba(60, 49, 38, 0.7);
+  margin-bottom: 28px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.Subscription-Modal-Actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.Subscription-Modal-Primary {
+  background-color: var(--orange-btn, #ff7043);
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Subscription-Modal-Primary:hover {
+  background-color: var(--orange-hover, #f4511e);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 112, 67, 0.3);
+}
+
+.Subscription-Modal-Secondary {
+  background: transparent;
+  border: 1px solid rgba(60, 49, 38, 0.3);
+  color: #3c3126;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Subscription-Modal-Secondary:hover {
+  background: rgba(60, 49, 38, 0.05);
+}

@@ -8,10 +8,11 @@ import { useRouter } from "next/navigation";
 export default function NewFieldPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [subscriptionExpired, setSubscriptionExpired] = useState(false);
   const [formData, setFormData] = useState({
     lat: "",
     lon: "",
-    radius: "100", // По умолчанию из макета
+    radius: "100",
     crop: "",
     region: "",
     agrochemicals: "",
@@ -19,7 +20,6 @@ export default function NewFieldPage() {
 
   const [calculatedArea, setCalculatedArea] = useState(0);
 
-  // UX: Считаем площадь сразу для отображения пользователю
   useEffect(() => {
     const r = parseFloat(formData.radius);
     if (r > 0) {
@@ -46,18 +46,22 @@ export default function NewFieldPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Передаем токен для get_current_user
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
         body: JSON.stringify(payload),
       });
 
       if (response.ok) {
-        // Успех: редирект в ЛК
         router.push("/fields");
       } else {
         const errorData = await response.json();
-        // Обработка твоих кастомных ошибок из FastAPI
-        alert(`Внимание: ${errorData.detail}`);
+
+        // Отдельно ловим случай истёкшей подписки — показываем модалку вместо alert
+        if (response.status === 403 && errorData.detail?.includes("подписк")) {
+          setSubscriptionExpired(true);
+        } else {
+          alert(`Внимание: ${errorData.detail}`);
+        }
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
@@ -164,6 +168,29 @@ export default function NewFieldPage() {
           {loading ? "Запуск..." : "Начать"}
         </button>
       </form>
+
+      {subscriptionExpired && (
+        <div className="Subscription-Modal-Overlay">
+          <div className="Subscription-Modal">
+            <h3>Срок подписки завершён</h3>
+            <p>Чтобы продолжить анализировать поля, выберите подходящий тариф.</p>
+            <div className="Subscription-Modal-Actions">
+              <button
+                className="Subscription-Modal-Secondary"
+                onClick={() => setSubscriptionExpired(false)}
+              >
+                Закрыть
+              </button>
+              <button
+                className="Subscription-Modal-Primary"
+                onClick={() => router.push("/pricing")}
+              >
+                Выбрать тариф
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
