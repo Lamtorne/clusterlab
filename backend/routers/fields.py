@@ -16,6 +16,8 @@ from fastapi.responses import HTMLResponse
 from backend.services.analysis import build_cluster_map_html
 from backend.models.field_recommendation import FieldRecommendation as FieldRecommendationModel
 from sqlalchemy import func
+from fastapi.responses import StreamingResponse
+import io as io_module
 
 CLUSTER_COLORS = ["#FFB800",
   "#FF5722",
@@ -169,36 +171,6 @@ async def get_field_map(
         short_recs,
     )
     return HTMLResponse(content=html)
-# @router.get("/{field_id}/map", response_class=HTMLResponse)
-# async def get_field_map(
-#     field_id: int,
-#     db: AsyncSession = Depends(get_async_db),
-#     current_user=Depends(get_current_user),
-# ):
-#     result = await db.execute(
-#         select(FieldModel).where(FieldModel.id == field_id, FieldModel.user_id == current_user.id)
-#     )
-#     field = result.scalar_one_or_none()
-#     if not field or field.status != "Готово":
-#         raise HTTPException(404, detail="Карта недоступна")
-#
-#     analysis_result = await db.execute(
-#         select(AnalysisResultModel).where(AnalysisResultModel.field_id == field_id)
-#     )
-#     analysis = analysis_result.scalar_one_or_none()
-#     if not analysis:
-#         raise HTTPException(404, detail="Результат анализа не найден")
-#
-#     html = await asyncio.to_thread(
-#         build_cluster_map_html,
-#         field.latitude,
-#         field.longitude,
-#         field.radius,
-#         analysis.cluster_data["map_data"],
-#         CLUSTER_COLORS,
-#     )
-#     return HTMLResponse(content=html)
-
 
 @router.get("/{field_id}/recommendations")
 async def get_field_recommendations(
@@ -220,3 +192,41 @@ async def get_field_recommendations(
         raise HTTPException(404, detail="Рекомендации ещё не готовы")
 
     return {"zones": rec.zones_rec}
+
+
+@router.get("/{field_id}/export/shapefile")
+async def export_shapefile(
+    field_id: int,
+    db: AsyncSession = Depends(get_async_db),
+    current_user=Depends(get_current_user),
+):
+    field_result = await db.execute(
+        select(FieldModel).where(FieldModel.id == field_id, FieldModel.user_id == current_user.id)
+    )
+    field = field_result.scalar_one_or_none()
+    if not field:
+        raise HTTPException(404, detail="Поле не найдено")
+
+    analysis_result = await db.execute(
+        select(AnalysisResultModel).where(AnalysisResultModel.field_id == field_id)
+    )
+    analysis = analysis_result.scalar_one_or_none()
+
+    rec_result = await db.execute(
+        select(FieldRecommendationModel).where(FieldRecommendationModel.field_id == field_id)
+    )
+    rec = rec_result.scalar_one_or_none()
+
+    if not analysis or not rec:
+        raise HTTPException(404, detail="Данные для экспорта не найдены")
+
+    polygons = await asyncio.to_thread(
+        build_cluster_polygons, field.latitude, field.longitude, field.radius, analysis.cluster_data["map_data"]
+    )
+    zip_bytes = await asyncio.to_thread(build_prescription_shapefile, polygons, rec.zones_rec)
+
+    return StreamingResponse(
+        io_module.BytesIO(zip_bytes),
+        media_type="application/zip",
+        headers={"Content-Disposition": f"attachment; filename=field_{field_id}_prescription.zip"},
+    )

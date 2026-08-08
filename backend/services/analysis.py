@@ -28,6 +28,11 @@ import re
 from gigachat import GigaChat
 import json
 
+# файлы для систем точного земледелия
+import shapefile  # pyshp
+import io
+import zipfile
+
 env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
@@ -334,74 +339,6 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
 
     folium.LayerControl().add_to(m)
     return m.get_root().render()
-# def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: list[str]) -> str:
-#     """
-#     Строит интерактивную карту кластеров (folium) на реальных спутниковых тайлах.
-#     Синхронная и не самая лёгкая функция — вызывать через asyncio.to_thread.
-#     """
-#     lat = float(lat)
-#     lon = float(lon)
-#     safe_radius = max(float(radius), 100.0)
-#     delta = safe_radius / 111000
-#
-#     west, south = lon - delta, lat - delta
-#     east, north = lon + delta, lat + delta
-#
-#     width = map_data["width"]
-#     height = map_data["height"]
-#     labels = np.array(map_data["labels"], dtype="int16").reshape(height, width)
-#
-#     # Строим affine-трансформацию вручную по bbox — то же, что делал rasterio при чтении .tif
-#     affine = rio_transform.from_bounds(west, south, east, north, width, height)
-#
-#     # Векторизация: превращаем растровую сетку кластеров в полигоны
-#     shapes_gen = rio_features.shapes(labels, transform=affine)
-#
-#     polygons_by_cluster: dict[int, list] = {}
-#     for geom, value in shapes_gen:
-#         cluster_id = int(value)
-#         polygons_by_cluster.setdefault(cluster_id, []).append(shape(geom))
-#
-#     # Объединяем разрозненные кусочки одного кластера в единый полигон (dissolve)
-#     geo_features = []
-#     for cluster_id, polys in polygons_by_cluster.items():
-#         merged = unary_union(polys)
-#         geo_features.append({
-#             "type": "Feature",
-#             "properties": {
-#                 "cluster": cluster_id,
-#                 "color": cluster_colors[cluster_id % len(cluster_colors)],
-#             },
-#             "geometry": mapping(merged),
-#         })
-#
-#     geojson_data = {"type": "FeatureCollection", "features": geo_features}
-#
-#     m = folium.Map(location=[lat, lon], zoom_start=get_zoom_for_radius(safe_radius), control_scale=True)
-#
-#     folium.TileLayer(
-#         tiles="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-#         attr="Google",
-#         name="Google Satellite",
-#         overlay=False,
-#         control=True,
-#     ).add_to(m)
-#
-#     folium.GeoJson(
-#         geojson_data,
-#         name="Зоны кластеризации",
-#         style_function=lambda feature: {
-#             "fillColor": feature["properties"]["color"],
-#             "color": "white",
-#             "weight": 1,
-#             "fillOpacity": 0.5,
-#         },
-#         highlight_function=lambda feature: {"weight": 3, "color": "yellow", "fillOpacity": 0.7},
-#         tooltip=folium.GeoJsonTooltip(fields=["cluster"], aliases=["Зона №:"], sticky=True),
-#     ).add_to(m)
-#
-#     folium.LayerControl().add_to(m)
-#     return m.get_root().render()
 
 # функции для LLM
 
@@ -477,3 +414,74 @@ async def get_llm_recommendations(field_info, cluster_stats: list[dict]) -> list
 
     cleaned = clean_json_response(raw_text)
     return json.loads(cleaned)
+
+def build_cluster_polygons(lat, lon, radius, map_data: dict) -> dict[int, "shapely.geometry.base.BaseGeometry"]:
+    """
+    Векторизация растровой сетки кластеров в полигоны — переиспользуется
+    и картой (build_cluster_map_html), и экспортом в Shapefile.
+    """
+    lat = float(lat)
+    lon = float(lon)
+    safe_radius = max(float(radius), 100.0)
+    delta = safe_radius / 111000
+
+    west, south = lon - delta, lat - delta
+    east, north = lon + delta, lat + delta
+
+    width = map_data["width"]
+    height = map_data["height"]
+    labels = np.array(map_data["labels"], dtype="int16").reshape(height, width)
+
+    affine = rio_transform.from_bounds(west, south, east, north, width, height)
+    shapes_gen = rio_features.shapes(labels, transform=affine)
+
+    polygons_by_cluster: dict[int, list] = {}
+    for geom, value in shapes_gen:
+        cluster_id = int(value)
+        polygons_by_cluster.setdefault(cluster_id, []).append(shape(geom))
+
+    return {cid: unary_union(polys) for cid, polys in polygons_by_cluster.items()}
+
+def build_prescription_shapefile(polygons_by_cluster: dict, zones: list[dict]) -> bytes:
+    """
+    Собирает Shapefile (карту-задание) с полигонами зон и дозировкой удобрения —
+    формат, который принимают John Deere Operations Center, Trimble Ag, Ag Leader SMS и др.
+    """
+    zones_by_cluster = {z["cluster"]: z for z in zones}
+
+    buf_shp = io.BytesIO()
+    buf_shx = io.BytesIO()
+    buf_dbf = io.BytesIO()
+
+    writer = shapefile.Writer(shp=buf_shp, shx=buf_shx, dbf=buf_dbf, shapeType=shapefile.POLYGON)
+    writer.field("cluster", "N")
+    writer.field("fertilizer", "C", size=60)
+    writer.field("dose_kgha", "N", decimal=1)
+
+    for cluster_id, geom in polygons_by_cluster.items():
+        zone = zones_by_cluster.get(cluster_id, {})
+        polys = geom.geoms if geom.geom_type == "MultiPolygon" else [geom]
+        parts = [list(p.exterior.coords) for p in polys]
+        writer.poly(parts)
+        writer.record(
+            cluster=cluster_id,
+            fertilizer=zone.get("fertilizer", ""),
+            dose_kgha=zone.get("dose_kg_ha", 0),
+        )
+
+    writer.close()
+
+    # .prj обязателен — иначе техника не поймёт систему координат
+    prj_wkt = (
+        'GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563]],'
+        'PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433]]'
+    )
+
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, "w") as zf:
+        zf.writestr("prescription.shp", buf_shp.getvalue())
+        zf.writestr("prescription.shx", buf_shx.getvalue())
+        zf.writestr("prescription.dbf", buf_dbf.getvalue())
+        zf.writestr("prescription.prj", prj_wkt)
+
+    return zip_buffer.getvalue()

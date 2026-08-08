@@ -16,6 +16,14 @@ interface ClusterStat {
   mean_ndmi: number;
 }
 
+interface RecommendationZone {
+  cluster: number;
+  fertilizer: string;
+  dose_kg_ha: number;
+  reasoning: string;
+  short_rec: string;
+}
+
 interface ResultData {
   status: string;
   field: {
@@ -49,8 +57,9 @@ export default function FieldResultPage() {
   const id = params.id as string;
   const [data, setData] = useState<ResultData | null>(null);
   const [mapHtml, setMapHtml] = useState<string | null>(null);
-  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [recommendations, setRecommendations] = useState<RecommendationZone[]>([]);
   const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -77,7 +86,6 @@ export default function FieldResultPage() {
       .catch(() => setMapHtml(null));
   }, [data, id]);
 
-  // Отдельный запрос к рекомендациям — они хранятся в другой таблице/эндпоинте
   useEffect(() => {
     if (data?.status !== "Готово") return;
 
@@ -89,6 +97,29 @@ export default function FieldResultPage() {
       .then((res) => setRecommendations(res.zones || []))
       .catch(() => setRecommendations([]));
   }, [data, id]);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(`http://localhost:8000/fields/${id}/export/shapefile`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        alert("Не удалось скачать файл");
+        return;
+      }
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `field_${id}_prescription.zip`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   if (error) return <p className="error-message">{error}</p>;
   if (!data) return <p className="Field-Result-Loading">Загрузка...</p>;
@@ -147,17 +178,34 @@ export default function FieldResultPage() {
           <div className="Field-Result-Recommendations">
             <h4 className="Field-Result-Subtitle">Рекомендации по удобрениям</h4>
             {recommendations.length > 0 ? (
-              <pre style={{ whiteSpace: "pre-wrap", fontSize: "0.85rem" }}>
-                {JSON.stringify(recommendations, null, 2)}
-              </pre>
+              <div className="Recommendations-List">
+                {recommendations.map((zone) => (
+                  <div key={zone.cluster} className="Recommendation-Zone">
+                    <div className="Recommendation-Zone-Header">
+                      <span
+                        className="Cluster-Legend-Swatch"
+                        style={{ backgroundColor: CLUSTER_COLORS[zone.cluster % CLUSTER_COLORS.length] }}
+                      />
+                      <strong>
+                        Кластер {zone.cluster + 1}: {zone.fertilizer}, {zone.dose_kg_ha} кг/га
+                      </strong>
+                    </div>
+                    <p className="Recommendation-Zone-Text">{zone.reasoning}</p>
+                  </div>
+                ))}
+              </div>
             ) : (
               <p className="Recommendations-Text">Рекомендации ещё не готовы</p>
             )}
           </div>
 
           <div className="Field-Result-Actions">
-            <button className="Download-Button" disabled>
-              Скачать результаты (скоро)
+            <button
+              className="Download-Button"
+              onClick={handleDownload}
+              disabled={recommendations.length === 0 || downloading}
+            >
+              {downloading ? "Готовим файл..." : "Скачать карту-задание для техники"}
             </button>
           </div>
         </div>

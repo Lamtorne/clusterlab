@@ -144,3 +144,28 @@
   border-radius: 12px;
   overflow: hidden;
 }
+
+.Recommendations-List {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Recommendation-Zone {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(60, 49, 38, 0.1);
+}
+
+.Recommendation-Zone-Header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.Recommendation-Zone-Text {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  line-height: 1.4;
+}
