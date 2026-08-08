@@ -259,12 +259,8 @@ def get_zoom_for_radius(radius: float) -> int:
         return 16
     return 15
 
-
-def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: list[str]) -> str:
-    """
-    Строит интерактивную карту кластеров (folium) на реальных спутниковых тайлах.
-    Синхронная и не самая лёгкая функция — вызывать через asyncio.to_thread.
-    """
+def build_cluster_polygons(lat, lon, radius, map_data: dict) -> dict[int, "shapely.geometry.base.BaseGeometry"]:
+    """Векторизация растровой сетки кластеров в полигоны — переиспользуется картой и экспортом."""
     lat = float(lat)
     lon = float(lon)
     safe_radius = max(float(radius), 100.0)
@@ -277,10 +273,7 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
     height = map_data["height"]
     labels = np.array(map_data["labels"], dtype="int16").reshape(height, width)
 
-    # Строим affine-трансформацию вручную по bbox — то же, что делал rasterio при чтении .tif
     affine = rio_transform.from_bounds(west, south, east, north, width, height)
-
-    # Векторизация: превращаем растровую сетку кластеров в полигоны
     shapes_gen = rio_features.shapes(labels, transform=affine)
 
     polygons_by_cluster: dict[int, list] = {}
@@ -288,22 +281,31 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
         cluster_id = int(value)
         polygons_by_cluster.setdefault(cluster_id, []).append(shape(geom))
 
-    # Объединяем разрозненные кусочки одного кластера в единый полигон (dissolve)
+    return {cid: unary_union(polys) for cid, polys in polygons_by_cluster.items()}
+
+
+def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: list[str], short_recs: list[str] | None = None) -> str:
+    lat = float(lat)
+    lon = float(lon)
+
+    polygons_by_cluster = build_cluster_polygons(lat, lon, radius, map_data)
+
     geo_features = []
-    for cluster_id, polys in polygons_by_cluster.items():
-        merged = unary_union(polys)
+    for cluster_id, geom in polygons_by_cluster.items():
+        short_rec = short_recs[cluster_id] if short_recs and cluster_id < len(short_recs) else "Нет данных"
         geo_features.append({
             "type": "Feature",
             "properties": {
-                "cluster": cluster_id,
+                "cluster_label": f"Зона {cluster_id + 1}",
                 "color": cluster_colors[cluster_id % len(cluster_colors)],
+                "short_rec": short_rec,
             },
-            "geometry": mapping(merged),
+            "geometry": mapping(geom),
         })
 
     geojson_data = {"type": "FeatureCollection", "features": geo_features}
 
-    m = folium.Map(location=[lat, lon], zoom_start=get_zoom_for_radius(safe_radius), control_scale=True)
+    m = folium.Map(location=[lat, lon], zoom_start=get_zoom_for_radius(max(float(radius), 100.0)), control_scale=True)
 
     folium.TileLayer(
         tiles="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
@@ -323,11 +325,83 @@ def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: lis
             "fillOpacity": 0.5,
         },
         highlight_function=lambda feature: {"weight": 3, "color": "yellow", "fillOpacity": 0.7},
-        tooltip=folium.GeoJsonTooltip(fields=["cluster"], aliases=["Зона №:"], sticky=True),
+        tooltip=folium.GeoJsonTooltip(
+            fields=["cluster_label", "short_rec"],
+            aliases=["Зона:", "Рекомендация:"],
+            sticky=True,
+        ),
     ).add_to(m)
 
     folium.LayerControl().add_to(m)
     return m.get_root().render()
+# def build_cluster_map_html(lat, lon, radius, map_data: dict, cluster_colors: list[str]) -> str:
+#     """
+#     Строит интерактивную карту кластеров (folium) на реальных спутниковых тайлах.
+#     Синхронная и не самая лёгкая функция — вызывать через asyncio.to_thread.
+#     """
+#     lat = float(lat)
+#     lon = float(lon)
+#     safe_radius = max(float(radius), 100.0)
+#     delta = safe_radius / 111000
+#
+#     west, south = lon - delta, lat - delta
+#     east, north = lon + delta, lat + delta
+#
+#     width = map_data["width"]
+#     height = map_data["height"]
+#     labels = np.array(map_data["labels"], dtype="int16").reshape(height, width)
+#
+#     # Строим affine-трансформацию вручную по bbox — то же, что делал rasterio при чтении .tif
+#     affine = rio_transform.from_bounds(west, south, east, north, width, height)
+#
+#     # Векторизация: превращаем растровую сетку кластеров в полигоны
+#     shapes_gen = rio_features.shapes(labels, transform=affine)
+#
+#     polygons_by_cluster: dict[int, list] = {}
+#     for geom, value in shapes_gen:
+#         cluster_id = int(value)
+#         polygons_by_cluster.setdefault(cluster_id, []).append(shape(geom))
+#
+#     # Объединяем разрозненные кусочки одного кластера в единый полигон (dissolve)
+#     geo_features = []
+#     for cluster_id, polys in polygons_by_cluster.items():
+#         merged = unary_union(polys)
+#         geo_features.append({
+#             "type": "Feature",
+#             "properties": {
+#                 "cluster": cluster_id,
+#                 "color": cluster_colors[cluster_id % len(cluster_colors)],
+#             },
+#             "geometry": mapping(merged),
+#         })
+#
+#     geojson_data = {"type": "FeatureCollection", "features": geo_features}
+#
+#     m = folium.Map(location=[lat, lon], zoom_start=get_zoom_for_radius(safe_radius), control_scale=True)
+#
+#     folium.TileLayer(
+#         tiles="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+#         attr="Google",
+#         name="Google Satellite",
+#         overlay=False,
+#         control=True,
+#     ).add_to(m)
+#
+#     folium.GeoJson(
+#         geojson_data,
+#         name="Зоны кластеризации",
+#         style_function=lambda feature: {
+#             "fillColor": feature["properties"]["color"],
+#             "color": "white",
+#             "weight": 1,
+#             "fillOpacity": 0.5,
+#         },
+#         highlight_function=lambda feature: {"weight": 3, "color": "yellow", "fillOpacity": 0.7},
+#         tooltip=folium.GeoJsonTooltip(fields=["cluster"], aliases=["Зона №:"], sticky=True),
+#     ).add_to(m)
+#
+#     folium.LayerControl().add_to(m)
+#     return m.get_root().render()
 
 # функции для LLM
 

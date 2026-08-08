@@ -153,6 +153,12 @@ async def get_field_map(
     if not analysis:
         raise HTTPException(404, detail="Результат анализа не найден")
 
+    rec_result = await db.execute(
+        select(FieldRecommendationModel).where(FieldRecommendationModel.field_id == field_id)
+    )
+    rec = rec_result.scalar_one_or_none()
+    short_recs = rec.short_zone_rec if rec else []
+
     html = await asyncio.to_thread(
         build_cluster_map_html,
         field.latitude,
@@ -160,8 +166,38 @@ async def get_field_map(
         field.radius,
         analysis.cluster_data["map_data"],
         CLUSTER_COLORS,
+        short_recs,
     )
     return HTMLResponse(content=html)
+# @router.get("/{field_id}/map", response_class=HTMLResponse)
+# async def get_field_map(
+#     field_id: int,
+#     db: AsyncSession = Depends(get_async_db),
+#     current_user=Depends(get_current_user),
+# ):
+#     result = await db.execute(
+#         select(FieldModel).where(FieldModel.id == field_id, FieldModel.user_id == current_user.id)
+#     )
+#     field = result.scalar_one_or_none()
+#     if not field or field.status != "Готово":
+#         raise HTTPException(404, detail="Карта недоступна")
+#
+#     analysis_result = await db.execute(
+#         select(AnalysisResultModel).where(AnalysisResultModel.field_id == field_id)
+#     )
+#     analysis = analysis_result.scalar_one_or_none()
+#     if not analysis:
+#         raise HTTPException(404, detail="Результат анализа не найден")
+#
+#     html = await asyncio.to_thread(
+#         build_cluster_map_html,
+#         field.latitude,
+#         field.longitude,
+#         field.radius,
+#         analysis.cluster_data["map_data"],
+#         CLUSTER_COLORS,
+#     )
+#     return HTMLResponse(content=html)
 
 
 @router.get("/{field_id}/recommendations")
