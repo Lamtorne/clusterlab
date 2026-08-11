@@ -47,11 +47,8 @@ export default function PricesPage() {
               <ul>
                 <li>
                   <p>
-                    Интерактивная карта и экспорт рекомендаций в любом формате
+                    Интерактивная карта и экспорт shapefile
                   </p>
-                </li>
-                <li>
-                  <p>Кластеризация по NDVI</p>
                 </li>
                 <li>
                   <p>
@@ -62,7 +59,7 @@ export default function PricesPage() {
             </div>
             <div className="Prices-Page-Block-1-Bottom">
               <div className="Prices-Page-Block-1-Price">
-                <p>2000 руб / месяц</p>
+                <p>1500 руб / месяц</p>
               </div>
               <Link href="/">
                 <p className="Prices-Page-Block-1-Button">Начать Работу</p>
@@ -103,7 +100,7 @@ export default function PricesPage() {
             </div>
             <div className="Prices-Page-Block-1-Bottom">
               <div className="Prices-Page-Block-1-Price">
-                <p>7500 руб / месяц</p>
+                <p>4500  руб / месяц</p>
               </div>
               <Link href="/">
                 <p className="Prices-Page-Block-1-Button">Начать Работу</p>
@@ -177,10 +174,9 @@ export default function PricesPage() {
     {
       name: "Стандарт",
       description: "Идеальный старт для небольших фермерских хозяйств",
-      price: "2000 руб / месяц",
+      price: "1500 руб / месяц",
       features: [
         "Интерактивная карта и экспорт рекомендаций",
-        "Кластеризация по NDVI + 6 каналов",
         "Площадь угодий до 100 га в месяц",
       ],
       type: "standard",
@@ -188,10 +184,9 @@ export default function PricesPage() {
     {
       name: "Про",
       description: "Инструмент для масштабного роста и максимальной точности",
-      price: "7500 руб / месяц",
+      price: "4500 руб / месяц",
       features: [
         "Всё, что есть в Стандарт",
-        "Учет агрохимии, вегетации и типа культуры",
         "Площадь угодий до 500 га в месяц",
       ],
       type: "pro",
@@ -201,7 +196,7 @@ export default function PricesPage() {
       description: "Попробуйте возможности на небольшом поле",
       price: "0 рублей / 7 дней",
       features: [
-        "Анализ 1 поля площадью до 10 га",
+        "Анализ полей суммарной площадью до 10 га",
         "Демонстрационная кластеризация по NDVI",
         "Интерактивная карта и экспорт в одном формате",
       ],
