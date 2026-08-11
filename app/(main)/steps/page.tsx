@@ -104,8 +104,7 @@ export default function StepsPage() {
                     (просматривать зоны и рекомендации по ним).
                   </li>
                   <li>
-                    Файл для скачивания для применения в системах умного
-                    земледелия.
+                    Shapefile для применения в системах умного земледелия.
                   </li>
                 </ul>
               </div>
@@ -122,15 +121,6 @@ export default function StepsPage() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="Steps-Page-Block-2">
-        <h2 className="Steps-Page-Block-2-Header">
-          Начните Работу Уже Сейчас: Войдите или Зарегистрируйтесь
-        </h2>
-        <Link href="/">
-          <p className="Steps-Page-Block-2-Button">Начать Работу</p>
-        </Link>
       </div>
     </main>
   );
