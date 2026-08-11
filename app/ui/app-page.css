@@ -440,43 +440,69 @@ p {
 
 .App-Page-Block-7 {
   margin: 0 auto;
-  padding: 3rem 1rem;
+  padding: 5rem 1.5rem;
   color: #3c3126;
+  max-width: 1400px;
 }
 
 .App-Page-Block-7-Header {
   text-align: center;
   font-weight: bold;
-  margin-bottom: 1 rem;
+  margin-bottom: 4rem;
   color: #3c3126;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .App-Page-Block-7-Content {
-  display: flex;
-  grid-template-columns: 300px 300px;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 3rem;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .App-Page-Block-7-Images {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: center;
-  margin-left: 10rem;
+  display: contents; /* убираем flex-обёртку — логотипы станут прямыми grid-детьми */
 }
 
-.App-Page-Block-7-Images img {
-  width: 100%;
+.App-Page-Fasie-Picture,
+.App-Page-Platform-Picture {
+  width: 220px;
   height: auto;
   object-fit: contain;
 }
 
-.App-Page-Block-7-Text {
-  text-align: left;
-  font-family: "Jura", sans-serif;
-  font-size: 2.2rem;
-  line-height: 1.4;
-  margin-left: 10rem;
-  margin-right: 15rem;
+.App-Page-Platform-Picture {
+  order: 3; /* гарантирует, что этот логотип встанет последним, справа */
 }
+
+.App-Page-Block-7-Text {
+  text-align: center;
+  font-family: "Jura", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  order: 2;
+}
+
+.App-Page-Block-7-Text p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .App-Page-Block-7-Content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .App-Page-Fasie-Picture,
+  .App-Page-Platform-Picture,
+  .App-Page-Block-7-Text {
+    order: initial;
+  }
+
+  .App-Page-Block-7-Text {
+    font-size: 1.2rem;
+  }
+}
+
