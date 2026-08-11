@@ -121,6 +121,18 @@ export default function FieldResultPage() {
     }
   };
 
+  const handleDownloadMap = () => {
+    if (!mapHtml) return;
+
+    const blob = new Blob([mapHtml], { type: "text/html" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `field_${id}_map.html`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   if (error) return <p className="error-message">{error}</p>;
   if (!data) return <p className="Field-Result-Loading">Загрузка...</p>;
   if (data.status !== "Готово") {
@@ -222,6 +234,15 @@ export default function FieldResultPage() {
               <p>Загрузка карты...</p>
             )}
           </div>
+          <div className="Download-Map-Wrapper">
+    <button
+      className="Download-Button"
+      onClick={handleDownloadMap}
+      disabled={!mapHtml}
+    >
+      Скачать карту
+    </button>
+  </div>
         </div>
       </div>
     </main>
