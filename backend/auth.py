@@ -6,6 +6,7 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 import bcrypt
+import os
 
 from backend.models.users import User as UserModel
 from backend.config import SECRET_KEY, ALGORITHM
@@ -87,8 +88,8 @@ def generate_verification_code() -> str:
     return "".join(random.choices(string.digits, k=6))
 
 def send_verification_email(to_email: str, code: str):
-    sender = os.getenv("SMTP_EMAIL")  # твоя почта на Яндексе
-    password = os.getenv("SMTP_PASSWORD")  # пароль приложения (не обычный пароль!)
+    sender = os.getenv("SMTP_EMAIL")
+    password = os.getenv("SMTP_PASSWORD")
 
     msg = MIMEText(f"Ваш код подтверждения: {code}\n\nКод действителен 15 минут.")
     msg["Subject"] = "Подтверждение регистрации в ClusterLab"
