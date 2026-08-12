@@ -31,16 +31,8 @@ export default function Sign_Up() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-
-        // 1. Сохраняем информацию о том, что юзер вошел (пока можно в localStorage)
-        localStorage.setItem("user_id", data.id);
-
-        if (data.access_token) {
-          localStorage.setItem("access_token", data.access_token);
-        }
-        // 2. Перекидываем в личный кабинет (заглушку)
-        router.push("/profile");
+        // Регистрация больше не логинит сразу — нужно подтвердить почту кодом
+        router.push(`/verify?email=${encodeURIComponent(email)}`);
       } else {
         const errorData = await response.json();
         setError(errorData.detail || "Ошибка при регистрации");
