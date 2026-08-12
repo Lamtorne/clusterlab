@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, DateTime, Numeric
+from sqlalchemy import Integer, String, DateTime, Numeric, Boolean
 from datetime import datetime, timedelta
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from backend.database import Base
@@ -18,5 +18,8 @@ class User(Base):
 
     max_area: Mapped[float] = mapped_column(Numeric(3, 1), default=10.0)
     current_area: Mapped[float] = mapped_column(Numeric(3, 1), default=0.0)
+    is_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    verification_code: Mapped[str | None] = mapped_column(String(6), nullable=True)
+    verification_code_expires: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
     fields: Mapped[list["Field"]] = relationship("Field", back_populates="user")

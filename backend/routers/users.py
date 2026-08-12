@@ -4,11 +4,18 @@ from sqlalchemy import select
 from fastapi.security import OAuth2PasswordRequestForm
 
 from backend.models.users import User as UserModel
+from pydantic import BaseModel
 from backend.schema import UserCreate, User as UserSchema
 from backend.db_depends import get_async_db
 from backend.auth import hash_password, verify_password, create_access_token, get_current_user
 from sqlalchemy import func
 from backend.models.fields import Field as FieldModel
+from datetime import datetime, timedelta
+from backend.auth import (
+    hash_password, verify_password, create_access_token, get_current_user,
+    generate_verification_code, send_verification_email,
+)
+
 
 router = APIRouter(prefix='/users', tags=['users'])
 
@@ -19,31 +26,54 @@ async def get_used_area(user_id: int, db: AsyncSession) -> float:
     )
     return float(result.scalar())
 
+# @router.post('/', response_model=UserSchema, status_code=status.HTTP_201_CREATED)
+# async def create_user(user: UserCreate, db: AsyncSession = Depends(get_async_db)):
+#     '''
+#     Signing up new user
+#     '''
+#
+#     # checking that email is unique
+#     result_email = await db.scalars(select(UserModel).where(UserModel.email == user.email))
+#     if result_email.first():
+#         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email already exists')
+#     print(f"DEBUG: Registrating {user.email} with password length: {len(user.password)}")
+#
+#     # creating onject user
+#     db_user = UserModel(
+#         email=user.email,
+#         hashed_password=hash_password(user.password),
+#         full_name=user.full_name
+#     )
+#
+#     db.add(db_user)
+#     await db.commit()
+#     await db.refresh(db_user)
+#     return db_user
+
 @router.post('/', response_model=UserSchema, status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserCreate, db: AsyncSession = Depends(get_async_db)):
-    '''
-    Signing up new user
-    '''
-
-    # checking that email is unique
     result_email = await db.scalars(select(UserModel).where(UserModel.email == user.email))
     if result_email.first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email already exists')
-    print(f"DEBUG: Registrating {user.email} with password length: {len(user.password)}")
 
-    # creating onject user
+    code = generate_verification_code()
+
     db_user = UserModel(
         email=user.email,
         hashed_password=hash_password(user.password),
-        full_name=user.full_name
+        full_name=user.full_name,
+        is_verified=False,
+        verification_code=code,
+        verification_code_expires=datetime.now() + timedelta(minutes=15),
     )
 
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)
+
+    send_verification_email(user.email, code)
+
     return db_user
-
-
 @router.post('/token')
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_async_db)):
     '''
@@ -59,6 +89,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSessi
             detail="Неверный email или пароль",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    if not user.is_verified:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Подтвердите почту перед входом")
+
     token_data = {
         "sub": user.email,
         "id": user.id,
@@ -96,3 +129,32 @@ async def get_personal_info(
         "usedHectares": used_area,
         "totalHectares": float(current_user.max_area)
     }
+
+
+class VerifyCodeRequest(BaseModel):
+    email: str
+    code: str
+
+
+@router.post('/verify')
+async def verify_email(payload: VerifyCodeRequest, db: AsyncSession = Depends(get_async_db)):
+    result = await db.scalars(select(UserModel).where(UserModel.email == payload.email))
+    user = result.first()
+
+    if not user:
+        raise HTTPException(404, detail="Пользователь не найден")
+
+    if user.is_verified:
+        return {"detail": "Почта уже подтверждена"}
+
+    if user.verification_code != payload.code:
+        raise HTTPException(400, detail="Неверный код")
+
+    if datetime.now() > user.verification_code_expires:
+        raise HTTPException(400, detail="Код истёк, запросите новый")
+
+    user.is_verified = True
+    user.verification_code = None
+    await db.commit()
+
+    return {"detail": "Почта подтверждена"}

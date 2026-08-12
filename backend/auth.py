@@ -10,6 +10,10 @@ import bcrypt
 from backend.models.users import User as UserModel
 from backend.config import SECRET_KEY, ALGORITHM
 from backend.db_depends import get_async_db
+import smtplib
+from email.mime.text import MIMEText
+import random
+import string
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")  # объект, хэширующий пароль
 
@@ -77,3 +81,20 @@ async def get_current_user(token: str = Depends(oauth2_scheme),
     if user is None:
         raise credentials_exception
     return user
+
+
+def generate_verification_code() -> str:
+    return "".join(random.choices(string.digits, k=6))
+
+def send_verification_email(to_email: str, code: str):
+    sender = os.getenv("SMTP_EMAIL")  # твоя почта на Яндексе
+    password = os.getenv("SMTP_PASSWORD")  # пароль приложения (не обычный пароль!)
+
+    msg = MIMEText(f"Ваш код подтверждения: {code}\n\nКод действителен 15 минут.")
+    msg["Subject"] = "Подтверждение регистрации в ClusterLab"
+    msg["From"] = sender
+    msg["To"] = to_email
+
+    with smtplib.SMTP_SSL("smtp.yandex.ru", 465) as server:
+        server.login(sender, password)
+        server.sendmail(sender, [to_email], msg.as_string())
